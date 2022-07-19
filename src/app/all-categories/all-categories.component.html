@@ -1,0 +1,68 @@
+<div class="wrapper mt-2">
+    <div class="table2 " >                                           
+      <div class="row2">
+      
+        <div class="cell2" style="box-shadow: none;">
+            <h4><u>All Categories </u> </h4>
+        </div>
+        <div class="cell2 text-center" style="box-shadow:none;border-radius:12px">
+            <div class="form-group">
+                <span class="fa fa-search form-control-icon"></span>
+                <input type="text" class="form-control" [(ngModel)]="filteredStatus" placeholder="Search Category">   
+            </div>
+        </div>
+  
+        <div class="cell2" style="box-shadow:none;border-radius:12px">
+          <button (click)="createNewCategoryDialog()" class="btn myBtn mb-1"><i class="fas fa-plus"></i> Add Category</button>
+        </div>
+
+      </div>
+    </div> 
+
+    <div class="table shadow p-3 mb-5">
+      
+      <div class="row header" >
+        
+        <div class="cell">
+          S.No
+        </div>
+        <div class="cell">
+        </div>
+        <div class="cell">
+          Category
+        </div>
+        <div class="cell">
+          Created On
+        </div>      
+        <div class="cell">          
+        </div>
+      </div>
+      
+      <div class="row" *ngFor="let cat of allCategories | nameFilter : filteredStatus | paginate :{itemsPerPage:5,currentPage:p};let i = index;">
+      
+        <div class="cell" data-title="S.No.">
+            {{i+1}}
+        </div>
+        <div class="cell">
+          <img class="profile-avatar rounded-circle" src={{cat.categoryImage}} onerror="this.src='../../assets/topicImage.PNG'" alt="CategoryImage" height="65px" width="70px">
+        </div>
+        <div class="cell" data-title="Category">
+            {{ cat.categoryName | titlecase }}
+        </div>    
+        <div class="cell" data-title="Created On">
+            {{ cat.creationTimeStamp | date:'medium' }}
+        </div>
+        <div class="cell">
+           <i (click)="deleteCategory(cat.categoryId)" class="fas fa-trash" aria-hidden="true" style="cursor:pointer;color:rgb(221, 17, 17);font-size: 18px;"></i>
+        </div>
+             
+      </div>
+    </div>   
+    <!-- pagination -->
+    <pagination-controls (pageChange)="p=$event" ></pagination-controls>
+ </div> 
+
+  
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Please wait...</p>
+</ngx-spinner>

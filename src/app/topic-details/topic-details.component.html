@@ -1,0 +1,34 @@
+<div class="container">
+    <hr class="my-2">
+    <div class="row py-2 text-center">
+        <div class="col-md-12">
+            <img class="profile-avatar rounded-circle" src={{topicData.topicIcon}} onerror="this.src='../../assets/topicImage.PNG'" alt="TopicImage" height="100px" width="100px">
+        </div>
+      </div>
+    <div class="row py-2 text-center">
+      <div class="col-md-6" style="font-weight: 600;">
+          Topic Name : 
+      </div>
+      <div class="col-md-6 text-left">
+          {{topicData.topicName}}
+      </div>
+    </div>
+    <div class="row py-2 text-center">
+        <div class="col-md-6" style="font-weight: 600;">
+            Topic Category : 
+        </div>
+        <div class="col-md-6 text-left">
+            {{topicData.topicCategory | titlecase}}
+        </div>
+      </div>
+    <div class="row py-2 text-center">
+        <div class="col-md-6" style="font-weight: 600;">
+            Description : 
+        </div>
+        <div class="col-md-6 text-left">
+            {{topicData.description}}
+        </div>
+      </div>
+
+    <hr class="my-2">
+</div>

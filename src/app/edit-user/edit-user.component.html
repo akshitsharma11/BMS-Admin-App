@@ -1,0 +1,21 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="row my-2">
+        <div class="col-md-12">
+            <label for="">User Name : </label>
+            <input type="text" name="userName" class="form-control" [(ngModel)]="userDetails.userName" placeholder="Enter user name">
+        </div>
+    </div>
+    <div class="row mt-1 mb-2">
+        <div class="col-md-12">
+            <label for="">Short Bio : </label>
+            <input type="text" name="shortBio" class="form-control" [(ngModel)]="userDetails.shortBio" placeholder="Enter short bio">
+        </div>
+    </div>
+    <div class="row mt-3 text-center">
+        <div class="col-md-12">
+            <button type="submit" class="btn myBtn">Save Changes</button>
+        </div>
+    </div>
+    </form>
+</div>

@@ -1,0 +1,77 @@
+<div class="wrapper mt-2">
+    <div class="table2 " >                                           
+      <div class="row2">
+      
+        <div class="cell2" style="box-shadow: none;">
+            <h4><u>All User Reports </u> </h4>
+        </div>
+        <div class="cell2 text-center" style="box-shadow:none;border-radius:12px">
+            <div class="form-group">
+                <span class="fa fa-search form-control-icon"></span>
+                <input type="text" class="form-control" [(ngModel)]="filteredStatus" placeholder="Search Report">   
+            </div>
+        </div>
+        <div class="cell2" style="box-shadow:none;border-radius:12px">
+
+        </div>
+        <div class="cell2" style="box-shadow:none;border-radius:12px">
+
+        </div>
+        
+      </div>
+    </div> 
+
+    <div class="table shadow p-3 mb-5">
+      
+      <div class="row header" >
+        
+        <div class="cell">
+          S.No
+        </div>
+        <div class="cell">
+          Reporter Name
+        </div>
+        <div class="cell">
+          Reporter Email
+        </div>
+        <div class="cell">
+          Message
+        </div>
+        <div class="cell">
+          Created On
+        </div>
+        <div class="cell">
+          Reportee
+        </div>
+      </div>
+      
+      <div class="row" *ngFor="let report of allUserReports | feedbackFilterPipe : filteredStatus | paginate :{itemsPerPage:10,currentPage:p};let i = index;">
+      
+        <div class="cell" data-title="S.No.">
+            {{i+1}}
+        </div>
+        <div class="cell" data-title="Reporter Name">
+            {{ report.reporterData.fullName | titlecase }}
+        </div>
+        <div class="cell" data-title="Email">
+            {{ report.reporterData.email }}
+        </div>
+        <div class="cell" data-title="Message">
+            {{ report.message }}
+        </div>
+        <div class="cell" data-title="Created On">
+            {{ report.creationTimeStamp | date:'mediumDate' }}
+        </div>
+        <div class="cell" data-title="Reportee Details">
+            <button (click)="showReporteeDetails(report.reporteeData)" class="btn"> <i class="fas fa-external-link-alt" aria-hidden="true" style="font-size: 18px;"></i> </button>
+        </div>
+      </div>
+    </div>
+    <!-- pagination -->
+    <pagination-controls (pageChange)="p=$event" ></pagination-controls>
+ </div> 
+
+  
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Please wait...</p>
+</ngx-spinner>

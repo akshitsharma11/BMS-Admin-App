@@ -1,0 +1,47 @@
+.userMessage{
+    background-color: rgb(161, 193, 235);
+    padding: 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.adminMessage{
+    background-color: rgb(156, 165, 177);
+    padding: 15px;
+    /* border-radius: 20px; */
+    margin-top: 10px;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+    border-bottom-left-radius:20px;
+    
+}
+
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .separator::before,
+  .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 0.2px solid rgb(138, 135, 135);
+  }
+  
+  .separator:not(:empty)::before {
+    margin-right: .50em;
+  }
+  
+  .separator:not(:empty)::after {
+    margin-left: .50em;
+  }
+
+  .image-upload>input {
+    display: none;
+  }
+  .image-upload{
+    margin-bottom:-10px;
+  }
+

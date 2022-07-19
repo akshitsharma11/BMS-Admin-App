@@ -1,0 +1,130 @@
+
+.image {
+    min-height: 105vh
+}
+
+.login
+{
+  min-height: 105vh;
+  border-radius: 20px;
+  width:480px;
+
+}
+
+.myLabel
+{
+  color: #9FA2B4;
+  font-family: Mulish;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0.30000001192092896px;
+  text-align: left;
+}
+
+.loginBtn
+{
+  height: 48px; 
+  border-radius: 8px;
+  background: #9250E5;
+  color: #FFFFFF;
+}
+
+.bg-image {
+  background-image: url('../../assets/Frame107.png');
+  background-size: cover;
+  background-position: center center
+}
+
+*,
+*:focus{outline: none}
+
+.form{
+  width: auto;
+  /* margin: 0 auto; */
+  margin-top: 15px;
+  font-family: sans-serif;
+  background: #fff
+}
+.form-item{
+  position: relative;
+  margin-bottom: 15px
+}
+.form-item input{
+  display: block;
+  width: 24.5rem;
+  height: 40px;
+  background: transparent;
+  border: solid 2px #0193C9;
+  transition: all .3s ease;
+  padding: 0 15px
+}
+.form-item input:focus{
+  border-color: #0193C9
+}
+.form-item label{
+  position: absolute;
+  cursor: text;
+  z-index: 2;
+  top: 13px;
+  left: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  background: #fff;
+  padding: 0 10px;
+  color: #0193C9;
+  transition: all .3s ease
+}
+.form-item input:focus + label,
+.form-item input:valid + label{
+  font-size: 11px;
+  top: -5px
+}
+.form-item input:focus + label{
+  color: #0193C9
+}
+
+@media (max-width: 500px) {
+    .form-item input{
+        display: block;
+        width: 250px;
+        height: 40px;
+        background: transparent;
+        border: solid 2px #0193C9;
+        transition: all .3s ease;
+        padding: 0 15px
+      }
+}
+
+
+.input-with-icon {
+    position: relative;  
+    width: 25rem;
+    height: 3.3rem;
+    box-sizing: border-box;
+}
+
+.input-with-icon .form-control {
+    /* height: 100%; */
+    /* width: 100%; */
+    /* padding-right: 3.65rem; */
+    box-sizing: border-box;
+}
+
+.input-with-icon .icon {
+    position: absolute;
+    right: 0.1rem;
+    top: 0.01rem;
+    /* width: 2.3rem;
+    height: 2.6rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.errorDiv
+{
+	color:rgb(204, 81, 81);
+}

@@ -1,0 +1,48 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <!-- <div class="row">
+        <div class="col-md-4">
+            <p class="labelClass">Topic Icon</p>
+        </div>
+        <div class="col-md-3 text-lg-center">
+            <img class="profile-avatar rounded-circle" src={{topicImage}} onerror="this.src='../../assets/topicImage1.jpg'" alt="TopicImage" height="90px" width="90px">
+        </div>
+        <div class="image-upload col-md-5 text-lg-right pt-4">
+            <button class="btn myBtn" type="button" (click)="file.click()" >Upload Icon</button>
+            <input id="file-input" #file type="file" (change)="selectImage($event)"/>
+        </div>
+    </div> -->
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <p class="labelClass">Topic Name</p>
+        </div>
+        <div class="col-md-8">
+            <input type="text" class="form-control" name="topicName" ngModel placeholder="Enter Topic Name">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <p class="labelClass">Category</p>
+        </div>
+        <div class="col-md-8">
+           <select name="topicCategory" [ngModel]="topicCategory" class="form-control">
+               <option value="-1" disabled>Select Category</option>
+               <option [value]="cat.categoryName" *ngFor="let cat of allCategories;">{{cat.categoryName | titlecase}}</option>
+           </select>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <p class="labelClass">Description</p>
+        </div>
+        <div class="col-md-8">
+            <textarea class="form-control" name="description" ngModel placeholder="Enter Topic Description"></textarea>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-12 text-center">
+            <button class="btn myBtn" type="submit" [disabled]="!form.valid">Add Topic</button>
+        </div>
+    </div>
+    </form>
+</div>

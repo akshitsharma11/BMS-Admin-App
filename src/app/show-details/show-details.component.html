@@ -1,0 +1,59 @@
+<div class="container">
+    <hr class="my-2">
+    <div class="row py-2 text-center">
+      <div class="col-md-6" style="font-weight: 600;">
+          Name : 
+      </div>
+      <div class="col-md-6 text-left">
+          {{userDetails.userName}}
+      </div>
+    </div>
+    <div class="row py-2 text-center">
+        <div class="col-md-6" style="font-weight: 600;">
+            Email : 
+        </div>
+        <div class="col-md-6 text-left">
+            {{userDetails.email}}
+        </div>
+      </div>
+      <div class="row py-2 text-center">
+        <div class="col-md-6" style="font-weight: 600;">
+            Phone : 
+        </div>
+        <div class="col-md-6 text-left">
+            {{userDetails.phone}}
+        </div>
+      </div>
+      <div class="row py-2 text-center">
+        <div class="col-md-6" style="font-weight: 600;">
+            ShortBio : 
+        </div>
+        <div class="col-md-6 text-left">
+            {{userDetails.shortBio | titlecase}}
+        </div>
+      </div>
+      <div class="row py-2 text-center">
+        <div class="col-md-6" style="font-weight: 600;">
+            Favourites : 
+        </div>
+        <div class="col-md-6 text-left">
+            <p *ngFor="let fav of userDetails.favourites">{{fav.topicName | titlecase}}</p>
+        </div>
+      </div>
+      <div class="row py-2 text-center">
+        <div class="col-md-6" style="font-weight: 600;">
+            Registered On : 
+        </div>
+        <div class="col-md-6 text-left">
+            {{userDetails.creationTimeStamp | date:'mediumDate'}}
+        </div>
+      </div>  
+
+    <hr class="my-2">
+
+    <div class="row mt-2 text-center" >
+        <div (click)="showUserTopics(userDetails.userId)" class="col-md-12" style="font-size: 18px;font-weight: 600;cursor: pointer;">
+            Topics <i class="fas fa-arrow-circle-right"></i>
+        </div>
+    </div>  
+</div>

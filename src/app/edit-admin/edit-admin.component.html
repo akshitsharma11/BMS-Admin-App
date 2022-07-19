@@ -1,0 +1,95 @@
+
+<div class="text-right m-1">
+       <button mat-raised-button id="model-cancel-button" class="btn btn-danger" (click)="closeModel()">X</button>
+    
+</div>
+<div class="container-fluid dash_cus"> 
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="user_info">
+                    <div class="col-sm-12">
+                        <h2>Edit Admin Details :-</h2>
+                    </div>
+                    <div class="col-sm-12">
+                        <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+                            <div class="form-group row">
+                                <label for="newName" class="col-md-3 col-form-label">First Name : </label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control cus_input" id="" name="firstName" value="" placeholder="Enter First Name...." [(ngModel)]="admin.firstName" required #firstNmRef="ngModel">
+                                    <div *ngIf="firstNmRef.errors?.required  && firstNmRef.touched" class="errorDiv">
+                                      *First Name is required!
+                                  </div>
+                                  </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="newName" class="col-md-3 col-form-label">Last Name : </label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control cus_input" id="" name="lastName" value="" placeholder="Enter Last Name...." [(ngModel)]="admin.lastName" required #lastNmRef="ngModel">
+                                    <div *ngIf="lastNmRef.errors?.required  && lastNmRef.touched" class="errorDiv">
+                                      *Last Name is required!
+                                  </div>
+                                  </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="newName" class="col-md-3 col-form-label">Email : </label>
+                                <div class="col-md-9">
+                                    <input type="email" class="form-control cus_input" id="" name="email" [(ngModel)]="admin.email" value="" placeholder="Enter Email...." required email #emailRef="ngModel">
+                                    <div *ngIf="emailRef.errors?.required  && emailRef.touched" class="errorDiv">
+                                      *Email is required!
+                                  </div>
+                                  <div *ngIf="!emailRef.valid  && emailRef.touched && emailRef.value!=''" class="errorDiv">
+                                    *Enter Valid Email Format!
+                                </div>
+                                  </div>
+                            </div>
+                            <!-- <div class="form-group row">
+                                <label for="newName" class="col-md-3 col-form-label">Phone : </label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control cus_input" id="" name="phone" [(ngModel)]="admin.phone" value="" placeholder="Enter Phone Number...." required  #phoneRef="ngModel">
+                                    <div *ngIf="phoneRef.errors?.required  && phoneRef.touched" class="errorDiv">
+                                      *Phone is required!
+                                  </div>
+                                  </div>
+                            </div> -->
+                            <div class="form-group row">
+                                <label for="newName" class="col-md-3 col-form-label">Password : </label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <input [type]="showPassword ? 'text' : 'password'" class="form-control cus_input" id="" name="password" [(ngModel)]="admin.password" value="" placeholder="Enter Password...." required  #passwordRef="ngModel">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                              <i (click)="password()" [ngClass]="{
+                                                'fas fa-eye-slash': !showPassword,
+                                                'fa fa-eye': showPassword
+                                              }"></i>
+                                            </span>
+                                         </div>
+                                    </div>
+                                   
+                                    <!-- <button (click)="password()">s</button> -->
+                                    <div *ngIf="passwordRef.errors?.required  && passwordRef.touched" class="errorDiv">
+                                      *Password is required!
+                                  </div>
+                                  </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="newName" class="col-md-3 col-form-label"></label>
+                                <div class="col-md-9">
+                                    <!-- <input type="submit" value="Send" class="form-control cus_input_btn"> -->
+                                    <button type="submit" class="form-control cus_input_btn" [disabled]="!form.valid">Submit</button>
+                                </div>
+                            </div>
+                        
+                        </form>
+                    </div>
+                </div>		
+            </div>
+         
+            
+            
+            
+        </div>
+    </div>
+  </div>

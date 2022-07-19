@@ -1,0 +1,154 @@
+
+ <div class="container-fluid">
+    <div class="row no-gutter ">
+        <div class="col-md-6 d-none d-md-flex bg-image "></div>
+        <div class="col-md-1" style="background-color: #E5E5E5;"></div>
+        <div class="col-md-5 d-flex justify-content-center" style="background-color: #E5E5E5;">         
+            <div class="login d-flex pt-5">
+                <div class="container">
+                    <div class="row mt-4 ">
+                        <div class="col-md-9 shadow p-3 mb-3 bg-white rounded">
+                            <form (ngSubmit)="onSubmit(form)" #form="ngForm" *ngIf="!forgotPwd">
+                            <div class="row ml-1 mt-4 ">
+                                <div class="col-md-12">
+                                    <div class="row text-center" >
+                                        <div class="col-md-12">
+                                           <img src="../../assets/carbon_logo-xing.png" height="45px" width="48px" alt=""> 
+                                           <p style="color:#bfc0c9;font-weight: 600;font-size: 19px;">Book My Studio</p>
+                                        </div>
+                                    </div>
+                                    <div class="row text-center" >
+                                        <div class="col-md-12">
+                                            <p style="font-family:'Mulish';font-weight:700;font-size:24px">Log In to Admin Panel</p>
+                                            <p style="font-family:'Mulish';font-weight:400;font-size:14px;color: #9FA2B4;margin-top: -12px;">Enter your email and password below</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                <div class="form">
+                                
+                                      <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label for="email" class="myLabel">EMAIL</label>
+                                            <input type="email" class="form-control cus_input" id="" name="email" ngModel value="" placeholder="Email Address" required email #emailRef="ngModel">
+                                            <div *ngIf="emailRef.errors?.required  && emailRef.touched" class="errorDiv">
+                                              *Email is required!
+                                          </div>
+                                          <div *ngIf="!emailRef.valid  && emailRef.touched && emailRef.value!=''" class="errorDiv">
+                                            *Enter Valid Email Format!
+                                        </div>
+                                          </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label for="email" class="myLabel">PASSWORD</label>
+                                            <div class="input-group">
+                                                <input [type]="showPassword ? 'text' : 'password'" class="form-control cus_input" id="" name="password" ngModel value="" placeholder="Password" required  #passwordRef="ngModel">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                      <i (click)="passwordVisibility()" [ngClass]="{
+                                                        'fas fa-eye-slash': !showPassword,
+                                                        'fa fa-eye': showPassword
+                                                      }"></i>
+                                                    </span>
+                                                 </div>
+                                            </div>
+                                            <div *ngIf="passwordRef.errors?.required  && passwordRef.touched" class="errorDiv">
+                                              *Password is required!
+                                          </div>
+                                          </div>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3 text-center">
+                                <div class="col md-12">
+                                    <button [disabled]="!form.valid" type="submit" class="loginBtn btn p-1 btn-block" >Login</button>
+                                </div>
+                            </div>
+                            <div class="row mt-4 mb-2 text-center">
+                                <div class="col md-12">
+                                    <h4 (click)="toggleForgotPassword()" style="cursor: pointer;font-size:16px; font-weight: 700;">Forgot Password?</h4>
+                                </div>
+                            </div>                            
+                        </form>
+                            
+                            <!-- Forgot Password -->
+                            <div *ngIf="forgotPwd">
+                                <form (ngSubmit)="sendEmail(authForm1)" #authForm1="ngForm">
+                                    <div class="row ml-1 mt-4">
+                                        <h4 (click)="toggleForgotPassword()" style="color: #9250E5; margin-top: -16px; font-weight: 700; font-size: 22px;cursor: pointer;" class="col-md-10">
+                                            <i class="fas fa-arrow-alt-circle-left"></i> Sign In
+                                        </h4>     
+                                        </div>                              
+                                    <div class="form-group row mt-4">     
+                                        <div class="col-md-12">         
+                                            <input type="email" class="form-control cus_input" name="email" [(ngModel)]="emailToken" value="" placeholder="Enter Email Address" required email #emailRef="ngModel">
+                                        </div>                                 
+                                    </div>
+                                    <div class="row text-center">
+                                        <div class="col md-12">
+                                            <button [disabled]="!authForm1.valid" type="submit" class="btn p-2" style="color: white;font-weight: 500;background-color:#9250E5;border-radius: 12px;">Send Token</button>
+                                        </div>
+                                    </div>
+                                </form>
+    
+                                <form (ngSubmit)="resetPwd(authForm2)" #authForm2="ngForm">
+                                    <!-- <div class="row ml-1 mt-4"> -->
+                                        <div class="form">
+        
+                                            <div class="form-group row mt-5">     
+                                                <div class="col-md-12">           
+                                                    <input type="email" class="form-control cus_input" name="emailReset" [(ngModel)]="emailReset" placeholder="Enter Email Address" required email #emailRef="ngModel">
+                                                </div>                                 
+                                            </div>   
+                                            <div class="form-group row mt-1">     
+                                                <div class="col-md-12">           
+                                                    <input type="text" id="username" class="form-control cus_input" name="userToken" [(ngModel)]="userToken" placeholder="Enter Token" required>
+                                                </div>                                 
+                                            </div> 
+                                            <div class="form-group row mt-1">
+                                                <div class="col-md-12">
+                                                    <div class="input-group">
+                                                        <input [type]="showPassword ? 'text' : 'password'" class="form-control cus_input" id="" name="newPassword" ngModel value="" placeholder="Enter Password" required  #passwordRef="ngModel">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                              <i (click)="passwordForgotVisibility()" [ngClass]="{
+                                                                'fas fa-eye-slash': !showPassword,
+                                                                'fa fa-eye': showPassword
+                                                              }"></i>
+                                                            </span>
+                                                         </div>
+                                                    </div>
+                                                    <div *ngIf="passwordRef.errors?.required  && passwordRef.touched" class="errorDiv">
+                                                      *Password is required!
+                                                  </div>
+                                                  </div>
+                                            </div>
+    
+                                          </div>
+                                    <!-- </div> -->
+                                    <div class="row text-center">
+                                        <div class="col md-12">
+                                            <button type="submit" [disabled]="!authForm2.valid" class="btn p-2" style="color: white;font-weight: 500;background-color:#9250E5;border-radius: 12px;">Reset Password</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                    
+                                </div>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Logging In...</p>
+</ngx-spinner>
+

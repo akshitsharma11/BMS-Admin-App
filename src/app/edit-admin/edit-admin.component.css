@@ -1,0 +1,73 @@
+.dash_cus{
+    margin-top:15px;
+    background:#ebeff2;
+    padding:50px 0px;
+}
+.user_info{
+    background:#fff;
+    padding:20px 0px;
+    box-shadow:0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    overflow:hidden;
+}
+.user_info h2 {
+    font-size: 26px;
+    margin-top: 0;
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif!important;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ebeff2;
+}
+input.form-control.cus_input:focus {
+    box-shadow: none;
+}
+
+input.form-control.cus_input {
+    border-radius: 0;
+    /* border-color: rebeccapurple; */
+}
+label.col-md-3.col-form-label {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif!important;
+}
+button.form-control.cus_input_btn {
+    background: #9250E5;
+    color: #FFFFFF;
+    border-radius: 0;
+    border-color: #9250E5;
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif!important;
+    cursor: pointer;
+}
+button:disabled.form-control.cus_input_btn {
+    background: #a981da;
+    color: #FFFFFF;
+    border-radius: 0;
+    border-color: #9250E5;
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif!important;
+    cursor: pointer;
+}
+input.form-control.cus_input_btn:hover{
+    box-shadow:0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+} 
+p.membership_detail span {
+    font-weight: 300;
+    margin-left: 15px;
+}
+p.membership_detail {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif!important;
+    border-bottom: 1px solid #ebeff2;
+}
+
+
+input.ng-invalid.ng-touched
+{
+  border:1px solid red;
+}
+
+
+.errorDiv
+{
+	color:rgb(204, 81, 81);
+}
+
