@@ -4,7 +4,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import {EditAdminComponent} from '../edit-admin/edit-admin.component'; 
 import { AuthService } from '../services/auth.service';
-import { TopicService } from '../services/topic.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +20,7 @@ export class ProfileComponent implements OnInit {
 
   uploadText;
 
-  constructor(private topicService:TopicService,public matDialog:MatDialog,private authService:AuthService,private spinner:NgxSpinnerService,private toast:ToastrService) { 
+  constructor(public matDialog:MatDialog,private authService:AuthService,private spinner:NgxSpinnerService,private toast:ToastrService) { 
     this.authService.listen().subscribe((m:any)=>{
       console.log(m);
       this.ngOnInit();
@@ -56,30 +55,30 @@ export class ProfileComponent implements OnInit {
 
     const formData = new FormData();
     formData.append("newImage",this.userImage);
-    this.topicService.uploadSingleImage(formData).subscribe(res=>{
-      if(res["status"])
-      {
-        this.userImage = res["imageUrl"];
-        console.log(this.userImage);
-        this.authService.editAdminImage({adminId:+this.adminId,adminImage:this.userImage}).subscribe(resAdmin=>{
-          if(resAdmin["status"])
-          {
-            this.spinner.hide();
-            this.toast.success(resAdmin["message"]);
-            localStorage.setItem('authUserData',JSON.stringify(resAdmin["admin"]))
-            this.authService.loggedIn.next(true);
-          }
-          else{
-            this.spinner.hide();
-            this.toast.error(resAdmin["message"]);
-          }
-        });
-      }
-      else{
-        this.spinner.hide();
-        this.toast.error(res["message"]);
-      }
-    })    
+    // this.topicService.uploadSingleImage(formData).subscribe(res=>{
+    //   if(res["status"])
+    //   {
+    //     this.userImage = res["imageUrl"];
+    //     console.log(this.userImage);
+    //     this.authService.editAdminImage({adminId:+this.adminId,adminImage:this.userImage}).subscribe(resAdmin=>{
+    //       if(resAdmin["status"])
+    //       {
+    //         this.spinner.hide();
+    //         this.toast.success(resAdmin["message"]);
+    //         localStorage.setItem('authUserData',JSON.stringify(resAdmin["admin"]))
+    //         this.authService.loggedIn.next(true);
+    //       }
+    //       else{
+    //         this.spinner.hide();
+    //         this.toast.error(resAdmin["message"]);
+    //       }
+    //     });
+    //   }
+    //   else{
+    //     this.spinner.hide();
+    //     this.toast.error(res["message"]);
+    //   }
+    // })    
   }
 
   openDialog()

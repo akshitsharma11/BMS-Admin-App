@@ -59,37 +59,19 @@ import { ClassFilterPipe } from './class-filter.pipe';
 import { ShowAllUsersComponent } from './show-all-users/show-all-users.component';
 import { ShowDetailsComponent } from './show-details/show-details.component';
 import { DeleteCustomerComponent } from './delete-customer/delete-customer.component';
-import { AllTopicsComponent } from './all-topics/all-topics.component';
 import { SendNotificationsComponent } from './send-notifications/send-notifications.component';
-import { CreateNewTopicComponent } from './create-new-topic/create-new-topic.component';
-import { TopicChatComponent } from './topic-chat/topic-chat.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
-import { EditTopicComponent } from './edit-topic/edit-topic.component';
 import { SuspendUserComponent } from './suspend-user/suspend-user.component';
-import { UserTopicsComponent } from './user-topics/user-topics.component';
-import { AllCategoriesComponent } from './all-categories/all-categories.component';
-import { CreateNewCategoryComponent } from './create-new-category/create-new-category.component';
 import { UnblockUserComponent } from './unblock-user/unblock-user.component';
-import { AllFeedbacksComponent } from './all-feedbacks/all-feedbacks.component';
 import { FeedbackFilterPipePipe } from './feedback-filter-pipe.pipe';
-import { UserReportsComponent } from './user-reports/user-reports.component';
 import { ReporteeDetailsComponent } from './reportee-details/reportee-details.component';
-import { TopicReportsComponent } from './topic-reports/topic-reports.component';
-import { TopicDetailsComponent } from './topic-details/topic-details.component';
 
 
 const appRoutes:Routes = [
 
   {path:'admin/dashboard',component:DashboardComponent},
   {path:'admin/all-users',component:ShowAllUsersComponent},
-  {path:'admin/all-topics',component:AllTopicsComponent},
   {path:'admin/send-notifications',component:SendNotificationsComponent},
-  {path:'admin/topic-chat/:topicId',component:TopicChatComponent},
-  {path:'admin/all-categories',component:AllCategoriesComponent},
-  {path:'admin/all-feedbacks',component:AllFeedbacksComponent},
-  {path:'admin/user-topics/:userId',component:UserTopicsComponent},
-  {path:'admin/user-reports',component:UserReportsComponent},
-  {path:'admin/topic-reports',component:TopicReportsComponent},
   
   {path:'admin/login',component:LoginUserComponent,canActivate:[OnlyLoginGuardService]},
   {path:'admin/profile',component:ProfileComponent},
@@ -112,23 +94,12 @@ const appRoutes:Routes = [
     ShowAllUsersComponent,
     ShowDetailsComponent,
     DeleteCustomerComponent,
-    AllTopicsComponent,
     SendNotificationsComponent,
-    CreateNewTopicComponent,
-    TopicChatComponent,
     EditUserComponent,
-    EditTopicComponent,
     SuspendUserComponent,
-    UserTopicsComponent,
-    AllCategoriesComponent,
-    CreateNewCategoryComponent,
     UnblockUserComponent,
-    AllFeedbacksComponent,
     FeedbackFilterPipePipe,
-    UserReportsComponent,
     ReporteeDetailsComponent,
-    TopicReportsComponent,
-    TopicDetailsComponent
    ],
   imports: [
     BrowserModule,
