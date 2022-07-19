@@ -45,9 +45,9 @@ export class LoginUserComponent implements OnInit {
           progressAnimation:'increasing',
           positionClass:'toast-top-right'
         })
-        localStorage.setItem('authUserData',JSON.stringify(res["admin"]));
+        localStorage.setItem('authUserDataBMS',JSON.stringify(res["admin"]));
 
-        localStorage.setItem('adminAuthToken',res["token"]);
+        localStorage.setItem('adminAuthTokenBMS',res["token"]);
         this.authService.loggedIn.next(true);
         localStorage.setItem('userType',"admin");
         this.router.navigate(['/admin/dashboard']);

@@ -7,14 +7,14 @@ import { Observable, Subject } from 'rxjs';
 })
 export class UserService {
 
-  serverUrl  = 'http://ec2-3-221-149-159.compute-1.amazonaws.com:5000/api';
+  serverUrl  = 'https://bookmystudioapp.herokuapp.com/api';
 
   tokenString;
 
   constructor(private http:HttpClient) {
-    if(localStorage.getItem("adminAuthToken")!=null)
+    if(localStorage.getItem("adminAuthTokenBMS")!=null)
     {
-      this.tokenString = 'Bearer '+localStorage.getItem("adminAuthToken").replace(/^["'](.+(?=["']$))["']$/, '$1');
+      this.tokenString = 'Bearer '+localStorage.getItem("adminAuthTokenBMS").replace(/^["'](.+(?=["']$))["']$/, '$1');
     }
   }
 

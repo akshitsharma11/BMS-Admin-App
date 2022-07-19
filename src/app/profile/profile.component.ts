@@ -31,9 +31,9 @@ export class ProfileComponent implements OnInit {
     this.uploadText = "Loading Profile";
     this.spinner.show();
 
-    this.adminId = JSON.parse(localStorage.getItem('authUserData')).adminId;
+    this.adminId = JSON.parse(localStorage.getItem('authUserDataBMS')).adminId;
     console.log(this.adminId);
-    this.authService.adminDetails({adminId:this.adminId}).subscribe(res=>{
+    this.authService.adminDetails(this.adminId).subscribe(res=>{
       this.firstName = res["admin"].firstName;
       this.lastName = res["admin"].lastName;
       this.email = res["admin"].email;
@@ -65,7 +65,7 @@ export class ProfileComponent implements OnInit {
     //       {
     //         this.spinner.hide();
     //         this.toast.success(resAdmin["message"]);
-    //         localStorage.setItem('authUserData',JSON.stringify(resAdmin["admin"]))
+    //         localStorage.setItem('authUserDataBMS',JSON.stringify(resAdmin["admin"]))
     //         this.authService.loggedIn.next(true);
     //       }
     //       else{

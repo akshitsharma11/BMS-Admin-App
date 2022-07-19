@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 })
 export class AuthService {
 
-  serverUrl  = 'http://ec2-3-221-149-159.compute-1.amazonaws.com:5000/api';
+  serverUrl  = 'https://bookmystudioapp.herokuapp.com/api';
   
   //Behaviour subject for storing authentication state
   loggedIn = new BehaviorSubject<boolean>(false);
@@ -34,7 +34,7 @@ export class AuthService {
   //method to send signin request to webapi
   loginUser(data)
   {    
-    return this.http.post(this.serverUrl+'/admin-login',data);
+    return this.http.post(this.serverUrl+'/admins/login',data);
   } 
 
   loginSubAdmin(data)
@@ -46,7 +46,7 @@ export class AuthService {
   autoLogin()
   {
   //now we will retrieve all data from local storage , whenever the application restarts             
-      const authUserInfo = localStorage.getItem('authUserData');
+      const authUserInfo = localStorage.getItem('authUserDataBMS');
       console.log(authUserInfo);
       //checking if that data key exists
       if(!authUserInfo)
@@ -69,7 +69,7 @@ export class AuthService {
       this.authUser.next(null);
        
       //also, removing user data from localStorage
-      localStorage.removeItem('authUserData');
+      localStorage.removeItem('authUserDataBMS');
       localStorage.removeItem('permissions');
       localStorage.removeItem('userType');
             
@@ -88,9 +88,9 @@ export class AuthService {
     return this.http.post(this.serverUrl+'/admin-forgot-password',data);
   }
 
-  adminDetails(data)
+  adminDetails(adminId)
   {
-    return this.http.post(this.serverUrl+'/admin-details',data);
+    return this.http.get(this.serverUrl+'/admins/'+adminId);
   }
 
   subAdminDetails(id)

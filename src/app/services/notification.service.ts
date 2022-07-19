@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class NotificationService {
 
-  serverUrl  = 'http://ec2-3-221-149-159.compute-1.amazonaws.com:5000/api';
+  serverUrl  = 'https://bookmystudioapp.herokuapp.com/api';
 
   constructor(private http:HttpClient) {
   }

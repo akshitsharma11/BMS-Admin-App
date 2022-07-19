@@ -48,11 +48,11 @@ export class AppComponent {
       {
         this.isLoggedIn = res; 
 
-        if(JSON.parse(localStorage.getItem('authUserData'))!=null)
+        if(JSON.parse(localStorage.getItem('authUserDataBMS'))!=null)
         {
-          this.adminId = JSON.parse(localStorage.getItem('authUserData')).adminId;
+          this.adminId = JSON.parse(localStorage.getItem('authUserDataBMS')).adminId;
           console.log(this.adminId);
-          this.authService.adminDetails({adminId:this.adminId}).subscribe(res=>{
+          this.authService.adminDetails(this.adminId).subscribe(res=>{
             this.firstName = res["admin"].firstName;
             this.lastName = res["admin"].lastName;      
             this.adminImage = res["admin"].adminImage;      

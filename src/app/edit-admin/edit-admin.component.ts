@@ -24,7 +24,7 @@ export class EditAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.showPassword = false;
-    this.authService.adminDetails({adminId:+this.adminId}).subscribe(res=>{
+    this.authService.adminDetails(+this.adminId).subscribe(res=>{
       this.admin = res["admin"];
       console.log("Admin : ", this.admin);
     })
@@ -38,7 +38,7 @@ export class EditAdminComponent implements OnInit {
       console.log("Result : ",res)
       if(res["status"])
       {
-        localStorage.setItem('authUserData',JSON.stringify(res["admin"]))
+        localStorage.setItem('authUserDataBMS',JSON.stringify(res["admin"]))
         this.authService.loggedIn.next(true);
         // alert("Client Details Updated");
         this.toast.success("Admin Details Updated","Successs",{
