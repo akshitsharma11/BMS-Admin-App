@@ -54,8 +54,8 @@ export class AppComponent {
           console.log(this.adminId);
           this.authService.adminDetails(this.adminId).subscribe(res=>{
             this.firstName = res["admin"].firstName;
-            this.lastName = res["admin"].lastName;      
-            this.adminImage = res["admin"].adminImage;      
+            this.lastName = res["admin"].lastName;
+            this.adminImage = res["admin"].adminImage;
           });
          
         }

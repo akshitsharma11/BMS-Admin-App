@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+
+.custom-container1 .mat-dialog-container {
+    border-radius: 10px !important;
+    height: fit-content;
+}

@@ -26,32 +26,35 @@
             <th scope="col">S.No</th>
             <th colspan="2" style="align-self: start;">User details</th>
             <th scope="col">Email</th>
-            <th scope="col">Date</th>            
-            <th scope="col">Edit</th>                        
-            <th scope="col"></th>      
+            <th scope="col">Phone</th>
+            <th scope="col">Registered On</th>
+            <!-- <th scope="col">Edit</th> -->
+            <th scope="col"></th>
             
           </tr>
         </thead>
         <tbody  style="color:gray;font-weight: 600;">
-          <tr *ngFor="let user of allUsers | nameFilter : filteredStatus| paginate :{itemsPerPage:5,currentPage:p};let i = index;">
+          <tr *ngFor="let user of allUsers | nameFilter : filteredStatus| paginate :{itemsPerPage:8,currentPage:p};let i = index;">
             <th scope="row">{{i+1}}</th>
             <td class="text-right" style="width:100px;"> 
-              <img class="profile-avatar" src={{user.userImage}} onerror="this.src='../../assets/allUsers.png'" alt="UserImage" height="50px" width="50px">
+              <img class="profile-avatar" src={{user.profileUrl}} onerror="this.src='../../assets/allUsers.png'" alt="UserImage" height="50px" width="50px">
             </td>
             <td class="text-left" style="width:150px;">
-               {{ user.userName | titlecase}}
+               {{ user.fullName | titlecase}}
             </td>
             <td >{{ user.email }}</td>
+            <td >{{ user.phone }}</td>
             <td >
               <p>{{ user.creationTimeStamp | date:'mediumDate' }}</p>              
               <p style="margin-top: -20px;color: #C5C7CD;font-weight: 400;">{{ user.creationTimeStamp | date:'shortTime' }}</p>
             </td>            
-            <td ><a (click)="openEditDialog(user)"  style="cursor: pointer;color: #9250E5;" > Edit</a></td>
+            <!-- <td ><a (click)="openEditDialog(user)"  style="cursor: pointer;color: #9250E5;" > Edit</a></td> -->
             <td >
-              <button *ngIf="user.isBlocked==0" (click)="suspendUser(user.userId)" class="btn"> <i class="fas fa-shield-alt" aria-hidden="true" style="color:darkgreen;font-size: 18px;"></i> </button>
-              <button *ngIf="user.isBlocked!=0" (click)="unblockUser(user.userId,user.isBlocked)"  class="btn"> <i class="fas fa-shield-alt" aria-hidden="true" style="color:darkgrey;font-size: 18px;"></i> </button>
+              <!-- <button *ngIf="user.isBlocked==0" (click)="suspendUser(user.userId)" class="btn"> <i class="fas fa-shield-alt" aria-hidden="true" style="color:darkgreen;font-size: 18px;"></i> </button> -->
+              <!-- <button *ngIf="user.isBlocked!=0" (click)="unblockUser(user.userId,user.isBlocked)"  class="btn"> <i class="fas fa-shield-alt" aria-hidden="true" style="color:darkgrey;font-size: 18px;"></i> </button> -->
 
               <button (click)="showDetails(user)" class="btn"> <i class="fas fa-external-link-alt" aria-hidden="true" style="font-size: 18px;"></i> </button>
+              <button (click)="openEditDialog(user)" class="btn"> <i class="fas fa-pen" aria-hidden="true" style="color: darkgreen;font-size: 18px;"></i> </button>
               <button (click)="openDeleteDialog(user.userId)" class="btn"> <i class="fas fa-trash" aria-hidden="true" style="color: red;font-size: 18px;"></i> </button>
             </td>
             

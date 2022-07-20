@@ -43,8 +43,13 @@ export class ShowAllUsersComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.id = 'show-details-component';
-    dialogConfig.height = "430px";
+    // dialogConfig.height = "420px";
     dialogConfig.width = "500px";
+    dialogConfig.maxHeight = "95vh";
+    
+    //For styling the mat-dialog (like borderRadius)
+    dialogConfig.panelClass = 'custom-container1'; //Now, we have style this class in global styles.css
+
     //passing data
     dialogConfig.data = {user:user}
     

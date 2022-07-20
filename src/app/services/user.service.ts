@@ -30,7 +30,7 @@ export class UserService {
 
   getAllUsers()
   {
-    return this.http.get(this.serverUrl+'/all-users/',{headers:new HttpHeaders({
+    return this.http.get(this.serverUrl+'/users/',{headers:new HttpHeaders({
       'Authorization':this.tokenString
     })});
   }  
