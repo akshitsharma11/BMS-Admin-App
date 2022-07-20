@@ -65,12 +65,14 @@ import { SuspendUserComponent } from './suspend-user/suspend-user.component';
 import { UnblockUserComponent } from './unblock-user/unblock-user.component';
 import { FeedbackFilterPipePipe } from './feedback-filter-pipe.pipe';
 import { ReporteeDetailsComponent } from './reportee-details/reportee-details.component';
+import { ListStudiosComponent } from './list-studios/list-studios.component';
 
 
 const appRoutes:Routes = [
 
   {path:'admin/dashboard',component:DashboardComponent},
   {path:'admin/all-users',component:ShowAllUsersComponent},
+  {path:'admin/studios',component:ListStudiosComponent},
   {path:'admin/send-notifications',component:SendNotificationsComponent},
   
   {path:'admin/login',component:LoginUserComponent,canActivate:[OnlyLoginGuardService]},
@@ -100,6 +102,7 @@ const appRoutes:Routes = [
     UnblockUserComponent,
     FeedbackFilterPipePipe,
     ReporteeDetailsComponent,
+    ListStudiosComponent,
    ],
   imports: [
     BrowserModule,
