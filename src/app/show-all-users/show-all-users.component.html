@@ -50,12 +50,9 @@
             </td>            
             <!-- <td ><a (click)="openEditDialog(user)"  style="cursor: pointer;color: #9250E5;" > Edit</a></td> -->
             <td >
-              <!-- <button *ngIf="user.isBlocked==0" (click)="suspendUser(user.userId)" class="btn"> <i class="fas fa-shield-alt" aria-hidden="true" style="color:darkgreen;font-size: 18px;"></i> </button> -->
-              <!-- <button *ngIf="user.isBlocked!=0" (click)="unblockUser(user.userId,user.isBlocked)"  class="btn"> <i class="fas fa-shield-alt" aria-hidden="true" style="color:darkgrey;font-size: 18px;"></i> </button> -->
-
               <button (click)="showDetails(user)" class="btn"> <i class="fas fa-external-link-alt" aria-hidden="true" style="font-size: 18px;"></i> </button>
               <button (click)="openEditDialog(user)" class="btn"> <i class="fas fa-pen" aria-hidden="true" style="color: darkgreen;font-size: 18px;"></i> </button>
-              <button (click)="openDeleteDialog(user.userId)" class="btn"> <i class="fas fa-trash" aria-hidden="true" style="color: red;font-size: 18px;"></i> </button>
+              <button (click)="openDeleteDialog(user._id)" class="btn"> <i class="fas fa-trash" aria-hidden="true" style="color: red;font-size: 18px;"></i> </button>
             </td>
             
           </tr>

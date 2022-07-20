@@ -56,63 +56,18 @@ export class ShowAllUsersComponent implements OnInit {
     const modalDialog = this.matDialog.open(ShowDetailsComponent,dialogConfig);   
   }
 
-  suspendUser(userId)
-  {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
-    dialogConfig.id = 'suspend-user-component';
-    dialogConfig.height = 'auto'
-    dialogConfig.minWidth = "480px";
-    dialogConfig.width = "auto";
-    //passing data
-    dialogConfig.data = {userId:userId}
-    
-    const modalDialog = this.matDialog.open(SuspendUserComponent,dialogConfig);   
-  }
-
-  unblockUser(userId,blockStatus)
-  {
-    let blockMsg = "";
-    if(blockStatus==1)
-    {
-      blockMsg="User is already suspended, You want to un-suspend user?";
-      // this.toast.error("User is already suspended","",{
-      //   timeOut:2500,
-      //   progressBar:true,
-      //   progressAnimation:'increasing',
-      //   positionClass:'toast-top-right'
-      // });
-    }
-    else if(blockStatus==2)
-    {
-      blockMsg="User is already blocked, You want to un-block user?";
-      // this.toast.error("User is already blocked","",{
-      //   timeOut:2500,
-      //   progressBar:true,
-      //   progressAnimation:'increasing',
-      //   positionClass:'toast-top-right'
-      // });
-    }
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
-    dialogConfig.id = 'unblock-user-component';
-    dialogConfig.height = 'auto'
-    dialogConfig.minWidth = "480px";
-    dialogConfig.width = "auto";
-    //passing data
-    dialogConfig.data = {userId:userId,blockMsg:blockMsg};
-    
-    const modalDialog = this.matDialog.open(UnblockUserComponent,dialogConfig);   
-  }
-
   openDeleteDialog(userId)
   {
     const dialogConfig = new MatDialogConfig();
     //if the user clicks outside the modal, it doesn’t close
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.id = 'del-module-component';
-    dialogConfig.height = "190px";
-    dialogConfig.width = "580px";
+    dialogConfig.height = "220px";
+    dialogConfig.width = "510px";
+
+    //For styling the mat-dialog (like borderRadius)
+    dialogConfig.panelClass = 'custom-container'; //Now, we have style this class in global styles.css
+
     //passing data
     dialogConfig.data = {userId:userId};
     

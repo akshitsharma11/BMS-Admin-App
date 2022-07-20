@@ -37,7 +37,7 @@ export class UserService {
 
   deleteSingleUser(id)
   {
-    return this.http.get(this.serverUrl+'/delete-user/'+id,{headers:new HttpHeaders({
+    return this.http.delete(this.serverUrl+'/users/'+id,{headers:new HttpHeaders({
       'Authorization':this.tokenString
     })});
   }  

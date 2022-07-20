@@ -14,7 +14,7 @@ export class DeleteCustomerComponent implements OnInit {
 
   constructor(private toast:ToastrService,private userService:UserService,public dialogRef:MatDialogRef<DeleteCustomerComponent> ,@Optional() @Inject(MAT_DIALOG_DATA) public data: any)
   {
-    this.userId = +data.userId;  
+    this.userId = data.userId;
     console.log(this.userId);
   }
 
@@ -29,9 +29,9 @@ export class DeleteCustomerComponent implements OnInit {
     this.userService.filter("Deleted");
   }
   
-  deleteModule()
+  deleteUser()
   {
-    this.userService.deleteSingleUser(+this.userId).subscribe(res=>{
+    this.userService.deleteSingleUser(this.userId).subscribe(res=>{
       if(res["status"])
       {
         this.toast.success(res["message"],"",{
