@@ -1,0 +1,97 @@
+<div class="container text-center">
+    <hr class="my-3">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    
+    <div class="row mt-3">
+        <div class="col-md-5">
+            <label for="">Room Name : </label>
+        </div>
+        <div class="col-md-7">
+            <input type="text" class="form-control" formControlName="roomName" placeholder="Enter room name" required>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-5">
+            <label for="">Area : </label>
+        </div>
+        <div class="col-md-7">
+            <input type="text" class="form-control" formControlName="area" placeholder="Enter area" required>
+        </div>
+    </div>
+
+    <!-- Now, here we want the user to dynamically add the formControls -->
+    <div class="row mt-3" formArrayName="details">
+        <div class="col-md-5">
+            <label for="username">Details : </label>
+        </div>
+        <div class="col-md-7">
+            <div class="row mt-1" *ngFor="let detailControl of getControlsDetails(); let i = index;">
+                <div class="col-md-10">
+                    <!-- <div class="form-group" *ngFor="let detailControl of getControls(); let i = index;"> -->
+                        <input type="text" class="form-control" [formControlName]="i">
+                      <!-- </div> -->
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-danger rounded-circle" style="border-radius: 8px;color: white;font-weight: 480;" type="button" (click)="onRemoveDetails(i)">X</button>
+                </div>
+            </div>
+            <button class="btn btn-warning mt-1" style="border-radius: 8px;color: white;font-weight: 480;" type="button" (click)="onAddDetails()">Add Detail</button>         
+          </div>
+    </div>
+    
+    <div class="row mt-3">
+        <div class="col-md-5">
+            <label for="">Photos : </label>
+        </div>
+        <div class="col-md-7">
+            <input type="file" class="form-control" (change)="selectImage($event)" ngModel multiple name="roomImages" placeholder="Enter room images" required >
+        </div>
+    </div>
+
+    <div class="row mt-3" formArrayName="amenities">
+        <div class="col-md-5">
+            <label for="username">Amenities : </label>
+        </div>
+        <div class="col-md-7">
+            <div class="row mt-1" *ngFor="let amenityControl of getControlsAmenities(); let i = index;">
+                <div class="col-md-10">
+                    <input type="text" class="form-control" [formControlName]="i">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-danger rounded-circle" style="border-radius: 8px;color: white;font-weight: 480;" type="button" (click)="onRemoveAmenities(i)">X</button>
+                </div>
+            </div>
+            <button class="btn btn-warning mt-1" style="border-radius: 8px;color: white;font-weight: 480;" type="button" (click)="onAddAmenities()">Add Amenity</button>         
+          </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-5">
+            <label for="">Price Per Hour : </label>
+        </div>
+        <div class="col-md-7">
+            <input type="number" step="any" class="form-control" formControlName="pricePerHour" placeholder="Enter price per hour" 
+                min="0" max="500000" oninput="validity.valid||(value='');" required >
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-5">
+            <label for="">Discount % : </label>
+        </div>
+        <div class="col-md-7">
+            <input type="number" step="any" class="form-control" formControlName="discountPercentage" placeholder="Enter discount percentage" 
+                min="0" max="100" oninput="validity.valid||(value='');" required >
+        </div>
+    </div>
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-md-1"></div>
+        <div class="d-grid gap-2 col-10 mx-auto">
+            <button type="submit" class="btn btn-success btn-block" [disabled]="!signupForm.valid">Submit</button>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    </form>
+    <hr class="my-3">
+</div>
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-clockwise" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

@@ -1,0 +1,163 @@
+<div class="container">
+    <div class="row text-left mt-4">
+        <h4>Add New Studio</h4>
+    </div>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="row mt-4">
+        <div class="col-md-5">
+            <div class="row">
+                <label for="">Studio Name </label>
+                <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter studio name" ngModel name="fullName" required #studioNameRef="ngModel">                 
+                <div *ngIf="studioNameRef.errors?.required && studioNameRef.touched" class="errorDiv">
+                    Studio Name is required!
+                </div>  
+            </div>
+            <div class="row">
+                <label for="">Total Area </label>
+                <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter studio area(ex- 500 sq.ft.)" ngModel name="area" required #areaRef="ngModel">                 
+                <div *ngIf="areaRef.errors?.required && areaRef.touched" class="errorDiv">
+                    Area is required!
+                </div>  
+            </div>
+            <div class="row">
+                <label for="">Number Of Rooms </label>
+                <select name="totalRooms" [ngModel]="defaultRoomsCount" class="form-control shadow-lg mb-3 bg-white rounded"
+                        #myRooms (change)='onRoomsSelect(myRooms.value)' >
+                    <option value="-1" disabled>Select Rooms</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="row">
+                <label for="">Number Of Guests </label>
+                <select name="maxGuests" [ngModel]="defaultMaxGuestsCount" class="form-control shadow-lg mb-3 bg-white rounded">
+                    <option value="-1" disabled>Select Max. Guests</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div class="row">
+                <label for="">Studio City </label>
+                <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter City" ngModel name="city" required #cityRef="ngModel">                 
+                <div *ngIf="cityRef.errors?.required && cityRef.touched" class="errorDiv">
+                    City is required!
+                </div>  
+            </div>
+            <div class="row">
+                <label for="">Studio State </label>
+                <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter State" ngModel name="state" required #stateRef="ngModel">                 
+                <div *ngIf="stateRef.errors?.required && stateRef.touched" class="errorDiv">
+                    State is required!
+                </div>  
+            </div>
+            <div class="row mt-2 ">
+                <label for="">Studio Full Address</label>
+                <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded"
+                        placeholder="Enter full address" ngModel name="address" required #addressRef="ngModel"></textarea> 
+                <div *ngIf="addressRef.errors?.required && addressRef.touched" class="errorDiv">
+                   Address is required!
+                </div>                  
+            </div>
+            <div class="row">
+                <label for="">Studio Pincode </label>
+                <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter Pincode" ngModel name="pincode" required #pincodeRef="ngModel">                 
+                <div *ngIf="pincodeRef.errors?.required && pincodeRef.touched" class="errorDiv">
+                    Pincode is required!
+                </div>  
+            </div>
+            <div class="row mt-2">
+                <label for="">Rooms</label>
+            </div>
+            <div class="row">
+                <div class="col-md-4" *ngFor="let singleRoom of allRooms;">
+                    <button class="text-center btn mb-1" type="button" style="color: white; background-color: #F92162; border-radius: 10px;width: 120px;" (click)="addRoomDetails(singleRoom)">Room {{singleRoom.roomId}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <div class="row">
+                <label for="">Add Studio Photos</label>
+            </div>
+            <div class="row p-3 text-center" style="background-color: rgb(236, 233, 233); border-radius: 10px;">
+                <div class="col-md-12">
+                    <img src="../../assets/imageIcon.png" height="30px" width="30px" alt="" srcset="">
+                </div>
+                <h6 class="col-md-12" >1920 px X 1080 px</h6> <br>
+                <div class="image-upload col-md-12">
+                    <label for="file-input">
+                        <!-- <i class="fas fa-pen" style="font-size: 18px; cursor: pointer;" ></i> -->
+                        <button type="button" (click)="file1.click()" class="btn" style="color: black; font-weight: 700; background-color: white; border-radius: 12px;">Upload Photos</button>
+                        <h6 class="pt-2" *ngFor="let videoFile of videoFileNames">{{videoFile}}</h6>
+                    </label>                      
+                    <input id="file-input" #file1 type="file" multiple="" (change)="selectVideos($event)" required/>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <label for="">Amenities </label>
+                </div>
+                <div class="col-md-4" *ngFor="let amenity of allAmenities">
+                    <input class="form-check-input ml-2 checkmark"  type="checkbox" id="gridCheck1" name="amenity" [value]="amenity.id" (change)="data($event,amenity)" #checkBox ngModel>
+                    <label style="color: #212529;font-weight:400;" class="form-check-label ml-4" for="gridCheck1">
+                      {{amenity.name}}
+                    </label>
+                </div>
+            </div>
+            <div class="row mt-3 pl-3">
+                <label for="">About Studio</label>
+                <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded"
+                        placeholder="Enter description" ngModel name="aboutStudio" required #aboutRef="ngModel"></textarea> 
+                <div *ngIf="aboutRef.errors?.required && aboutRef.touched" class="errorDiv">
+                   *About Studio description is required!
+                </div>
+            </div>
+            <div class="row mt-2 pl-3">
+                <label for="">Studio Services</label>
+                <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded"
+                        placeholder="Enter all services" ngModel name="studioServices" required #serviceRef="ngModel"></textarea> 
+                <div *ngIf="serviceRef.errors?.required && serviceRef.touched" class="errorDiv">
+                   *Studio services is required!
+                </div>
+            </div>
+            <div class="row mt-2 pl-3">
+                <label for="">Studio Infrastructure</label>
+                <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded"
+                        placeholder="Enter details" ngModel name="studioServices" required #infrastructureRef="ngModel"></textarea> 
+                <div *ngIf="infrastructureRef.errors?.required && infrastructureRef.touched" class="errorDiv">
+                   *Infrastructure details is required!
+                </div>
+            </div>
+        </div>
+    </div>
+           
+    <div class="row my-5">
+        <button class="btn btn-success mr-3 mt-1 col-md-1" type="submit" [disabled]="!form.valid" style="color: white;"> Save</button>
+     </div>
+     
+    </form>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Please Wait...</p>
+</ngx-spinner>

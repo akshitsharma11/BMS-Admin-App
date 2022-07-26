@@ -20,7 +20,7 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { from } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -66,6 +66,8 @@ import { UnblockUserComponent } from './unblock-user/unblock-user.component';
 import { FeedbackFilterPipePipe } from './feedback-filter-pipe.pipe';
 import { ReporteeDetailsComponent } from './reportee-details/reportee-details.component';
 import { ListStudiosComponent } from './list-studios/list-studios.component';
+import { CreateStudioComponent } from './create-studio/create-studio.component';
+import { AddRoomInfoComponent } from './create-studio/add-room-info/add-room-info.component';
 
 
 const appRoutes:Routes = [
@@ -73,6 +75,7 @@ const appRoutes:Routes = [
   {path:'admin/dashboard',component:DashboardComponent},
   {path:'admin/all-users',component:ShowAllUsersComponent},
   {path:'admin/studios',component:ListStudiosComponent},
+  {path:'admin/studios/create',component:CreateStudioComponent},
   {path:'admin/send-notifications',component:SendNotificationsComponent},
   
   {path:'admin/login',component:LoginUserComponent,canActivate:[OnlyLoginGuardService]},
@@ -103,12 +106,15 @@ const appRoutes:Routes = [
     FeedbackFilterPipePipe,
     ReporteeDetailsComponent,
     ListStudiosComponent,
+    CreateStudioComponent,
+    AddRoomInfoComponent,
    ],
   imports: [
     BrowserModule,
     HttpClientModule,
     MatIconModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxImageZoomModule,
     MatButtonModule,
     MatDialogModule,

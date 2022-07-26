@@ -1,0 +1,15 @@
+label{
+    font-weight: 500;
+    color: rgb(125, 123, 123);
+}
+
+   
+input.ng-invalid.ng-touched
+{
+  border:1px solid red;
+}
+
+.errorDiv
+{
+	color:rgb(204, 81, 81);
+}
