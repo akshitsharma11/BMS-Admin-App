@@ -35,16 +35,16 @@
                     <button class="btn btn-danger rounded-circle" style="border-radius: 8px;color: white;font-weight: 480;" type="button" (click)="onRemoveDetails(i)">X</button>
                 </div>
             </div>
-            <button class="btn btn-warning mt-1" style="border-radius: 8px;color: white;font-weight: 480;" type="button" (click)="onAddDetails()">Add Detail</button>         
+            <button class="btn btn-outline-secondary mt-1" style="border-radius: 8px;font-weight: 480;" type="button" (click)="onAddDetails()">Add Detail</button>         
           </div>
     </div>
-    
+
     <div class="row mt-3">
         <div class="col-md-5">
             <label for="">Photos : </label>
         </div>
         <div class="col-md-7">
-            <input type="file" class="form-control" (change)="selectImage($event)" ngModel multiple name="roomImages" placeholder="Enter room images" required >
+            <input type="file" class="form-control" (change)="selectImage($event)" multiple name="roomImages" placeholder="Enter room images" required >
         </div>
     </div>
 
@@ -61,7 +61,7 @@
                     <button class="btn btn-danger rounded-circle" style="border-radius: 8px;color: white;font-weight: 480;" type="button" (click)="onRemoveAmenities(i)">X</button>
                 </div>
             </div>
-            <button class="btn btn-warning mt-1" style="border-radius: 8px;color: white;font-weight: 480;" type="button" (click)="onAddAmenities()">Add Amenity</button>         
+            <button class="btn btn-outline-secondary mt-1" style="border-radius: 8px;font-weight: 480;" type="button" (click)="onAddAmenities()">Add Amenity</button>         
           </div>
     </div>
 
@@ -84,11 +84,14 @@
         </div>
     </div>
     <div class="row" style="margin-top: 30px;">
-        <div class="col-md-1"></div>
-        <div class="d-grid gap-2 col-10 mx-auto">
-            <button type="submit" class="btn btn-success btn-block" [disabled]="!signupForm.valid">Submit</button>
+        <!-- <div class="col-md-1"></div> -->
+        <div class="d-grid col-6 mx-auto">
+            <button type="button" class="btn btn-secondary btn-block" style="border-radius: 15px;" (click)="closeModel()">Cancel</button>
         </div>
-        <div class="col-md-1"></div>
+        <div class="d-grid col-6 mx-auto">
+            <button type="submit" class="btn btn-success btn-block" style="border-radius: 15px;" [disabled]="!signupForm.valid">Submit</button>
+        </div>
+        <!-- <div class="col-md-1"></div> -->
     </div>
     </form>
     <hr class="my-3">

@@ -55,7 +55,7 @@ export class CreateStudioComponent implements OnInit {
     dialogConfig.panelClass = 'custom-container1'; //Now, we have style this class in global styles.css
 
     //passing data
-    dialogConfig.data = {};
+    dialogConfig.data = {roomDetails:roomDetails};
 
     const modalDialog = this.matDialog.open(AddRoomInfoComponent,dialogConfig);
   }

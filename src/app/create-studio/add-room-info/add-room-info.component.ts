@@ -12,6 +12,8 @@ import { StudioService } from 'src/app/services/studio.service';
 })
 export class AddRoomInfoComponent implements OnInit {
 
+  roomDetails;
+
   newImage:any;
   signupForm:FormGroup;
 
@@ -23,11 +25,13 @@ export class AddRoomInfoComponent implements OnInit {
   @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   )
   {
-
+    this.roomDetails = data.roomDetails;
+    console.log(this.roomDetails);
   }
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
+      'roomId':new FormControl('',[Validators.required]),
       'roomName' : new FormControl(null, [Validators.required]),
       'area' : new FormControl(null, [Validators.required]),
       'details':new FormArray([]),
@@ -35,6 +39,11 @@ export class AddRoomInfoComponent implements OnInit {
       'pricePerHour' : new FormControl('', [Validators.required]),
       'discountPercentage' : new FormControl('', [Validators.required]),
     });
+
+    this.signupForm.patchValue({
+      roomId:this.roomDetails.roomId
+    })
+
   }
 
   onAddDetails()
