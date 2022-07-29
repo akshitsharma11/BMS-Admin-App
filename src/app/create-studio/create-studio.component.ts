@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
 import { AddRoomInfoComponent } from './add-room-info/add-room-info.component';
+import { StudioService } from '../services/studio.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-create-studio',
@@ -13,7 +17,9 @@ export class CreateStudioComponent implements OnInit {
   defaultRoomsCount = "-1";
   defaultMaxGuestsCount = "-1";
 
-  allRooms = [{roomId:1}];
+  allRooms = [{roomId:1,roomName:"",area:"",details:[],roomPhotos:[],amenities:[],pricePerHour:[],discountPercentage:"",
+              generalStartTime:"",generalEndTime:"",availabilities:[]}];
+
   allAmenities = [{id:1, name:"Wi-fi"},{id:2, name:"Ableton DAW"},{id:3, name:"Pro tools DAW"},{id:4, name:"Electric Guitar"},
                   {id:5, name:"AC"},{id:6, name:"Piano"}];
   selectedAmenities = [];
@@ -23,13 +29,43 @@ export class CreateStudioComponent implements OnInit {
   videoFileNames = [];
 
   constructor(    
-    public matDialog:MatDialog
+    public matDialog:MatDialog,
+    private studioService:StudioService,
+    private toast:ToastrService,
+    private spinner:NgxSpinnerService,
+    private routerBtn:Router
   )
   {
-
+    this.studioService.listen().subscribe((m:any)=>{
+      // console.log(m);
+      if(m.type!=undefined)
+      {
+        if(m.type=="room")
+        {
+          let allRooms = [];
+          // console.log("Room : ",m.data);
+          // this.roomData.push(m.data);
+          if(sessionStorage.getItem('allRooms')!=null)
+          {
+            allRooms = JSON.parse(sessionStorage.getItem('allRooms'));
+            console.log(allRooms); 
+            const index = allRooms.findIndex(i=>i.roomId==m.data.roomId);
+            if(index!=-1)   //if this room details already exists
+            {
+              //first delete old record , then insert again
+              allRooms.splice(index,1);
+            }
+          }
+          allRooms.push(m.data);
+          sessionStorage.setItem('allRooms',JSON.stringify(allRooms));
+        }
+      }
+      this.ngOnInit();
+    });
   }
 
   ngOnInit(): void {
+    // console.log(sessionStorage.getItem('allRooms'));
   }
 
   onRoomsSelect(value)
@@ -40,14 +76,26 @@ export class CreateStudioComponent implements OnInit {
       const index = this.allRooms.findIndex(a=>a.roomId==i);
       if(index==-1)
       {
-        this.allRooms.push({roomId:i});
+        this.allRooms.push({roomId:i,roomName:"",area:"",details:[],roomPhotos:[],amenities:[],pricePerHour:[],discountPercentage:"",
+                            generalStartTime:"",generalEndTime:"",availabilities:[]});
       }
     }
   }
 
   addRoomDetails(roomDetails:any)
   {
+    let roomInfo = roomDetails;
     // console.log(roomDetails);
+    if(sessionStorage.getItem('allRooms')!=null)
+    {
+      let allRooms = JSON.parse(sessionStorage.getItem('allRooms'));
+      // console.log(allRooms); 
+      const index = allRooms.findIndex(i=>i.roomId==roomDetails.roomId);
+      if(index!=-1)
+      {
+        roomInfo = allRooms[index];
+      }
+    }
     //Open popup model
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
@@ -60,7 +108,7 @@ export class CreateStudioComponent implements OnInit {
     dialogConfig.panelClass = 'custom-container1'; //Now, we have style this class in global styles.css
 
     //passing data
-    dialogConfig.data = {roomDetails:roomDetails};
+    dialogConfig.data = {roomDetails:roomInfo};
 
     const modalDialog = this.matDialog.open(AddRoomInfoComponent,dialogConfig);
   }
@@ -158,6 +206,7 @@ export class CreateStudioComponent implements OnInit {
 
   onSubmit(form:NgForm)
   {
+    this.spinner.show();
     let studioData = {
       fullName : form.value.fullName,
       address:form.value.address,
@@ -171,7 +220,7 @@ export class CreateStudioComponent implements OnInit {
       availabilities:[],
       amenities:this.selectedAmenities,
       totalRooms:form.value.totalRooms,
-      roomsDetails : [],
+      roomsDetails : (sessionStorage.getItem('allRooms')!=null)?(JSON.parse(sessionStorage.getItem('allRooms'))):[],
       maxGuests:form.value.maxGuests,
       studioPhotos:[],
       aboutUs:{
@@ -183,6 +232,18 @@ export class CreateStudioComponent implements OnInit {
       clientPhotos:[]
     };
     console.log(studioData);
+    this.studioService.createNewStudio(studioData).subscribe((res:any)=>{
+      if(res["status"])
+      {
+        this.spinner.hide();
+        this.toast.info(res["message"]);
+      }
+      else{
+        this.spinner.hide();
+        this.toast.error(res["message"]);
+      }
+    })
+
   }
 
 }

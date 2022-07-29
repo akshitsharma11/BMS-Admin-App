@@ -33,6 +33,13 @@ export class StudioService {
     return this.http.get(this.serverUrl+'/studios/',{headers:new HttpHeaders({
       'Authorization':this.tokenString
     })});
-  }  
+  }
+
+  createNewStudio(data)
+  {
+    return this.http.post(this.serverUrl+'/studios/create',data,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
 
 }

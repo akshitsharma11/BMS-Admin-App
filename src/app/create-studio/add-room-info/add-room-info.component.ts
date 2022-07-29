@@ -54,12 +54,55 @@ export class AddRoomInfoComponent implements OnInit {
 
     this.availControl = <FormArray>this.signupForm.controls['availabilities'];
     // this.patchStartTime();
-    this.patchTime();
+    // this.patchTime();
 
     this.signupForm.patchValue({
-      roomId:this.roomDetails.roomId
-    })
+      roomId : this.roomDetails.roomId,
+      roomName : this.roomDetails.roomName,
+      area : this.roomDetails.area,
+      pricePerHour : this.roomDetails.pricePerHour,
+      discountPercentage : this.roomDetails.discountPercentage,
+      generalStartTime : this.roomDetails.generalStartTime,
+      generalEndTime : this.roomDetails.generalEndTime,
+    });
 
+    this.patchDetails();
+    this.patchAmenities();
+    this.patchAvailabilities();
+
+  }
+
+  patchDetails()
+  {
+    let control = <FormArray>this.signupForm.controls.details;
+    this.roomDetails.details.forEach(x => {
+      control.push(this.fb.control(x));
+    });
+  }
+
+  patchAmenities()
+  {
+    let control = <FormArray>this.signupForm.controls.amenities;
+    this.roomDetails.amenities.forEach(x => {
+      control.push(this.fb.control(x));
+    });
+  }
+
+  patchAvailabilities()
+  {
+    // let control = <FormArray>this.signupForm.controls.availabilities;
+    // this.roomDetails.availabilities.forEach(x => {
+    //   control.push(this.fb.control(x));
+    // });
+    // this.availControl = [];
+    this.roomDetails.availabilities.forEach((item) => {
+      this.availControl.push(
+          this.fb.group({
+            endTime: [item.endTime, Validators.compose([])] ,
+            startTime: [item.startTime, Validators.compose([])] 
+          })
+        );
+    });
   }
 
   // private patchStartTime(): void {
@@ -168,12 +211,14 @@ export class AddRoomInfoComponent implements OnInit {
   onSubmit()
   {
     this.signupForm.value.generalTime = {startTime:this.signupForm.value.generalStartTime,endTime:this.signupForm.value.generalEndTime};
+    this.signupForm.value.roomPhotos = [];
     console.log(this.signupForm.value);
     // this.studioService.addSignatureDish(form.value).subscribe(res=>{
     //   if(res["status"])
     //   {
-        // this.toast.success("Room Saved Successfully");
-        // this.closeModel();
+        this.toast.success("Room Saved Successfully");
+        this.studioService.filter({type:"room",data:this.signupForm.value});
+        this.closeModel();
     //   }
     //   else{
     //     this.toast.error(res["message"]);
