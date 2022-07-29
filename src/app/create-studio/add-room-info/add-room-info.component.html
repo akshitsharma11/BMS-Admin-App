@@ -83,6 +83,45 @@
                 min="0" max="100" oninput="validity.valid||(value='');" required >
         </div>
     </div>
+    <div class="row mt-3">
+        <div class="col-md-5">
+            <label for="">General Time : </label>
+        </div>
+        <!-- <div class="col-md-1"></div> -->
+        <div class="col-md-3">
+            <input type="time" class="form-control" formControlName="generalStartTime" placeholder="Enter general start time" required >
+        </div>
+        <div class="col-md-3">
+            <input type="time" class="form-control" formControlName="generalEndTime" placeholder="Enter general end time" required >
+        </div>
+    </div>
+    <div class="row mt-3" formArrayName="availabilities">
+        <div class="col-md-5">
+            <label for="username">Booking Time : </label>
+        </div>
+        <div class="col-md-7">
+            <div class="row mt-1" *ngFor="let child of getControlsAvailabilities(); let i = index;">
+                <div class="col-md-5">
+                    <div class="form-group" formGroupName="{{i}}">
+                        <input formControlName="startTime" 
+                               class="form-control checking-field" 
+                               placeholder="Enter start time" type="time">
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group" formGroupName="{{i}}">
+                        <input formControlName="endTime" 
+                               class="form-control checking-field" 
+                               placeholder="Enter start time" type="time">
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-danger rounded-circle" style="border-radius: 8px;color: white;font-weight: 480;" type="button" (click)="onRemoveAvailabilities(i)">X</button>
+                </div>
+            </div>
+            <button class="btn btn-outline-secondary mt-1" style="border-radius: 8px;font-weight: 480;" type="button" (click)="onAddAvailabilities()">Add More</button>         
+          </div>
+    </div>
     <div class="row" style="margin-top: 30px;">
         <!-- <div class="col-md-1"></div> -->
         <div class="d-grid col-6 mx-auto">

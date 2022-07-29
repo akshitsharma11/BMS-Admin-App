@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -16,8 +16,13 @@ export class AddRoomInfoComponent implements OnInit {
 
   newImage:any;
   signupForm:FormGroup;
+  
+  //For iterating array of objects in Reactive form
+  availControl;
+  private availModel = {startTime:[], endTime: ['']} // the model, ready to hold the emails
 
   constructor(
+  private fb:FormBuilder,
   private studioService:StudioService,
   private toast:ToastrService,
   private spinner:NgxSpinnerService,
@@ -38,12 +43,50 @@ export class AddRoomInfoComponent implements OnInit {
       'amenities':new FormArray([]),
       'pricePerHour' : new FormControl('', [Validators.required]),
       'discountPercentage' : new FormControl('', [Validators.required]),
+      'generalStartTime' : new FormControl('', [Validators.required]),
+      'generalEndTime' : new FormControl('', [Validators.required]),
+      'availabilities':new FormArray([]),
+      // 'availabilities':new FormGroup({
+      //   startTime:new FormControl('', [Validators.required]),
+      //   endTime:new FormControl('', [Validators.required]),
+      // }),
     });
+
+    this.availControl = <FormArray>this.signupForm.controls['availabilities'];
+    // this.patchStartTime();
+    this.patchTime();
 
     this.signupForm.patchValue({
       roomId:this.roomDetails.roomId
     })
 
+  }
+
+  // private patchStartTime(): void {
+  //   // iterate the object model and extra values, binding them to the controls
+  //   this.availModel.startTime.forEach((item) => {
+  //     this.availControl.push(this.patchStartTimeValues(item));
+  //   })
+  // }
+
+  // private patchStartTimeValues(item) {
+  //   return this.fb.group({
+  //     startTime: [item, Validators.compose([])] 
+  //   })
+  // }
+
+  private patchTime(): void {
+    // iterate the object model and extra values, binding them to the controls
+    this.availModel.endTime.forEach((item) => {
+      this.availControl.push(this.patchTimeValues(item));
+    })
+  }
+
+  private patchTimeValues(item) {
+    return this.fb.group({
+      endTime: [item, Validators.compose([])] ,
+      startTime: [item, Validators.compose([])] 
+    })
   }
 
   onAddDetails()
@@ -78,6 +121,26 @@ export class AddRoomInfoComponent implements OnInit {
     return (<FormArray>this.signupForm.get('amenities')).controls;
   }
 
+  onAddAvailabilities()
+  {
+    const control = new FormControl(null, Validators.required);
+      // typecasting into FormArray
+    // (<FormArray>this.signupForm.get('availabilities')).push(control);
+    // this.availModel["availabilities"].push("");
+    // console.log(this.availModel);
+    // this.patchStartTime();
+    this.patchTime();
+  }
+
+  onRemoveAvailabilities(index)
+  {
+    (<FormArray>this.signupForm.get('availabilities')).removeAt(index);
+  }
+
+  getControlsAvailabilities() {
+    return (<FormArray>this.signupForm.get('availabilities')).controls;
+  }
+
   selectImage(event:any)
   {
     // this.spinner.show();
@@ -104,12 +167,13 @@ export class AddRoomInfoComponent implements OnInit {
 
   onSubmit()
   {
+    this.signupForm.value.generalTime = {startTime:this.signupForm.value.generalStartTime,endTime:this.signupForm.value.generalEndTime};
     console.log(this.signupForm.value);
     // this.studioService.addSignatureDish(form.value).subscribe(res=>{
     //   if(res["status"])
     //   {
-    //     this.toast.success(res["message"]);
-    //     this.closeModel();
+        // this.toast.success("Room Saved Successfully");
+        // this.closeModel();
     //   }
     //   else{
     //     this.toast.error(res["message"]);

@@ -139,7 +139,7 @@
             <div class="row mt-2 pl-3">
                 <label for="">Studio Infrastructure</label>
                 <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded"
-                        placeholder="Enter details" ngModel name="studioServices" required #infrastructureRef="ngModel"></textarea> 
+                        placeholder="Enter details" ngModel name="infrastructure" required #infrastructureRef="ngModel"></textarea> 
                 <div *ngIf="infrastructureRef.errors?.required && infrastructureRef.touched" class="errorDiv">
                    *Infrastructure details is required!
                 </div>
@@ -148,7 +148,7 @@
     </div>
            
     <div class="row my-5">
-        <button class="btn btn-success mr-3 mt-1 col-md-1" type="submit" [disabled]="!form.valid" style="color: white;"> Save</button>
+        <button class="btn btn-success mr-3 mt-1 col-md-1" type="submit" style="color: white;"> Save</button>
      </div>
      
     </form>
