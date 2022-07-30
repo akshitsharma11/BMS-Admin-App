@@ -14,6 +14,10 @@ export class AddRoomInfoComponent implements OnInit {
 
   roomDetails;
 
+  allDaysList = [{id:1, name:"Monday"},{id:2, name:"Tuesday"},{id:3, name:"Wednesday"},{id:4, name:"Thursday"},
+                  {id:5, name:"Friday"},{id:6, name:"Saturday"},{id:7, name:"Sunday"}];
+  selectedDayList = [];
+
   newImage:any;
   signupForm:FormGroup;
   
@@ -184,6 +188,23 @@ export class AddRoomInfoComponent implements OnInit {
     return (<FormArray>this.signupForm.get('availabilities')).controls;
   }
 
+  dataBookingDays(e, bDayData: any)
+  {
+    // console.log(e.target.defaultValue,e.target.checked,bDayData);
+    if(e.target.checked)
+    {
+      this.selectedDayList.push(bDayData);
+    }
+    else{
+      const index = this.selectedDayList.findIndex(i=>i.id==bDayData.id);
+      if(index!=-1)
+      {
+        this.selectedDayList.splice(index,1);
+      }
+    }
+    console.log(this.selectedDayList);
+  }
+
   selectImage(event:any)
   {
     // this.spinner.show();
@@ -212,13 +233,14 @@ export class AddRoomInfoComponent implements OnInit {
   {
     this.signupForm.value.generalTime = {startTime:this.signupForm.value.generalStartTime,endTime:this.signupForm.value.generalEndTime};
     this.signupForm.value.roomPhotos = [];
+    this.signupForm.value.bookingDays = this.selectedDayList;
     console.log(this.signupForm.value);
     // this.studioService.addSignatureDish(form.value).subscribe(res=>{
     //   if(res["status"])
     //   {
-        this.toast.success("Room Saved Successfully");
-        this.studioService.filter({type:"room",data:this.signupForm.value});
-        this.closeModel();
+        // this.toast.success("Room Saved Successfully");
+        // this.studioService.filter({type:"room",data:this.signupForm.value});
+        // this.closeModel();
     //   }
     //   else{
     //     this.toast.error(res["message"]);

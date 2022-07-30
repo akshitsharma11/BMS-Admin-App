@@ -101,7 +101,7 @@ export class CreateStudioComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.id = 'add-signature-dish-component';
     // dialogConfig.height = "395px";
-    dialogConfig.width = "585px";
+    dialogConfig.width = "610px";
     dialogConfig.maxHeight = '95vh';
 
     //For styling the mat-dialog (like borderRadius)

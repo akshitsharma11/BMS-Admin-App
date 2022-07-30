@@ -85,6 +85,21 @@
     </div>
     <div class="row mt-3">
         <div class="col-md-5">
+            <label for="">Booking Days : </label>
+        </div>
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-md-4" *ngFor="let day of allDaysList">
+                    <input class="form-check-input ml-2 checkmark"  type="checkbox" id="gridCheck1" name="day" [value]="day.id" (change)="dataBookingDays($event,day)" #checkBox>
+                    <label style="color: #212529;font-weight:400;margin-top: -10px;" class="form-check-label ml-4" for="gridCheck1">
+                      {{day.name}}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-5">
             <label for="">General Time : </label>
         </div>
         <!-- <div class="col-md-1"></div> -->
