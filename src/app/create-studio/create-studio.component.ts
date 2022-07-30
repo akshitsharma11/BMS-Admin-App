@@ -6,6 +6,7 @@ import { StudioService } from '../services/studio.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AddTeamMemberComponent } from './add-team-member/add-team-member.component';
 
 @Component({
   selector: 'app-create-studio',
@@ -23,6 +24,9 @@ export class CreateStudioComponent implements OnInit {
   allAmenities = [{id:1, name:"Wi-fi"},{id:2, name:"Ableton DAW"},{id:3, name:"Pro tools DAW"},{id:4, name:"Electric Guitar"},
                   {id:5, name:"AC"},{id:6, name:"Piano"}];
   selectedAmenities = [];
+
+  allMembers = [{id:1, name:"",designation:"",imgUrl:""},{id:2, name:"",designation:"",imgUrl:""}];
+  
   roomData = [];
 
   imageFileName = "";
@@ -58,6 +62,24 @@ export class CreateStudioComponent implements OnInit {
           }
           allRooms.push(m.data);
           sessionStorage.setItem('allRooms',JSON.stringify(allRooms));
+        }
+
+        if(m.type=="member")
+        {
+          let allTeamMembers = [];
+          if(sessionStorage.getItem('allMembers')!=null)
+          {
+            allTeamMembers = JSON.parse(sessionStorage.getItem('allMembers'));
+            console.log(allTeamMembers); 
+            const index = allTeamMembers.findIndex(i=>i.id==m.data.id);
+            if(index!=-1)   //if this member details already exists
+            {
+              //first delete old record , then insert again
+              allTeamMembers.splice(index,1);
+            }
+          }
+          allTeamMembers.push(m.data);
+          sessionStorage.setItem('allMembers',JSON.stringify(allTeamMembers));
         }
       }
       this.ngOnInit();
@@ -99,7 +121,7 @@ export class CreateStudioComponent implements OnInit {
     //Open popup model
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
-    dialogConfig.id = 'add-signature-dish-component';
+    dialogConfig.id = 'add-room-info-component';
     // dialogConfig.height = "395px";
     dialogConfig.width = "610px";
     dialogConfig.maxHeight = '95vh';
@@ -111,6 +133,37 @@ export class CreateStudioComponent implements OnInit {
     dialogConfig.data = {roomDetails:roomInfo};
 
     const modalDialog = this.matDialog.open(AddRoomInfoComponent,dialogConfig);
+  }
+
+  addMemberDetails(memberData)
+  {    
+    let memberInfo = memberData;
+    // console.log(roomDetails);
+    if(sessionStorage.getItem('allMembers')!=null)
+    {
+      let allTeamMembers = JSON.parse(sessionStorage.getItem('allMembers'));
+      // console.log(allTeamMembers); 
+      const index = allTeamMembers.findIndex(i=>i.id==memberData.id);
+      if(index!=-1)
+      {
+        memberInfo = allTeamMembers[index];
+      }
+    }
+    //Open popup model
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.id = 'add-team-member-component';
+    // dialogConfig.height = "395px";
+    dialogConfig.width = "510px";
+    dialogConfig.maxHeight = '95vh';
+
+    //For styling the mat-dialog (like borderRadius)
+    dialogConfig.panelClass = 'custom-container1'; //Now, we have style this class in global styles.css
+
+    //passing data
+    dialogConfig.data = {memberData:memberData};
+
+    const modalDialog = this.matDialog.open(AddTeamMemberComponent,dialogConfig);
   }
 
   data(e, amenityData: any)
@@ -128,6 +181,17 @@ export class CreateStudioComponent implements OnInit {
       }
     }
     console.log(this.selectedAmenities);
+  }
+
+  addTeamMember()
+  {
+    let id = 1;
+    if(this.allAmenities.length!=0)
+    {
+      id = this.allMembers[this.allMembers.length-1].id + 1;
+    }
+    this.allMembers.push({id:id,name:"",designation:"",imgUrl:""});
+    console.log(this.allMembers);
   }
 
   selectVideos(event)
@@ -228,7 +292,7 @@ export class CreateStudioComponent implements OnInit {
         services:form.value.studioServices,
         infrastructure:form.value.infrastructure
       },
-      teamDetails:[],
+      teamDetails:(sessionStorage.getItem('allMembers')!=null)?(JSON.parse(sessionStorage.getItem('allMembers'))):[],
       clientPhotos:[]
     };
     console.log(studioData);
@@ -242,7 +306,7 @@ export class CreateStudioComponent implements OnInit {
         this.spinner.hide();
         this.toast.error(res["message"]);
       }
-    })
+    });
 
   }
 

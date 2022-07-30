@@ -68,6 +68,7 @@ import { ReporteeDetailsComponent } from './reportee-details/reportee-details.co
 import { ListStudiosComponent } from './list-studios/list-studios.component';
 import { CreateStudioComponent } from './create-studio/create-studio.component';
 import { AddRoomInfoComponent } from './create-studio/add-room-info/add-room-info.component';
+import { AddTeamMemberComponent } from './create-studio/add-team-member/add-team-member.component';
 
 
 const appRoutes:Routes = [
@@ -108,6 +109,7 @@ const appRoutes:Routes = [
     ListStudiosComponent,
     CreateStudioComponent,
     AddRoomInfoComponent,
+    AddTeamMemberComponent,
    ],
   imports: [
     BrowserModule,

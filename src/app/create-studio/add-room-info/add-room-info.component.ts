@@ -238,9 +238,9 @@ export class AddRoomInfoComponent implements OnInit {
     // this.studioService.addSignatureDish(form.value).subscribe(res=>{
     //   if(res["status"])
     //   {
-        // this.toast.success("Room Saved Successfully");
-        // this.studioService.filter({type:"room",data:this.signupForm.value});
-        // this.closeModel();
+        this.toast.success("Room Saved Successfully");
+        this.studioService.filter({type:"room",data:this.signupForm.value});
+        this.closeModel();
     //   }
     //   else{
     //     this.toast.error(res["message"]);
