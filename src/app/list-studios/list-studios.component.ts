@@ -3,6 +3,7 @@ import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { StudioService } from '../services/studio.service';
+import { ShowStudioDetailsComponent } from './show-studio-details/show-studio-details.component';
 
 @Component({
   selector: 'app-list-studios',
@@ -37,6 +38,24 @@ export class ListStudiosComponent implements OnInit {
       console.log(this.allStudios);
       this.spinner.hide();
     });
+  }
+
+  showDetailsDialog(studioData)
+  {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.id = 'show-studio-details-component';
+    // dialogConfig.height = "420px";
+    dialogConfig.width = "550px";
+    dialogConfig.maxHeight = '95vh';
+    
+    //For styling the mat-dialog (like borderRadius)
+    dialogConfig.panelClass = 'custom-container1'; //Now, we have style this class in global styles.css
+
+    //passing data
+    dialogConfig.data = {studioData:studioData};
+    
+    const modalDialog = this.matDialog.open(ShowStudioDetailsComponent,dialogConfig);
   }
 
   deleteStudioDialog(studioId)
