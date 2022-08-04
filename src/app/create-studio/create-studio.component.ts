@@ -339,8 +339,17 @@ export class CreateStudioComponent implements OnInit {
       clientPhotos:[]
     };
     console.log(studioData);
+        
+    //Final team details
+    let allRoomsData = [];
+    for(let i=0;i<+form.value.totalRooms;i++)
+    {
+      allRoomsData.push(studioData.roomsDetails[i]);
+    }
+    studioData.roomsDetails = allRoomsData;
 
     let isRoomDetailsValid = true;
+    console.log(studioData.roomsDetails.length);
     if(+studioData.totalRooms == studioData.roomsDetails.length)
     {
       studioData.roomsDetails.forEach(singleRoom=>{
@@ -355,11 +364,30 @@ export class CreateStudioComponent implements OnInit {
       isRoomDetailsValid = false;
     }
 
-    console.log(isRoomDetailsValid);
+    let isTeamDetailsValid = true;
+    // if(this.allMembers.length==studioData.teamDetails.length)
+    // {
+      studioData.teamDetails.forEach(singleTeam=>{
+        console.log("Team : ",singleTeam.name);
+        if(singleTeam.name==undefined || singleTeam.name.length==0)
+        {
+          isTeamDetailsValid = false;
+        }
+      });
+    // }
+    // else{
+    //   isTeamDetailsValid = false;
+    // }
+
     if(!isRoomDetailsValid)
     {
       this.spinner.hide();
       this.toast.error("Enter valid room details");
+    }
+    else if(!isTeamDetailsValid)
+    {
+      this.spinner.hide();
+      this.toast.error("Enter valid team details");
     }
     else{
       console.log("Create studio");
@@ -367,6 +395,7 @@ export class CreateStudioComponent implements OnInit {
         if(res["status"])
         {
           this.spinner.hide();
+          this.routerBtn.navigate(['/admin/studios']);
           this.toast.info(res["message"]);
         }
         else{
