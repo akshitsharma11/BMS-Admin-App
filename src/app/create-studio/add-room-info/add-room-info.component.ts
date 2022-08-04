@@ -23,7 +23,7 @@ export class AddRoomInfoComponent implements OnInit {
   
   //For iterating array of objects in Reactive form
   availControl;
-  private availModel = {startTime:[], endTime: ['']} // the model, ready to hold the emails
+  private availModel = {startTime:[], endTime: ['']};
 
   constructor(
   private fb:FormBuilder,
@@ -58,7 +58,7 @@ export class AddRoomInfoComponent implements OnInit {
 
     this.availControl = <FormArray>this.signupForm.controls['availabilities'];
     // this.patchStartTime();
-    // this.patchTime();
+    this.patchTime();
 
     this.signupForm.patchValue({
       roomId : this.roomDetails.roomId,
@@ -235,20 +235,15 @@ export class AddRoomInfoComponent implements OnInit {
     this.signupForm.value.roomPhotos = [];
     this.signupForm.value.bookingDays = this.selectedDayList;
     console.log(this.signupForm.value);
-    // this.studioService.addSignatureDish(form.value).subscribe(res=>{
-    //   if(res["status"])
-    //   {
-        this.toast.success("Room Saved Successfully");
-        this.studioService.filter({type:"room",data:this.signupForm.value});
-        this.closeModel();
-    //   }
-    //   else{
-    //     this.toast.error(res["message"]);
-    //   }
-    //   },err=>{
-    //   console.log(err);
-    //   this.toast.error(err.error["message"]);
-    // });
+    if(this.signupForm.value.availabilities[0].startTime=="")
+    {
+      this.toast.error("Enter valid time for Availability");
+    }
+    else{
+      this.toast.success("Room Saved Successfully");
+      this.studioService.filter({type:"room",data:this.signupForm.value});
+      this.closeModel();
+    }
   }
 
   closeModel()
