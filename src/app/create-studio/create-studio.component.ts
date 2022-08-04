@@ -23,8 +23,8 @@ export class CreateStudioComponent implements OnInit {
   allRooms = [{roomId:1,roomName:"",area:"",details:[],roomPhotos:[],amenities:[],pricePerHour:[],discountPercentage:"",
               generalStartTime:"",generalEndTime:"",availabilities:[]}];
 
-  allAmenities = [{id:1, name:"Wi-fi"},{id:2, name:"Ableton DAW"},{id:3, name:"Pro tools DAW"},{id:4, name:"Electric Guitar"},
-                  {id:5, name:"AC"},{id:6, name:"Piano"}];
+  allAmenities = [{id:"1", name:"Wi-fi"},{id:"2", name:"Ableton DAW"},{id:"3", name:"Pro tools DAW"},{id:"4", name:"Electric Guitar"},
+                  {id:"5", name:"AC"},{id:"6", name:"Piano"}];
   selectedAmenities = [];
 
   allMembers = [{id:1, name:"",designation:"",imgUrl:""},{id:2, name:"",designation:"",imgUrl:""}];
@@ -133,6 +133,8 @@ export class CreateStudioComponent implements OnInit {
 
   onRoomsSelect(value)
   {
+    this.allRooms = [{roomId:1,roomName:"",area:"",details:[],roomPhotos:[],amenities:[],pricePerHour:[],discountPercentage:"",
+    generalStartTime:"",generalEndTime:"",availabilities:[]}];
     // console.log(value);
     for(let i=2;i<=(+value);i++)
     {
@@ -227,7 +229,7 @@ export class CreateStudioComponent implements OnInit {
   addTeamMember()
   {
     let id = 1;
-    if(this.allAmenities.length!=0)
+    if(this.allMembers.length!=0)
     {
       id = this.allMembers[this.allMembers.length-1].id + 1;
     }
@@ -337,17 +339,42 @@ export class CreateStudioComponent implements OnInit {
       clientPhotos:[]
     };
     console.log(studioData);
-    this.studioService.createNewStudio(studioData).subscribe((res:any)=>{
-      if(res["status"])
-      {
-        this.spinner.hide();
-        this.toast.info(res["message"]);
-      }
-      else{
-        this.spinner.hide();
-        this.toast.error(res["message"]);
-      }
-    });
+
+    let isRoomDetailsValid = true;
+    if(+studioData.totalRooms == studioData.roomsDetails.length)
+    {
+      studioData.roomsDetails.forEach(singleRoom=>{
+        console.log("Room : ",singleRoom.roomName);
+        if(singleRoom.roomName==undefined || singleRoom.roomName.length==0)
+        {
+          isRoomDetailsValid = false;
+        }
+      });
+    }
+    else{
+      isRoomDetailsValid = false;
+    }
+
+    console.log(isRoomDetailsValid);
+    if(!isRoomDetailsValid)
+    {
+      this.spinner.hide();
+      this.toast.error("Enter valid room details");
+    }
+    else{
+      console.log("Create studio");
+      this.studioService.createNewStudio(studioData).subscribe((res:any)=>{
+        if(res["status"])
+        {
+          this.spinner.hide();
+          this.toast.info(res["message"]);
+        }
+        else{
+          this.spinner.hide();
+          this.toast.error(res["message"]);
+        }
+      });
+    }
 
   }
 

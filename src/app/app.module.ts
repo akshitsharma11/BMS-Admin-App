@@ -70,6 +70,7 @@ import { CreateStudioComponent } from './create-studio/create-studio.component';
 import { AddRoomInfoComponent } from './create-studio/add-room-info/add-room-info.component';
 import { AddTeamMemberComponent } from './create-studio/add-team-member/add-team-member.component';
 import { ShowStudioDetailsComponent } from './list-studios/show-studio-details/show-studio-details.component';
+import { ViewStudioDetailsComponent } from './create-studio/view-studio-details/view-studio-details.component';
 
 
 const appRoutes:Routes = [
@@ -78,6 +79,7 @@ const appRoutes:Routes = [
   {path:'admin/all-users',component:ShowAllUsersComponent},
   {path:'admin/studios',component:ListStudiosComponent},
   {path:'admin/studios/create',component:CreateStudioComponent},
+  {path:'admin/studios/:studioId',component:ViewStudioDetailsComponent},
   {path:'admin/send-notifications',component:SendNotificationsComponent},
   
   {path:'admin/login',component:LoginUserComponent,canActivate:[OnlyLoginGuardService]},
@@ -112,6 +114,7 @@ const appRoutes:Routes = [
     AddRoomInfoComponent,
     AddTeamMemberComponent,
     ShowStudioDetailsComponent,
+    ViewStudioDetailsComponent,
    ],
   imports: [
     BrowserModule,

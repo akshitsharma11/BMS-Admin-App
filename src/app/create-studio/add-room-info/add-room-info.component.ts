@@ -58,7 +58,11 @@ export class AddRoomInfoComponent implements OnInit {
 
     this.availControl = <FormArray>this.signupForm.controls['availabilities'];
     // this.patchStartTime();
-    this.patchTime();
+    // console.log(this.roomDetails.availabilities);
+    if(this.roomDetails.availabilities.length==0)
+    {
+      this.patchTime();
+    }
 
     this.signupForm.patchValue({
       roomId : this.roomDetails.roomId,

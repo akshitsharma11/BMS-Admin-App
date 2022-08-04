@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog'; 
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { StudioService } from '../services/studio.service';
@@ -21,7 +22,8 @@ export class ListStudiosComponent implements OnInit {
     public matDialog:MatDialog,
     private studioService:StudioService,
     private spinner:NgxSpinnerService,
-    private toast:ToastrService
+    private toast:ToastrService,
+    private routerBtn:Router
   )
   {
     this.studioService.listen().subscribe((m:any)=>{
@@ -42,20 +44,21 @@ export class ListStudiosComponent implements OnInit {
 
   showDetailsDialog(studioData)
   {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
-    dialogConfig.id = 'show-studio-details-component';
-    // dialogConfig.height = "420px";
-    dialogConfig.width = "550px";
-    dialogConfig.maxHeight = '95vh';
+    this.routerBtn.navigate([]).then(result => {  window.open('/admin/studios/'+studioData._id, '_blank'); });
+    // const dialogConfig = new MatDialogConfig();
+    // dialogConfig.disableClose = false;
+    // dialogConfig.id = 'show-studio-details-component';
+    // // dialogConfig.height = "420px";
+    // dialogConfig.width = "550px";
+    // dialogConfig.maxHeight = '95vh';
     
-    //For styling the mat-dialog (like borderRadius)
-    dialogConfig.panelClass = 'custom-container1'; //Now, we have style this class in global styles.css
+    // //For styling the mat-dialog (like borderRadius)
+    // dialogConfig.panelClass = 'custom-container1'; //Now, we have style this class in global styles.css
 
-    //passing data
-    dialogConfig.data = {studioData:studioData};
+    // //passing data
+    // dialogConfig.data = {studioData:studioData};
     
-    const modalDialog = this.matDialog.open(ShowStudioDetailsComponent,dialogConfig);
+    // const modalDialog = this.matDialog.open(ShowStudioDetailsComponent,dialogConfig);
   }
 
   deleteStudioDialog(studioId)
