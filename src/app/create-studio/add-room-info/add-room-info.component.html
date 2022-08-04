@@ -89,7 +89,7 @@
         </div>
         <div class="col-md-7">
             <div class="row">
-                <div class="col-md-4" *ngFor="let day of allDaysList">
+                <div class="col-md-4 text-left" *ngFor="let day of allDaysList">
                     <input class="form-check-input ml-2 checkmark"  type="checkbox" id="gridCheck1" name="day" [value]="day.id" (change)="dataBookingDays($event,day)" #checkBox>
                     <label style="color: #212529;font-weight:400;margin-top: -10px;" class="form-check-label ml-4" for="gridCheck1">
                       {{day.name}}

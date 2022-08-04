@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AddTeamMemberComponent } from './add-team-member/add-team-member.component';
+import { HostListener } from '@angular/core';
+import {LocationStrategy} from '@angular/common';
 
 @Component({
   selector: 'app-create-studio',
@@ -37,9 +39,11 @@ export class CreateStudioComponent implements OnInit {
     private studioService:StudioService,
     private toast:ToastrService,
     private spinner:NgxSpinnerService,
-    private routerBtn:Router
+    private routerBtn:Router,
+    private Location: LocationStrategy
   )
   {
+
     this.studioService.listen().subscribe((m:any)=>{
       // console.log(m);
       if(m.type!=undefined)
@@ -87,8 +91,45 @@ export class CreateStudioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log(sessionStorage.getItem('allRooms'));
+    console.log( window.location.href);
+    window.history.pushState(null, "", window.location.href);
+    window.onpopstate = function (event) {
+        var leavePage = event.currentTarget.confirm("Do you want to go back? All the added information will be removed");
+        console.log(leavePage);
+        if(leavePage==true)
+        {
+          console.log("leave page");
+          window.location.href = "admin/studios"
+        }
+        else{
+          window.history.pushState(null, "", window.location.href);
+        }
+    };
   }
+
+  //Event for handling click of "Browser back button"
+  // @HostListener('window:popstate', ['$event'])
+  // onPopState(event) {
+  //   // console.log(event);
+  //   // alert('Back button pressed');
+  //   var stayOnPage = event.currentTarget.confirm("Are you sure want to go back?");
+  //   console.log(stayOnPage);
+  //   if (!stayOnPage) { 
+  //       event.preventDefault();
+  //       window.history.forward();
+  //       window.onunload = function () {null}
+        
+  //   history.pushState(null, document.title, location.href);
+  //   // window.addEventListener('popstate', function (event)
+  //   // {
+  //   //   console.log("EVENT : ",event);
+  //   //     history.pushState(null, document.title, location.href);
+  //   // });
+  //   }
+  //   else{
+
+  //   }
+  // }
 
   onRoomsSelect(value)
   {
