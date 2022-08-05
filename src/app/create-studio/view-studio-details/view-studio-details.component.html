@@ -55,20 +55,20 @@
             <div class="row mt-2">
                 <label for="">Rooms</label>
             </div>
-            <!-- <div class="row">
-                <div class="col-md-4" *ngFor="let singleRoom of allRooms;">
-                    <button class="text-center btn mb-1" type="button" style="color: white; background-color: #F92162; border-radius: 10px;width: 120px;" (click)="addRoomDetails(singleRoom)">Room {{singleRoom.roomId}}</button>
+            <div class="row">
+                <div class="col-md-4" *ngFor="let singleRoom of studioDetails.roomsDetails;">
+                    <button class="text-center btn mb-1" type="button" style="color: white; background-color: #F92162; border-radius: 10px;width: 120px;" (click)="showRoomDetails(singleRoom)">Room {{singleRoom.roomId}}</button>
                 </div>
-            </div> -->
+            </div>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-5 mb-5">
             <div class="row">
                 <label for="">Studio Photos</label>
             </div>
-            <div class="row p-3 text-center" style="background-color: rgb(236, 233, 233); border-radius: 10px;">
-                <div class="col-md-12 mb-1" *ngFor="let singleImg of studioDetails.studioPhotos;">
-                    <img src={{singleImg}} onerror="this.src='../../assets/banner.jfif'" alt="StudioImage" height="180px" width="260px">
+            <div class="row text-center">
+                <div class="col-md-6 mb-1 " *ngFor="let singleImg of studioDetails.studioPhotos;">
+                    <img src={{singleImg}}  onerror="this.src='../../assets/banner.jfif'" alt="StudioImage" height="145px" width="225px">
                 </div>
             </div>
             <div class="row mt-3">

@@ -71,6 +71,7 @@ import { AddRoomInfoComponent } from './create-studio/add-room-info/add-room-inf
 import { AddTeamMemberComponent } from './create-studio/add-team-member/add-team-member.component';
 import { ShowStudioDetailsComponent } from './list-studios/show-studio-details/show-studio-details.component';
 import { ViewStudioDetailsComponent } from './create-studio/view-studio-details/view-studio-details.component';
+import { RoomDetailsComponent } from './create-studio/room-details/room-details.component';
 
 
 const appRoutes:Routes = [
@@ -115,6 +116,7 @@ const appRoutes:Routes = [
     AddTeamMemberComponent,
     ShowStudioDetailsComponent,
     ViewStudioDetailsComponent,
+    RoomDetailsComponent,
    ],
   imports: [
     BrowserModule,
