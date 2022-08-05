@@ -18,6 +18,16 @@ export class ViewStudioDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(Params=>{
+      this.studioId = Params['studioId'];
+      this.studioService.getSingleStudio(this.studioId).subscribe(res=>{
+        if(res["status"])
+        {
+          this.studioDetails = res["studio"];
+        }
+        console.log(this.studioDetails);
+      });
+    });
   }
 
 }

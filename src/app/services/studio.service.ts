@@ -35,6 +35,13 @@ export class StudioService {
     })});
   }
 
+  getSingleStudio(id)
+  {
+    return this.http.get(this.serverUrl+'/studios/'+id,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
   createNewStudio(data)
   {
     return this.http.post(this.serverUrl+'/studios/create',data,{headers:new HttpHeaders({
