@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog'; 
 import { ActivatedRoute } from '@angular/router';
 import { StudioService } from 'src/app/services/studio.service';
+import { MemberDetailsComponent } from '../member-details/member-details.component';
 import { RoomDetailsComponent } from '../room-details/room-details.component';
 
 @Component({
@@ -49,6 +50,24 @@ export class ViewStudioDetailsComponent implements OnInit {
     dialogConfig.data = {roomData:roomData};
     
     const modalDialog = this.matDialog.open(RoomDetailsComponent,dialogConfig);
+  }
+
+  showMemberDetails(memberData)
+  {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.id = 'member-details-component';
+    // dialogConfig.height = "420px";
+    dialogConfig.width = "520px";
+    dialogConfig.maxHeight = '95vh';
+    
+    //For styling the mat-dialog (like borderRadius)
+    dialogConfig.panelClass = 'custom-container1'; //Now, we have style this class in global styles.css
+
+    //passing data
+    dialogConfig.data = {memberData:memberData};
+    
+    const modalDialog = this.matDialog.open(MemberDetailsComponent,dialogConfig);
   }
 
 }
