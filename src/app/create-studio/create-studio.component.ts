@@ -32,7 +32,8 @@ export class CreateStudioComponent implements OnInit {
   roomData = [];
 
   imageFileName = "";
-  videoFileNames = [];
+  allStudioPhotos = [];
+  studioPhotoNames = [];
 
   constructor(    
     public matDialog:MatDialog,
@@ -237,12 +238,10 @@ export class CreateStudioComponent implements OnInit {
     console.log(this.allMembers);
   }
 
-  selectVideos(event)
+  selectImages(event)
   {
-    // this.uploadText = "Uploading Video(s)";
-
-    // this.spinner.show();
-    // console.log(event.target.files.length);
+    this.spinner.show();
+    console.log(event.target.files.length);
     // if(event.target.files.length>2)
     // {
     //   this.spinner.hide();
@@ -254,61 +253,61 @@ export class CreateStudioComponent implements OnInit {
     //   }) 
     // }
     // else{
-    //   for  (var i =  0; i <  event.target.files.length; i++)  {  
-    //     if(event.target.files[i].type=="video/mp4")
-    //     {
-    //       // console.log(event.target.files[i].name);
-    //       this.shortVideos.push(event.target.files[i]);
-    //       this.videoFileNames = this.videoFileNames.concat(event.target.files[i].name);
-    //     }
-    //     else{
-    //       this.spinner.hide();
-    //       this.toast.error("Please upload video file","Error Occured",{
-    //         timeOut:2500,
-    //         progressBar:true,
-    //         progressAnimation:'increasing',
-    //         positionClass:'toast-top-right'
-    //       }) 
-    //     }
-    //   }
-    // }    
+      for  (var i =  0; i <  event.target.files.length; i++)  {
+        // if(event.target.files[i].type=="jpeg/png")
+        // {
+          // console.log(event.target.files[i].name);
+          this.allStudioPhotos.push(event.target.files[i]);
+          this.studioPhotoNames = this.studioPhotoNames.concat(event.target.files[i].name);
+        // }
+        // else{
+        //   this.spinner.hide();
+        //   this.toast.error("Please upload video file","Error Occured",{
+        //     timeOut:2500,
+        //     progressBar:true,
+        //     progressAnimation:'increasing',
+        //     positionClass:'toast-top-right'
+        //   })
+        // }
+      }
+    // }
     
-    // const formData = new FormData();
-    // for  (var i =  0; i <  this.shortVideos.length; i++)  {  
-    //   formData.append("newImages",  this.shortVideos[i]);
-    // } 
+    const formData = new FormData();
+    for  (var i =  0; i <  this.allStudioPhotos.length; i++)  {  
+      formData.append("newImages",  this.allStudioPhotos[i]);
+    } 
 
-    // this.courseService.uploadMultipleFiles(formData).subscribe(res=>{
-    //   if(res["status"])
-    //   {
-    //     this.shortVideos = res["images"];
-    //     this.spinner.hide();
-    //     console.log("Short Videos : ",this.shortVideos);
-    //     this.toast.info("Media Files uploaded successfully","",{
-    //       timeOut:2500,
-    //       progressBar:true,
-    //       progressAnimation:'increasing',
-    //       positionClass:'toast-top-right'
-    //     });
+    this.studioService.uploadMultipleImages(formData).subscribe(res=>{
+      if(res["status"])
+      {
+        this.allStudioPhotos = res["images"];
+        this.spinner.hide();
+        console.log("All Images : ",this.allStudioPhotos);
+        this.toast.info("Media Files uploaded successfully","",{
+          timeOut:2500,
+          progressBar:true,
+          progressAnimation:'increasing',
+          positionClass:'toast-top-right'
+        });
 
-    //   }else{
-    //     this.spinner.hide();
-    //     this.toast.error(res["message"],"Error Occured",{
-    //       timeOut:2500,
-    //       progressBar:true,
-    //       progressAnimation:'increasing',
-    //       positionClass:'toast-top-right'
-    //     })
-    //   }
-    // },err=>{
-    //   this.spinner.hide();
-    //   this.toast.error(err,"Error Occured",{
-    //     timeOut:2500,
-    //     progressBar:true,
-    //     progressAnimation:'increasing',
-    //     positionClass:'toast-top-right'
-    //   })
-    // })
+      }else{
+        this.spinner.hide();
+        this.toast.error(res["message"],"Error Occured",{
+          timeOut:2500,
+          progressBar:true,
+          progressAnimation:'increasing',
+          positionClass:'toast-top-right'
+        })
+      }
+    },err=>{
+      this.spinner.hide();
+      this.toast.error(err,"Error Occured",{
+        timeOut:2500,
+        progressBar:true,
+        progressAnimation:'increasing',
+        positionClass:'toast-top-right'
+      })
+    })
   }
 
   onSubmit(form:NgForm)
@@ -329,7 +328,7 @@ export class CreateStudioComponent implements OnInit {
       totalRooms:form.value.totalRooms,
       roomsDetails : (sessionStorage.getItem('allRooms')!=null)?(JSON.parse(sessionStorage.getItem('allRooms'))):[],
       maxGuests:form.value.maxGuests,
-      studioPhotos:[],
+      studioPhotos:this.allStudioPhotos,
       aboutUs:{
         aboutUs:form.value.aboutStudio,
         services:form.value.studioServices,

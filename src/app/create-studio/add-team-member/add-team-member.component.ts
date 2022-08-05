@@ -32,32 +32,33 @@ export class AddTeamMemberComponent implements OnInit {
 
   selectImage(event:any)
   {
-    // this.spinner.show();
-    // const file = event.target.files[0];
-    // this.newImage = file;
-    // // console.log(this.newImage);
+    this.spinner.show();
+    const file = event.target.files[0];
+    this.newImage = file;
+    // console.log(this.newImage);
 
-    // const formData = new FormData();
-    // formData.append("newImage",this.newImage);
-    // this.authHttpService.uploadSingleImage(formData).subscribe((res:any)=>{
-    //   if(res["status"])
-    //   {
-    //     this.newImage = res["imageUrl"];
-    //     // console.log(this.newImage);
-    //     this.toast.info("Image uploaded successfully");
-    //   }
-    //   else{
-    //     // this.spinner.hide();
-    //     this.toast.error(res["message"]);
-    //   }
-    //   this.spinner.hide();
-    // })    
+    const formData = new FormData();
+    formData.append("newImage",this.newImage);
+    this.studioService.uploadSingleImage(formData).subscribe((res:any)=>{
+      if(res["status"])
+      {
+        this.newImage = res["imageUrl"];
+        this.memberData.imgUrl = this.newImage;
+        // console.log(this.newImage);
+        this.toast.info("Image uploaded successfully");
+      }
+      else{
+        // this.spinner.hide();
+        this.toast.error(res["message"]);
+      }
+      this.spinner.hide();
+    })    
   }
 
   addMemberDetails(form:NgForm)
   {
     form.value.id = this.memberData.id;
-    form.value.imgUrl = this.newImage;
+    form.value.imgUrl = this.memberData.imgUrl;
     // console.log(form.value);
     this.toast.success("Member Saved Successfully");
     this.studioService.filter({type:"member",data:form.value});

@@ -42,4 +42,14 @@ export class StudioService {
     })});
   }
 
+  uploadSingleImage(data)
+  {
+    return this.http.post(this.serverUrl+'/upload-single-image',data);
+  }
+
+  uploadMultipleImages(data)
+  {
+    return this.http.post(this.serverUrl+'/upload-multiple-images',data);
+  }
+
 }

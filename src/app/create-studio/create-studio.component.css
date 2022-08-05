@@ -12,4 +12,6 @@ input.ng-invalid.ng-touched
 .errorDiv
 {
 	color:rgb(204, 81, 81);
+  margin-top: -13px;
+  font-size: 15px;
 }

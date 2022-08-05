@@ -18,6 +18,8 @@ export class AddRoomInfoComponent implements OnInit {
                   {id:5, name:"Friday"},{id:6, name:"Saturday"},{id:7, name:"Sunday"}];
   selectedDayList = [];
 
+  allRoomPhotos = [];
+
   newImage:any;
   signupForm:FormGroup;
   
@@ -209,34 +211,58 @@ export class AddRoomInfoComponent implements OnInit {
     console.log(this.selectedDayList);
   }
 
-  selectImage(event:any)
-  {
-    // this.spinner.show();
-    // const file = event.target.files[0];
-    // this.newImage = file;
-    // // console.log(this.newImage);
+  selectImages(event:any)
+  {  
+    this.spinner.show();
+    console.log(event.target.files.length);
 
-    // const formData = new FormData();
-    // formData.append("newImage",this.newImage);
-    // this.authHttpService.uploadSingleImage(formData).subscribe((res:any)=>{
-    //   if(res["status"])
-    //   {
-    //     this.newImage = res["imageUrl"];
-    //     // console.log(this.newImage);
-    //     this.toast.info("Image uploaded successfully");
-    //   }
-    //   else{
-    //     // this.spinner.hide();
-    //     this.toast.error(res["message"]);
-    //   }
-    //   this.spinner.hide();
-    // })    
+    for  (var i =  0; i <  event.target.files.length; i++)  {
+        this.allRoomPhotos.push(event.target.files[i]);
+    }
+    
+    const formData = new FormData();
+    for  (var i =  0; i <  this.allRoomPhotos.length; i++)  {  
+      formData.append("newImages",  this.allRoomPhotos[i]);
+    } 
+
+    this.studioService.uploadMultipleImages(formData).subscribe(res=>{
+      if(res["status"])
+      {
+        this.allRoomPhotos = res["images"];
+        this.roomDetails.roomPhotos = this.allRoomPhotos;
+        this.spinner.hide();
+        console.log("All Images : ",this.allRoomPhotos);
+        this.toast.info("Media Files uploaded successfully","",{
+          timeOut:2500,
+          progressBar:true,
+          progressAnimation:'increasing',
+          positionClass:'toast-top-right'
+        });
+
+      }else{
+        this.spinner.hide();
+        this.toast.error(res["message"],"Error Occured",{
+          timeOut:2500,
+          progressBar:true,
+          progressAnimation:'increasing',
+          positionClass:'toast-top-right'
+        })
+      }
+    },err=>{
+      this.spinner.hide();
+      this.toast.error(err,"Error Occured",{
+        timeOut:2500,
+        progressBar:true,
+        progressAnimation:'increasing',
+        positionClass:'toast-top-right'
+      })
+    })  
   }
 
   onSubmit()
   {
     this.signupForm.value.generalTime = {startTime:this.signupForm.value.generalStartTime,endTime:this.signupForm.value.generalEndTime};
-    this.signupForm.value.roomPhotos = [];
+    this.signupForm.value.roomPhotos = this.roomDetails.roomPhotos;
     this.signupForm.value.bookingDays = this.selectedDayList;
     console.log(this.signupForm.value);
     if(this.signupForm.value.availabilities[0].startTime=="")
