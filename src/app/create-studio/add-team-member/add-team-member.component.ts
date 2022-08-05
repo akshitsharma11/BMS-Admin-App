@@ -15,6 +15,8 @@ export class AddTeamMemberComponent implements OnInit {
   memberData;
   newImage:any = "";
 
+  showImage = true;
+
   constructor(
   private studioService:StudioService,
   private toast:ToastrService,
@@ -25,6 +27,10 @@ export class AddTeamMemberComponent implements OnInit {
   {
     this.memberData = data.memberData;
     console.log(this.memberData);
+    if(this.memberData.name==undefined || this.memberData.name.length==0)
+    {
+      this.showImage = false;
+    }
   }
 
   ngOnInit(): void {
@@ -44,6 +50,7 @@ export class AddTeamMemberComponent implements OnInit {
       {
         this.newImage = res["imageUrl"];
         this.memberData.imgUrl = this.newImage;
+        this.showImage = true;
         // console.log(this.newImage);
         this.toast.info("Image uploaded successfully");
       }
