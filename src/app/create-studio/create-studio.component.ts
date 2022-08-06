@@ -209,7 +209,7 @@ export class CreateStudioComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.id = 'add-room-info-component';
     // dialogConfig.height = "395px";
-    dialogConfig.width = "620px";
+    dialogConfig.width = "645px";
     dialogConfig.maxHeight = '95vh';
 
     //For styling the mat-dialog (like borderRadius)
