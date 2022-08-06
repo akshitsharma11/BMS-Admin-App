@@ -139,8 +139,17 @@
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col-md-12 mb-1" *ngFor="let singleImg of roomDetails.roomPhotos;">
-            <img src={{singleImg}} onerror="this.src='../../assets/banner.jfif'" alt="RoomImage" height="250px" width="320px">
+        <div class="col-md-12 mb-1 text-center" *ngFor="let singleImg of roomDetails.roomPhotos;">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-8">
+                    <img src={{singleImg}} onerror="this.src='../../assets/banner.jfif'" alt="RoomImage" height="250px" width="320px">
+                </div>
+                <div class="col-md-1 mt-4">
+                    <button class="btn btn-danger rounded-circle" type="button" (click)="removeRoomPhoto(singleImg)">X</button>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
         </div>
     </div>
 

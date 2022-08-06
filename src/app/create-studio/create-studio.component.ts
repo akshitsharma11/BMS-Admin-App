@@ -244,6 +244,7 @@ export class CreateStudioComponent implements OnInit {
   {
     this.spinner.show();
     console.log(event.target.files.length);
+    let allStudioPhotosForm = [];
     // if(event.target.files.length>2)
     // {
     //   this.spinner.hide();
@@ -259,7 +260,7 @@ export class CreateStudioComponent implements OnInit {
         // if(event.target.files[i].type=="jpeg/png")
         // {
           // console.log(event.target.files[i].name);
-          this.allStudioPhotos.push(event.target.files[i]);
+          allStudioPhotosForm.push(event.target.files[i]);
           this.studioPhotoNames = this.studioPhotoNames.concat(event.target.files[i].name);
         // }
         // else{
@@ -275,14 +276,17 @@ export class CreateStudioComponent implements OnInit {
     // }
     
     const formData = new FormData();
-    for  (var i =  0; i <  this.allStudioPhotos.length; i++)  {  
-      formData.append("newImages",  this.allStudioPhotos[i]);
+    for  (var i =  0; i <  allStudioPhotosForm.length; i++)  {  
+      formData.append("newImages",  allStudioPhotosForm[i]);
     } 
 
     this.studioService.uploadMultipleImages(formData).subscribe(res=>{
       if(res["status"])
       {
-        this.allStudioPhotos = res["images"];
+        // this.allStudioPhotos = res["images"];
+        res["images"].forEach(singleImg=>{
+          this.allStudioPhotos.push(singleImg);
+        });
         this.spinner.hide();
         console.log("All Images : ",this.allStudioPhotos);
         this.toast.info("Media Files uploaded successfully","",{
@@ -310,6 +314,16 @@ export class CreateStudioComponent implements OnInit {
         positionClass:'toast-top-right'
       })
     })
+  }
+
+  removeStudioPhoto(imgUrl)
+  {
+    const index = this.allStudioPhotos.findIndex(i=>i==imgUrl);
+    if(index!=-1)
+    {
+      this.allStudioPhotos.splice(index,1);
+    }
+    console.log(this.allStudioPhotos);
   }
 
   onSubmit(form:NgForm)

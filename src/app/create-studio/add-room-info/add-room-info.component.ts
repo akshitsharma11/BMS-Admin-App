@@ -38,6 +38,7 @@ export class AddRoomInfoComponent implements OnInit {
   {
     this.roomDetails = data.roomDetails;
     console.log(this.roomDetails);
+    this.allRoomPhotos = this.roomDetails.roomPhotos;
   }
 
   ngOnInit(): void {
@@ -215,21 +216,25 @@ export class AddRoomInfoComponent implements OnInit {
   selectImages(event:any)
   {  
     this.spinner.show();
-    console.log(event.target.files.length);
+    console.log(event.target.files.length);    
+    let allRoomPhotosForm = [];
 
     for  (var i =  0; i <  event.target.files.length; i++)  {
-        this.allRoomPhotos.push(event.target.files[i]);
+        allRoomPhotosForm.push(event.target.files[i]);
     }
     
     const formData = new FormData();
-    for  (var i =  0; i <  this.allRoomPhotos.length; i++)  {  
-      formData.append("newImages",  this.allRoomPhotos[i]);
+    for  (var i =  0; i <  allRoomPhotosForm.length; i++)  {  
+      formData.append("newImages",  allRoomPhotosForm[i]);
     } 
 
     this.studioService.uploadMultipleImages(formData).subscribe(res=>{
       if(res["status"])
       {
-        this.allRoomPhotos = res["images"];
+        // this.allRoomPhotos = res["images"];
+        res["images"].forEach(singleImg=>{
+          this.allRoomPhotos.push(singleImg);
+        })
         this.roomDetails.roomPhotos = this.allRoomPhotos;
         this.spinner.hide();
         console.log("All Images : ",this.allRoomPhotos);
@@ -258,6 +263,16 @@ export class AddRoomInfoComponent implements OnInit {
         positionClass:'toast-top-right'
       })
     })  
+  }
+
+  removeRoomPhoto(imgUrl)
+  {
+    const index = this.allRoomPhotos.findIndex(i=>i==imgUrl);
+    if(index!=-1)
+    {
+      this.allRoomPhotos.splice(index,1);
+    }
+    console.log(this.allRoomPhotos);
   }
 
   isDaySelected(dayData)

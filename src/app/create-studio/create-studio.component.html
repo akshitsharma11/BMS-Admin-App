@@ -94,21 +94,39 @@
         <div class="col-md-5">
             <div class="row">
                 <label for="">Add Studio Photos</label>
+                <div class="col-md-12">
+                    <input type="file" multiple="" (change)="selectImages($event)" required>
+                </div>
             </div>
-            <div class="row p-3 text-center" style="background-color: rgb(236, 233, 233); border-radius: 10px;">
+            <div class="row text-center">
+                <div class="col-md-6 my-1" *ngFor="let imgFile of allStudioPhotos">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <img src={{imgFile}}  onerror="this.src='../../assets/banner.jfif'" alt="StudioImage" height="120px" width="180px">
+                        </div>
+                        <div class="col-md-2 mt-4">
+                            <button class="btn btn-danger rounded-circle" type="button" (click)="removeStudioPhoto(imgFile)">X</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row p-3 text-center" style="background-color: rgb(236, 233, 233); border-radius: 10px;">
                 <div class="col-md-12">
                     <img src="../../assets/imageIcon.png" height="30px" width="30px" alt="" srcset="">
                 </div>
                 <h6 class="col-md-12" >1920 px X 1080 px</h6> <br>
                 <div class="image-upload col-md-12">
                     <label for="file-input">
-                        <!-- <i class="fas fa-pen" style="font-size: 18px; cursor: pointer;" ></i> -->
                         <button type="button" (click)="file1.click()" class="btn" style="color: black; font-weight: 700; background-color: white; border-radius: 12px;">Upload Photos</button>
-                        <h6 class="pt-2" *ngFor="let imgFile of studioPhotoNames">{{imgFile}}</h6>
                     </label>                      
                     <input id="file-input" #file1 type="file" multiple="" (change)="selectImages($event)" required/>
+                    <div class="row text-center">
+                        <div class="col-md-5 mb-1" *ngFor="let imgFile of studioPhotoNames">
+                            <img src={{imgFile}}  onerror="this.src='../../assets/banner.jfif'" alt="StudioImage" height="120px" width="180px">
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label for="">Amenities </label>
