@@ -394,6 +394,10 @@ export class CreateStudioComponent implements OnInit {
         if(res["status"])
         {
           this.spinner.hide();
+          //clear room and member info from sessions
+          sessionStorage.removeItem('allRooms');
+          sessionStorage.removeItem('allMembers');
+          
           this.routerBtn.navigate(['/admin/studios']);
           this.toast.info(res["message"]);
         }
