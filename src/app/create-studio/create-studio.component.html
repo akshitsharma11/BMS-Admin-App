@@ -113,9 +113,9 @@
                 <div class="col-md-12">
                     <label for="">Amenities </label>
                 </div>
-                <div class="col-md-4" *ngFor="let amenity of allAmenities">
-                    <input class="form-check-input ml-2 checkmark"  type="checkbox" id="gridCheck1" name="amenity" [value]="amenity.id" (change)="data($event,amenity)" #checkBox ngModel>
-                    <label style="color: #212529;font-weight:400;" class="form-check-label ml-4" for="gridCheck1">
+                <div class="col-sm-4 text-left" *ngFor="let amenity of allAmenities;let i = index;">
+                    <input class="form-check-input ml-1 checkmark"  type="checkbox" id="gridCheck1" name="amenity" [value]="amenity.id" (change)="data($event,amenity)" #checkBox ngModel>
+                    <label style="color: #212529;font-weight:400;font-size: 13.3px;margin-bottom: 10px;" class="form-check-label ml-4" for="gridCheck1">
                       {{amenity.name}}
                     </label>
                 </div>

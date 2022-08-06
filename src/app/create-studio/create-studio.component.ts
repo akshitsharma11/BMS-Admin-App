@@ -24,7 +24,9 @@ export class CreateStudioComponent implements OnInit {
               generalStartTime:"",generalEndTime:"",availabilities:[]}];
 
   allAmenities = [{id:"1", name:"Wi-fi"},{id:"2", name:"Ableton DAW"},{id:"3", name:"Pro tools DAW"},{id:"4", name:"Electric Guitar"},
-                  {id:"5", name:"AC"},{id:"6", name:"Piano"}];
+                  {id:"5", name:"AC"},{id:"6", name:"Piano"},{id:"7", name:"Fistudio DAW"},{id:"8", name:"Logic pro X Daw"},
+                  {id:"9", name:"Guitar"},{id:"10", name:"Voilin"},{id:"11", name:"Drum"},{id:"12", name:"Cubase DAW"},
+                  {id:"13", name:"AKG Microphone"}];
   selectedAmenities = [];
 
   allMembers = [{id:1, name:"",designation:"",imgUrl:""},{id:2, name:"",designation:"",imgUrl:""}];
