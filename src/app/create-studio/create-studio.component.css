@@ -27,3 +27,19 @@ input.ng-invalid.ng-touched
   border-radius: 20px;
   height: 40px;
 }
+
+.roomBtnSelected
+{
+  color: white;
+  background-color: #F92162; 
+  border-radius: 10px;
+  width: 120px;
+}
+
+.roomBtnOther
+{
+  color: white;
+  background-color: gray; 
+  border-radius: 10px;
+  width: 120px;
+}

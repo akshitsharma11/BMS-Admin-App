@@ -21,7 +21,7 @@ export class CreateStudioComponent implements OnInit {
   defaultMaxGuestsCount = "-1";
 
   allRooms = [{roomId:1,roomName:"",area:"",details:[],roomPhotos:[],amenities:[],pricePerHour:[],discountPercentage:"",
-              generalStartTime:"",generalEndTime:"",availabilities:[]}];
+              generalStartTime:"",generalEndTime:"",availabilities:[],bookingDays:[]}];
 
   allAmenities = [{id:"1", name:"Wi-fi"},{id:"2", name:"Ableton DAW"},{id:"3", name:"Pro tools DAW"},{id:"4", name:"Electric Guitar"},
                   {id:"5", name:"AC"},{id:"6", name:"Piano"},{id:"7", name:"Fistudio DAW"},{id:"8", name:"Logic pro X Daw"},
@@ -110,6 +110,26 @@ export class CreateStudioComponent implements OnInit {
     };
   }
 
+  getRoomButtonColor(roomData)
+  {
+    let allRooms = []
+    if(sessionStorage.getItem('allRooms')!=null)
+    {
+      allRooms = JSON.parse(sessionStorage.getItem('allRooms'));
+      const index = allRooms.findIndex(i=>i.roomId==roomData.roomId);
+      if(index!=-1)
+      {
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+    else{
+      return false;
+    }
+  }
+
   //Event for handling click of "Browser back button"
   // @HostListener('window:popstate', ['$event'])
   // onPopState(event) {
@@ -137,7 +157,7 @@ export class CreateStudioComponent implements OnInit {
   onRoomsSelect(value)
   {
     this.allRooms = [{roomId:1,roomName:"",area:"",details:[],roomPhotos:[],amenities:[],pricePerHour:[],discountPercentage:"",
-    generalStartTime:"",generalEndTime:"",availabilities:[]}];
+    generalStartTime:"",generalEndTime:"",availabilities:[],bookingDays:[]}];
     // console.log(value);
     for(let i=2;i<=(+value);i++)
     {
@@ -145,7 +165,7 @@ export class CreateStudioComponent implements OnInit {
       if(index==-1)
       {
         this.allRooms.push({roomId:i,roomName:"",area:"",details:[],roomPhotos:[],amenities:[],pricePerHour:[],discountPercentage:"",
-                            generalStartTime:"",generalEndTime:"",availabilities:[]});
+                            generalStartTime:"",generalEndTime:"",availabilities:[],bookingDays:[]});
       }
     }
   }
