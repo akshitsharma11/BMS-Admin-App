@@ -130,6 +130,26 @@ export class CreateStudioComponent implements OnInit {
     }
   }
 
+  getMemberButtonColor(memberData)
+  {
+    let allMemberInfo = []
+    if(sessionStorage.getItem('allMembers')!=null)
+    {
+      allMemberInfo = JSON.parse(sessionStorage.getItem('allMembers'));
+      const index = allMemberInfo.findIndex(i=>i.id==memberData.id);
+      if(index!=-1)
+      {
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+    else{
+      return false;
+    }
+  }
+
   //Event for handling click of "Browser back button"
   // @HostListener('window:popstate', ['$event'])
   // onPopState(event) {
