@@ -79,7 +79,7 @@ export class AddRoomInfoComponent implements OnInit {
     this.patchDetails();
     this.patchAmenities();
     this.patchAvailabilities();
-
+    this.selectedDayList = this.roomDetails.bookingDays;
   }
 
   patchDetails()
@@ -205,6 +205,7 @@ export class AddRoomInfoComponent implements OnInit {
       const index = this.selectedDayList.findIndex(i=>i.id==bDayData.id);
       if(index!=-1)
       {
+        console.log("Removed");
         this.selectedDayList.splice(index,1);
       }
     }
@@ -257,6 +258,30 @@ export class AddRoomInfoComponent implements OnInit {
         positionClass:'toast-top-right'
       })
     })  
+  }
+
+  isDaySelected(dayData)
+  {
+    const index = this.roomDetails.bookingDays.findIndex(i=>i.id==dayData.id);
+    if(index!=-1)
+    {
+      //add in "selectedDayList" array also if already not present
+      // const indexSelectedList = this.selectedDayList.findIndex(j=>j.id==dayData.id);
+      // if(indexSelectedList==-1)
+      // {
+      //   this.selectedDayList.push(dayData);
+      // }
+      return true;
+    }
+    else{
+      // //remove from "selectedDayList" array also if already present
+      // const indexSelectedList = this.selectedDayList.findIndex(j=>j.id==dayData.id);
+      // if(indexSelectedList!=-1)
+      // {
+      //   this.selectedDayList.splice(indexSelectedList,1);
+      // }
+      return false;
+    }
   }
 
   onSubmit()
