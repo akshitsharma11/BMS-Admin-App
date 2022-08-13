@@ -69,18 +69,25 @@ export class AddTeamMemberComponent implements OnInit {
     // console.log(form.value);
     this.toast.success("Member Saved Successfully");
     this.studioService.filter({type:"member",data:form.value});
-    this.closeModel();
+    this.closeModel(false);
   }
 
-  closeModel()
+  closeModel(isConfirm)
   {
-    var leavePage = window.confirm("Do you want to go back? All the added information will be removed");
-    console.log(leavePage);
-    if(leavePage)
+    if(isConfirm)
     {
+      var leavePage = window.confirm("Do you want to go back? All the added information will be removed");
+      console.log(leavePage);
+      if(leavePage)
+      {
+        this.dialogRef.close();
+        this.studioService.filter("Added");
+      }
+    }
+    else{
       this.dialogRef.close();
       this.studioService.filter("Added");
-    }
+    } 
   }
 
 }

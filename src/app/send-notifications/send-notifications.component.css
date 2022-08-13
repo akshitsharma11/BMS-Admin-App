@@ -32,18 +32,18 @@ label.col-md-3.col-form-label {
     font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif!important;
 }
 button.form-control.cus_input_btn {
-    background: #9250E5;
+    background: #F92162;
     color: #FFFFFF;
     border-radius: 0;
-    border-color: #9250E5;
+    border-color: #F92162;
     font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif!important;
     cursor: pointer;
 }
 button:disabled.form-control.cus_input_btn {
-    background: #a981da;
+    background: #c0738a;
     color: #FFFFFF;
     border-radius: 0;
-    border-color: #9250E5;
+    border-color: #F92162;
     font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif!important;
     cursor: pointer;
 }
