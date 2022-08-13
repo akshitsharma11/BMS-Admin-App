@@ -9,6 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AddTeamMemberComponent } from './add-team-member/add-team-member.component';
 import { HostListener } from '@angular/core';
 import {LocationStrategy} from '@angular/common';
+import {Country, State, City} from 'country-state-city';
 
 @Component({
   selector: 'app-create-studio',
@@ -17,15 +18,20 @@ import {LocationStrategy} from '@angular/common';
 })
 export class CreateStudioComponent implements OnInit {
 
+  allStates = [];
+  allCities = [];
+
   defaultRoomsCount = "-1";
   defaultMaxGuestsCount = "-1";
+  defaultState = "-1";
+  defaultCity = "-1";
 
   allRooms = [{roomId:1,roomName:"",area:"",details:[],roomPhotos:[],amenities:[],pricePerHour:[],discountPercentage:"",
               generalStartTime:"",generalEndTime:"",availabilities:[],bookingDays:[]}];
 
   allAmenities = [{id:"1", name:"Wi-fi"},{id:"2", name:"Ableton DAW"},{id:"3", name:"Pro tools DAW"},{id:"4", name:"Electric Guitar"},
-                  {id:"5", name:"AC"},{id:"6", name:"Piano"},{id:"7", name:"Fistudio DAW"},{id:"8", name:"Logic pro X Daw"},
-                  {id:"9", name:"Guitar"},{id:"10", name:"Voilin"},{id:"11", name:"Drum"},{id:"12", name:"Cubase DAW"},
+                  {id:"5", name:"AC"},{id:"6", name:"Piano"},{id:"7", name:"Flstudio DAW"},{id:"8", name:"Logic pro X Daw"},
+                  {id:"9", name:"Guitar"},{id:"10", name:"Violin"},{id:"11", name:"Drum"},{id:"12", name:"Cubase DAW"},
                   {id:"13", name:"AKG Microphone"}];
   selectedAmenities = [];
 
@@ -37,7 +43,7 @@ export class CreateStudioComponent implements OnInit {
   allStudioPhotos = [];
   studioPhotoNames = [];
 
-  constructor(    
+  constructor(
     public matDialog:MatDialog,
     private studioService:StudioService,
     private toast:ToastrService,
@@ -46,6 +52,8 @@ export class CreateStudioComponent implements OnInit {
     private Location: LocationStrategy
   )
   {
+    this.allStates = State.getStatesOfCountry('IN');
+    // console.log(State.getStatesOfCountry('IN'));
 
     this.studioService.listen().subscribe((m:any)=>{
       // console.log(m);
@@ -187,6 +195,19 @@ export class CreateStudioComponent implements OnInit {
         this.allRooms.push({roomId:i,roomName:"",area:"",details:[],roomPhotos:[],amenities:[],pricePerHour:[],discountPercentage:"",
                             generalStartTime:"",generalEndTime:"",availabilities:[],bookingDays:[]});
       }
+    }
+  }
+
+  onStateSelect(value)
+  {
+    this.allCities = [];
+    // console.log(value);
+    const index = this.allStates.findIndex(i=>i.name==value);
+    if(index!=-1)
+    {
+      let stateCode = this.allStates[index].isoCode;
+      // console.log(stateCode);
+      this.allCities = City.getCitiesOfState('IN',stateCode);
     }
   }
 

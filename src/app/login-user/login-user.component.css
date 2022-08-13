@@ -27,12 +27,12 @@
 {
   height: 48px; 
   border-radius: 8px;
-  background: #9250E5;
+  background: #F92162;
   color: #FFFFFF;
 }
 
 .bg-image {
-  background-image: url('../../assets/Studio_Project.jpeg');
+  background-image: url('../../assets/Studio_Project.png');
   background-size: cover;
   background-position: center center
 }

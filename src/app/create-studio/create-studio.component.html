@@ -53,18 +53,27 @@
                 </select>
             </div>
             <div class="row">
-                <label for="">Studio City </label>
-                <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter City" ngModel name="city" required #cityRef="ngModel">                 
-                <div *ngIf="cityRef.errors?.required && cityRef.touched" class="errorDiv">
-                    City is required!
-                </div>  
-            </div>
-            <div class="row">
                 <label for="">Studio State </label>
-                <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter State" ngModel name="state" required #stateRef="ngModel">                 
+                <!-- <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter State" ngModel name="state" required #stateRef="ngModel">                 
                 <div *ngIf="stateRef.errors?.required && stateRef.touched" class="errorDiv">
                     State is required!
-                </div>  
+                </div> -->
+                <select name="state" [ngModel]="defaultState" class="form-control shadow-lg mb-3 bg-white rounded"
+                    #myState (change)='onStateSelect(myState.value)' >
+                    <option value="-1" disabled>Select State</option>
+                    <option value={{singleState.name}} *ngFor="let singleState of allStates;">{{singleState.name}}</option>
+                </select>
+            </div>
+            <div class="row">
+                <label for="">Studio City </label>
+                <!-- <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter City" ngModel name="city" required #cityRef="ngModel">                 
+                <div *ngIf="cityRef.errors?.required && cityRef.touched" class="errorDiv">
+                    City is required!
+                </div> -->
+                <select name="city" [ngModel]="defaultCity" class="form-control shadow-lg mb-3 bg-white rounded">
+                    <option value="-1" disabled>Select City</option>
+                    <option value={{singleCity.name}} *ngFor="let singleCity of allCities;">{{singleCity.name}}</option>
+                </select>
             </div>
             <div class="row mt-2 ">
                 <label for="">Studio Full Address</label>
