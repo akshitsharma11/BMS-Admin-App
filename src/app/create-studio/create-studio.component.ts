@@ -227,7 +227,7 @@ export class CreateStudioComponent implements OnInit {
     }
     //Open popup model
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
+    dialogConfig.disableClose = true;
     dialogConfig.id = 'add-room-info-component';
     // dialogConfig.height = "395px";
     dialogConfig.width = "645px";
@@ -258,7 +258,7 @@ export class CreateStudioComponent implements OnInit {
     }
     //Open popup model
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
+    dialogConfig.disableClose = true;
     dialogConfig.id = 'add-team-member-component';
     // dialogConfig.height = "395px";
     dialogConfig.width = "510px";

@@ -74,8 +74,13 @@ export class AddTeamMemberComponent implements OnInit {
 
   closeModel()
   {
-    this.dialogRef.close();
-    this.studioService.filter("Added");
+    var leavePage = window.confirm("Do you want to go back? All the added information will be removed");
+    console.log(leavePage);
+    if(leavePage)
+    {
+      this.dialogRef.close();
+      this.studioService.filter("Added");
+    }
   }
 
 }
