@@ -48,7 +48,7 @@ export class AddRoomInfoComponent implements OnInit {
       'area' : new FormControl(null, [Validators.required]),
       'details':new FormArray([]),
       'amenities':new FormArray([]),
-      'pricePerHour' : new FormControl('', [Validators.required]),
+      'basePrice' : new FormControl('', [Validators.required]),
       'discountPercentage' : new FormControl('', [Validators.required]),
       'generalStartTime' : new FormControl('', [Validators.required]),
       'generalEndTime' : new FormControl('', [Validators.required]),
@@ -71,7 +71,7 @@ export class AddRoomInfoComponent implements OnInit {
       roomId : this.roomDetails.roomId,
       roomName : this.roomDetails.roomName,
       area : this.roomDetails.area,
-      pricePerHour : this.roomDetails.pricePerHour,
+      basePrice : this.roomDetails.basePrice,
       discountPercentage : this.roomDetails.discountPercentage,
       generalStartTime : this.roomDetails.generalStartTime,
       generalEndTime : this.roomDetails.generalEndTime,
@@ -304,6 +304,7 @@ export class AddRoomInfoComponent implements OnInit {
     this.signupForm.value.generalTime = {startTime:this.signupForm.value.generalStartTime,endTime:this.signupForm.value.generalEndTime};
     this.signupForm.value.roomPhotos = this.roomDetails.roomPhotos;
     this.signupForm.value.bookingDays = this.selectedDayList;
+    this.signupForm.value.pricePerHour = (this.signupForm.value.basePrice) - ((this.signupForm.value.basePrice)*(this.signupForm.value.discountPercentage/100));
     console.log(this.signupForm.value);
     if(this.signupForm.value.availabilities[0].startTime=="")
     {
