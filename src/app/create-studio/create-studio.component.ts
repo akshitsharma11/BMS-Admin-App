@@ -397,6 +397,7 @@ export class CreateStudioComponent implements OnInit {
       longitude:"",
       city:form.value.city,
       state:form.value.state,
+      mapLink: form.value.mapLink,
       area : form.value.area,
       pincode:form.value.pincode,
       pricePerHour:0,

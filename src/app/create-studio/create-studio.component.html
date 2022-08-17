@@ -75,6 +75,13 @@
                     <option value={{singleCity.name}} *ngFor="let singleCity of allCities;">{{singleCity.name}}</option>
                 </select>
             </div>
+            <div class="row">
+                <label for="">Studio MapLink </label>
+                <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter studio maplink" ngModel name="mapLink" required #mapLinkRef="ngModel">                 
+                <div *ngIf="mapLinkRef.errors?.required && mapLinkRef.touched" class="errorDiv">
+                    Maplink is required!
+                </div>  
+            </div>
             <div class="row mt-2 ">
                 <label for="">Studio Full Address</label>
                 <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded"
