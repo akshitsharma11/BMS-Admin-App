@@ -5,7 +5,7 @@ import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class DiscountService {
 
   serverUrl  = 'https://bookmystudioapp.herokuapp.com/api';
 
@@ -28,35 +28,11 @@ export class UserService {
     this.listeners.next(filterBy);
   }
 
-  getAllUsers()
+  getAllDiscounts()
   {
-    return this.http.get(this.serverUrl+'/users/',{headers:new HttpHeaders({
+    return this.http.get(this.serverUrl+'/discounts',{headers:new HttpHeaders({
       'Authorization':this.tokenString
     })});
-  }
-
-  deleteSingleUser(id)
-  {
-    return this.http.delete(this.serverUrl+'/users/'+id,{headers:new HttpHeaders({
-      'Authorization':this.tokenString
-    })});
-  }
-  
-  editUserDetails(data)
-  {
-    return this.http.post(this.serverUrl+'/edit-username-bio/',data,{headers:new HttpHeaders({
-      'Authorization':this.tokenString
-    })});
-  }
-
-  changeBlockingStatus(id,data)
-  {
-    return this.http.patch(this.serverUrl+'/users/'+id+'/blocking-status',data);
-  }
-
-  unblockUser(id)
-  {
-    return this.http.get(this.serverUrl+'/users/'+id+'/unblock');
   }
 
 }

@@ -1,0 +1,70 @@
+<div class="wrapper mt-2">
+    <div class="table2 " >                                           
+      <div class="row2">
+      
+        <div class="cell2" style="box-shadow: none;">
+            <h4><u>Choira Discounts </u> </h4>
+        </div>
+        <div class="cell2 text-right" style="box-shadow:none;border-radius:12px;padding-left: 200px;">
+            <div class="form-group">
+                <span class="fa fa-search form-control-icon"></span>
+                <input type="text" class="form-control" [(ngModel)]="filteredStatus" placeholder="Search Discount by name">   
+            </div>
+        </div>
+      </div>
+    </div> 
+
+    <div class="table shadow p-3 mb-5">
+      
+      <div class="row header" >
+        
+        <div class="cell">
+          S.No
+        </div>
+        <div class="cell">
+          Discount Name
+        </div>
+        <div class="cell">
+          Discount Type
+        </div>
+        <div class="cell">
+          Percentage
+        </div>
+        <div class="cell">
+          Max. Amount
+        </div>     
+        <div class="cell">
+        </div>
+      </div>
+      
+      <div class="row" *ngFor="let discount of allDiscounts | nameFilter : filteredStatus | paginate :{itemsPerPage:6,currentPage:p};let i = index;">
+      
+        <div class="cell" data-title="S.No.">
+            {{i+1}}
+        </div>
+        <div class="cell" data-title="Discount Name">
+            {{ discount.discountName | titlecase }}
+        </div>
+        <div class="cell" data-title="Discount Type">
+            {{ discount.discountTypeName }}
+        </div>
+        <div class="cell" data-title="Percentage">
+            {{ discount.discountPercentage }}%
+        </div>
+        <div class="cell" data-title="Max. Amount">
+            {{ discount.maxCapAmount | currency:'INR' }}
+        </div>
+        <div class="cell">
+            <i  class="fas fa-pen" aria-hidden="true" style="cursor:pointer;color:darkgreen;font-size: 18px;"></i>
+        </div>
+
+      </div>
+    </div>   
+    <!-- pagination -->
+    <pagination-controls (pageChange)="p=$event" ></pagination-controls>
+ </div> 
+
+  
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Please wait...</p>
+</ngx-spinner>
