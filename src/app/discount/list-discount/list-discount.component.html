@@ -54,8 +54,8 @@
         <div class="cell" data-title="Max. Amount">
             {{ discount.maxCapAmount | currency:'INR' }}
         </div>
-        <div class="cell">
-            <i  class="fas fa-pen" aria-hidden="true" style="cursor:pointer;color:darkgreen;font-size: 18px;"></i>
+        <div class="cell" routerLink="/admin/discounts/edit/{{discount._id}}">
+            <i class="fas fa-pen" aria-hidden="true" style="cursor:pointer;color:darkgreen;font-size: 18px;"></i>
         </div>
 
       </div>

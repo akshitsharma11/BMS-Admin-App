@@ -34,5 +34,19 @@ export class DiscountService {
       'Authorization':this.tokenString
     })});
   }
+  
+  getSingleDiscountDetails(discountId)
+  {
+    return this.http.get(this.serverUrl+'/discounts/'+discountId,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
+  editSingleDiscountDetails(discountId,discountData)
+  {
+    return this.http.patch(this.serverUrl+'/discounts/'+discountId,discountData,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
 
 }

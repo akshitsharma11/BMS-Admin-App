@@ -1,0 +1,19 @@
+input.ng-invalid.ng-touched
+{
+  border:1px solid red;
+}
+
+.myImg
+{
+    width: 120px;
+    height: 120px;
+}
+
+.errorDiv
+{
+	color:rgb(204, 81, 81);
+}
+
+::ng-deep .multiselect-dropdown .dropdown-btn .selected-item {
+    margin: 2px;
+}

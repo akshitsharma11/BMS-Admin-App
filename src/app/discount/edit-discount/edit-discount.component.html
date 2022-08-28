@@ -1,0 +1,82 @@
+<div class="text-center mt-5">
+    <h4 style="color:rgb(9, 9, 93)"><u>Edit Discount Details </u></h4>
+  </div>
+  <div class="shadow p-3 m-4 bg-white rounded">
+  <div class="container px-2  " class="z-index:10; ">
+  <form  (ngSubmit)="onSubmit(form)" #form="ngForm" class="ml-lg-5 pl-lg-5" >    
+      <div class="form-group row">       
+        <div class="col-sm-5">
+            <label for="" style="font-weight: 600;">Discount Name : </label>
+            <input type="text" class="form-control" placeholder="Enter Discount Name" name="discountName" required [(ngModel)]="discountDetails.discountName" #discountNameRef="ngModel">
+            <div *ngIf="discountNameRef.errors?.required  && discountNameRef.touched" class="errorDiv">
+              *Discount Name is required!
+            </div>
+        </div>
+        <div class="col-sm-5">            
+          <label for="" style="font-weight: 600;"> Discount Type : </label>
+          <select disabled class="select-dropdown form-control" required name="discountType" [(ngModel)]="discountDetails.discountType">
+            <option value="-1" disabled>Choose Discount</option>
+            <option value="0">User discount - First</option>
+            <option value="1">User discount - Recurring</option>
+            <option value="2">Event-based</option>
+            <option value="3">Specific User</option>
+          </select>
+        </div>
+        <div class="col-sm-5 mt-3">
+          <label for="" style="font-weight: 600;">Discount Percentage : </label>
+          <input type="number" step="any" class="form-control" placeholder="Enter Discount Percentage" name="discountPercentage" required
+            [(ngModel)]="discountDetails.discountPercentage" #discountPerRef="ngModel"
+            min="1" max="100" oninput="validity.valid||(value='');">
+          <div *ngIf="discountPerRef.errors?.required  && discountPerRef.touched" class="errorDiv">
+            *Discount Percentage is required!
+          </div>
+        </div>
+        <div class="col-sm-5 mt-3">
+            <label for="" style="font-weight: 600;">Max. Cap Amount : </label>
+            <input type="number" step="any" class="form-control" placeholder="Enter Max. Cap Amount" name="maxCapAmount" required 
+             [(ngModel)]="discountDetails.maxCapAmount" #maxCapAmountRef="ngModel" min="1" max="100000" oninput="validity.valid||(value='');">
+            <div *ngIf="maxCapAmountRef.errors?.required  && maxCapAmountRef.touched" class="errorDiv">
+              *Max. Cap Amount is required!
+            </div>
+          </div>
+          <div class="col-sm-5 mt-3">
+            <label for="" style="font-weight: 600;">Description : </label>
+            <textarea class="form-control" placeholder="Enter Description" name="description" required [(ngModel)]="discountDetails.description" #descRef="ngModel"></textarea>
+            <div *ngIf="descRef.errors?.required  && descRef.touched" class="errorDiv">
+                *Description is required!
+              </div>
+          </div>
+          <div class="col-sm-5 mt-3" *ngIf="discountDetails.discountType==2">
+            <label for="" style="font-weight: 600;">Discount Date : </label>
+            <input type="date"class="form-control" placeholder="Enter Discount Date" name="discountDate" required
+              [(ngModel)]="discountDetails.discountDate" #discountDateRef="ngModel">
+          </div>          
+          <div class="col-sm-10 mt-3" *ngIf="discountDetails.discountType==3">
+            <label for="" style="font-weight: 600;">Special Users : </label>
+            <ng-multiselect-dropdown
+                name="usersList"
+                class="customClass"
+                [placeholder]="'Select'"
+                [settings]="dropdownSettings"
+                [data]="dropdownList"
+                [(ngModel)]="selectedItems"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+          </div>
+      </div>
+
+      <br>
+      
+      <div class="form-group row">
+        <div class="col-sm-10 text-center">
+          <button type="submit" class="btn" [disabled]="!form.valid" style="background-color: #F92162; width: 200px;border-radius: 10px; color: white;">Save</button>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+      
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Please Wait...</p>
+</ngx-spinner>
