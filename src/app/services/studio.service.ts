@@ -49,6 +49,13 @@ export class StudioService {
     })});
   }
 
+  editSingleStudio(studioId,data)
+  {
+    return this.http.patch(this.serverUrl+'/studios/'+studioId,data,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
   uploadSingleImage(data)
   {
     return this.http.post(this.serverUrl+'/upload-single-image',data);

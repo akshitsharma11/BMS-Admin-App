@@ -71,7 +71,7 @@
         <div class="cell">
             <i (click)="showDetailsDialog(studio)" class="fas fa-external-link-alt" aria-hidden="true" style="cursor:pointer;color:darkblue;font-size: 18px;"></i>
         </div>
-        <div class="cell">
+        <div class="cell" routerLink="/admin/studios/edit/{{studio._id}}">
             <i  class="fas fa-pen" aria-hidden="true" style="cursor:pointer;color:darkgreen;font-size: 18px;"></i>
         </div>
         <div class="cell">
