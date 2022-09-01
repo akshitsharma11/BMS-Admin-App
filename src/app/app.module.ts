@@ -76,6 +76,8 @@ import { MemberDetailsComponent } from './create-studio/member-details/member-de
 import { ListDiscountComponent } from './discount/list-discount/list-discount.component';
 import { EditDiscountComponent } from './discount/edit-discount/edit-discount.component';
 import { EditStudioComponent } from './edit-studio/edit-studio.component';
+import { ListActiveBookingsComponent } from './bookings/list-active-bookings/list-active-bookings.component';
+import { ListCompletedBookingsComponent } from './bookings/list-completed-bookings/list-completed-bookings.component';
 
 const appRoutes:Routes = [
 
@@ -87,6 +89,8 @@ const appRoutes:Routes = [
   {path:'admin/studios/edit/:studioId',component:EditStudioComponent},
   {path:'admin/discounts',component:ListDiscountComponent},
   {path:'admin/discounts/edit/:discountId',component:EditDiscountComponent},
+  {path:'admin/bookings/active',component:ListActiveBookingsComponent},
+  {path:'admin/bookings/completed',component:ListCompletedBookingsComponent},
   {path:'admin/send-notifications',component:SendNotificationsComponent},
   
   {path:'admin/login',component:LoginUserComponent,canActivate:[OnlyLoginGuardService]},
@@ -127,6 +131,8 @@ const appRoutes:Routes = [
     ListDiscountComponent,
     EditDiscountComponent,
     EditStudioComponent,
+    ListActiveBookingsComponent,
+    ListCompletedBookingsComponent,
    ],
   imports: [
     BrowserModule,

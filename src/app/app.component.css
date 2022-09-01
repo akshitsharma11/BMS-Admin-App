@@ -86,3 +86,9 @@ a{
   border-radius: 20px;
 }
 
+
+.selectedSubList
+{
+  color: darkblue;
+  font-weight: 600;
+}
