@@ -1,1 +1,73 @@
-<p>list-completed-bookings works!</p>
+<div class="wrapper mt-2">
+    <div class="table2 ">
+        <div class="row2">
+            <div class="cell2" style="box-shadow: none;">
+                <h4><u>All Completed Bookings </u> </h4>
+            </div>
+            <div class="cell2 text-lg-right" style="box-shadow:none;border-radius:12px;padding-left: 200px;">
+                <div class="form-group">
+                    <span class="fa fa-search form-control-icon"></span>
+                    <input type="text" class="form-control" [(ngModel)]="filteredStatus"
+                        placeholder="Search Booking by name">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table shadow p-3 mb-5">
+        <div class="row header">
+            <div class="cell">
+                S.No
+            </div>
+            <div class="cell">
+                Studio Name
+            </div>
+            <div class="cell">
+                User Name
+            </div>
+            <div class="cell">
+                User Email
+            </div>
+            <div class="cell">
+                Total Price
+            </div>
+            <div class="cell">
+                Booking Date
+            </div>
+            <div class="cell">
+                Booking Time
+            </div>
+        </div>
+
+        <div class="row" *ngFor="let booking of allCompletedBookings | nameFilter : filteredStatus | paginate :{itemsPerPage:10,currentPage:p};let i = index;">
+
+            <div class="cell" data-title="S.No.">
+                {{i+1}}
+            </div>
+            <div class="cell" data-title="Studio Name">
+                {{ booking.studioName | titlecase }}
+            </div>
+            <div class="cell" data-title="User Name">
+                {{ booking.userName | titlecase }}
+            </div>
+            <div class="cell" data-title="User Email">
+                {{ booking.userEmail }}
+            </div>
+            <div class="cell" data-title="Total Price">
+                {{ booking.totalPrice | currency:'INR' }}
+            </div>
+            <div class="cell" data-title="Booking Date">
+                {{ booking.bookingDate | date:'mediumDate' }}
+            </div>
+            <div class="cell" data-title="Booking Time">
+                {{ booking.mappedBookingTime }}
+            </div>
+        </div>
+    </div>
+    <!-- pagination -->
+    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+</div>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Please wait...</p>
+</ngx-spinner>

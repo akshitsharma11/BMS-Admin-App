@@ -39,8 +39,7 @@
             </div>
         </div>
 
-        <div class="row"
-            *ngFor="let booking of allActiveBookings | nameFilter : filteredStatus | paginate :{itemsPerPage:6,currentPage:p};let i = index;">
+        <div class="row" *ngFor="let booking of allActiveBookings | nameFilter : filteredStatus | paginate :{itemsPerPage:10,currentPage:p};let i = index;">
 
             <div class="cell" data-title="S.No.">
                 {{i+1}}
