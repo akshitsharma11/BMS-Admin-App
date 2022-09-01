@@ -78,6 +78,7 @@ import { EditDiscountComponent } from './discount/edit-discount/edit-discount.co
 import { EditStudioComponent } from './edit-studio/edit-studio.component';
 import { ListActiveBookingsComponent } from './bookings/list-active-bookings/list-active-bookings.component';
 import { ListCompletedBookingsComponent } from './bookings/list-completed-bookings/list-completed-bookings.component';
+import { ListCancelledBookingsComponent } from './bookings/list-cancelled-bookings/list-cancelled-bookings.component';
 
 const appRoutes:Routes = [
 
@@ -91,6 +92,7 @@ const appRoutes:Routes = [
   {path:'admin/discounts/edit/:discountId',component:EditDiscountComponent},
   {path:'admin/bookings/active',component:ListActiveBookingsComponent},
   {path:'admin/bookings/completed',component:ListCompletedBookingsComponent},
+  {path:'admin/bookings/cancelled',component:ListCancelledBookingsComponent},
   {path:'admin/send-notifications',component:SendNotificationsComponent},
   
   {path:'admin/login',component:LoginUserComponent,canActivate:[OnlyLoginGuardService]},
@@ -133,6 +135,7 @@ const appRoutes:Routes = [
     EditStudioComponent,
     ListActiveBookingsComponent,
     ListCompletedBookingsComponent,
+    ListCancelledBookingsComponent,
    ],
   imports: [
     BrowserModule,
