@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SuspendUserComponent } from './suspend-user.component';
+import { ListTransactionsComponent } from './list-transactions.component';
 
-describe('SuspendUserComponent', () => {
-  let component: SuspendUserComponent;
-  let fixture: ComponentFixture<SuspendUserComponent>;
+describe('ListTransactionsComponent', () => {
+  let component: ListTransactionsComponent;
+  let fixture: ComponentFixture<ListTransactionsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SuspendUserComponent ]
+      declarations: [ ListTransactionsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SuspendUserComponent);
+    fixture = TestBed.createComponent(ListTransactionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

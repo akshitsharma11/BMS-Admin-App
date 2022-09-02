@@ -6,8 +6,6 @@ import { DeleteCustomerComponent } from '../delete-customer/delete-customer.comp
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { UserService } from '../services/user.service';
 import { ShowDetailsComponent } from '../show-details/show-details.component';
-import { SuspendUserComponent } from '../suspend-user/suspend-user.component';
-import { UnblockUserComponent } from '../unblock-user/unblock-user.component';
 
 @Component({
   selector: 'app-show-all-users',

@@ -61,8 +61,6 @@ import { ShowDetailsComponent } from './show-details/show-details.component';
 import { DeleteCustomerComponent } from './delete-customer/delete-customer.component';
 import { SendNotificationsComponent } from './send-notifications/send-notifications.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
-import { SuspendUserComponent } from './suspend-user/suspend-user.component';
-import { UnblockUserComponent } from './unblock-user/unblock-user.component';
 import { FeedbackFilterPipePipe } from './feedback-filter-pipe.pipe';
 import { ReporteeDetailsComponent } from './reportee-details/reportee-details.component';
 import { ListStudiosComponent } from './list-studios/list-studios.component';
@@ -79,6 +77,7 @@ import { EditStudioComponent } from './edit-studio/edit-studio.component';
 import { ListActiveBookingsComponent } from './bookings/list-active-bookings/list-active-bookings.component';
 import { ListCompletedBookingsComponent } from './bookings/list-completed-bookings/list-completed-bookings.component';
 import { ListCancelledBookingsComponent } from './bookings/list-cancelled-bookings/list-cancelled-bookings.component';
+import { ListTransactionsComponent } from './transactions/list-transactions/list-transactions.component';
 
 const appRoutes:Routes = [
 
@@ -93,6 +92,7 @@ const appRoutes:Routes = [
   {path:'admin/bookings/active',component:ListActiveBookingsComponent},
   {path:'admin/bookings/completed',component:ListCompletedBookingsComponent},
   {path:'admin/bookings/cancelled',component:ListCancelledBookingsComponent},
+  {path:'admin/transactions',component:ListTransactionsComponent},
   {path:'admin/send-notifications',component:SendNotificationsComponent},
   
   {path:'admin/login',component:LoginUserComponent,canActivate:[OnlyLoginGuardService]},
@@ -118,8 +118,6 @@ const appRoutes:Routes = [
     DeleteCustomerComponent,
     SendNotificationsComponent,
     EditUserComponent,
-    SuspendUserComponent,
-    UnblockUserComponent,
     FeedbackFilterPipePipe,
     ReporteeDetailsComponent,
     ListStudiosComponent,
@@ -136,6 +134,7 @@ const appRoutes:Routes = [
     ListActiveBookingsComponent,
     ListCompletedBookingsComponent,
     ListCancelledBookingsComponent,
+    ListTransactionsComponent,
    ],
   imports: [
     BrowserModule,
