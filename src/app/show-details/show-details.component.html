@@ -31,26 +31,10 @@
       </div>
       <div class="row py-2 text-center">
         <div class="col-md-6" style="font-weight: 600;">
-            City : 
+            Date Of Birth : 
         </div>
         <div class="col-md-6 text-left">
-            {{userDetails.city | titlecase}}
-        </div>
-      </div>
-      <div class="row py-2 text-center">
-        <div class="col-md-6" style="font-weight: 600;">
-            State : 
-        </div>
-        <div class="col-md-6 text-left">
-            {{userDetails.state | titlecase}}
-        </div>
-      </div>
-      <div class="row py-2 text-center">
-        <div class="col-md-6" style="font-weight: 600;">
-            Gender : 
-        </div>
-        <div class="col-md-6 text-left">
-            {{userDetails.gender}}
+            {{userDetails.dateOfBirth | date:'mediumDate'}}
         </div>
       </div>
       <!-- <div class="row py-2 text-center">

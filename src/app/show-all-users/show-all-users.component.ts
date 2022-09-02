@@ -32,7 +32,7 @@ export class ShowAllUsersComponent implements OnInit {
     this.userService.getAllUsers().subscribe(res=>{
       this.allUsers = res["users"];
       this.spinner.hide();
-      console.log(this.allUsers);
+      // console.log(this.allUsers);
     });
   }
 
