@@ -59,4 +59,11 @@ export class UserService {
     return this.http.get(this.serverUrl+'/users/'+id+'/unblock');
   }
 
+  getDashboardCounts()
+  {
+    return this.http.get(this.serverUrl+'/dashboard-counts/',{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
 }

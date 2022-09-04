@@ -12,21 +12,17 @@ import { UserService } from '../services/user.service';
 export class DashboardComponent implements OnInit {
   
   totalUsers = 0;
-  totalAdminTopics = 0;
-  totalUserTopics = 0;
+  totalStudios = 0;
+  totalBookings = 0;
 
   constructor(private userService:UserService) { }
 
   ngOnInit(): void {
-    this.userService.getAllUsers().subscribe(res=>{
-      this.totalUsers = res["users"].length;       
+    this.userService.getDashboardCounts().subscribe(res=>{
+      this.totalUsers = res["users"];
+      this.totalStudios = res["studios"];
+      this.totalBookings = res["bookings"];      
     });
-
-    // this.topicService.getAllTopics().subscribe(resTopic=>{
-    //   console.log(resTopic["allTopics"]);
-    //   this.totalAdminTopics = resTopic["allTopics"].filter(i=>i.creatorType==0).length;
-    //   this.totalUserTopics = resTopic["allTopics"].filter(i=>i.creatorType==1).length;
-    // });
 
   }
   sendNotification()
