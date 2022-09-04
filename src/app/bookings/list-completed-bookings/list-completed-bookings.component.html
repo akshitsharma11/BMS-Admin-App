@@ -29,6 +29,9 @@
                 User Email
             </div>
             <div class="cell">
+                Phone
+            </div>
+            <div class="cell">
                 Total Price
             </div>
             <div class="cell">
@@ -52,6 +55,9 @@
             </div>
             <div class="cell" data-title="User Email">
                 {{ booking.userEmail }}
+            </div>
+            <div class="cell" data-title="Phone">
+                {{ booking.userPhone }}
             </div>
             <div class="cell" data-title="Total Price">
                 {{ booking.totalPrice | currency:'INR' }}
