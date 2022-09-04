@@ -1,0 +1,52 @@
+<div class="container ml-lg-3">
+    <div class="row text-left mt-4">
+        <h3>Add New Sub-Admin</h3>
+    </div>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+        <div class="row mt-4">
+            <div class="col-md-5">
+                <div class="row">
+                    <label for="">Enter First Name </label>
+                    <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" name="firstName"
+                        placeholder="Enter your first name" ngModel required>
+                </div>
+                <div class="row">
+                    <label for="">Enter Email ID </label>
+                    <input type="email" email class="form-control shadow-lg p-3 mb-3 bg-white rounded" name="email"
+                        placeholder="Enter your email" ngModel required>
+                </div>
+                <div class="row">
+                    <label for="">Permissions </label>
+                </div>
+                <div class="row" *ngFor="let perm of permissions">
+                    <!-- <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter your course name">                     -->
+                    <input class="form-check-input ml-2 checkmark" type="checkbox" id="gridCheck1" name="prem"
+                        [value]="perm" (change)="data($event,perm)" #checkBox ngModel>
+                    <label class="form-check-label ml-5" for="gridCheck1">
+                        {{perm}}
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+
+                <div class="row">
+                    <label for="">Enter Last Name </label>
+                    <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded"
+                        placeholder="Enter your last name" name="lastName" ngModel required>
+                </div>
+                <div class="row">
+                    <label for="">Password </label>
+                    <input type="password" class="form-control shadow-lg p-3 mb-3 bg-white rounded"
+                        placeholder="Enter your Password" name="password" ngModel required>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row my-5">
+            <button class="btn btn-success mr-3 mt-1 col-md-1" type="submit" [disabled]="!form.valid"
+                style="color: white;border-radius: 10px;"> Save</button>
+        </div>
+    </form>
+</div>

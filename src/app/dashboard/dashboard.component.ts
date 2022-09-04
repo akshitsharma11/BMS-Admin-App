@@ -23,13 +23,6 @@ export class DashboardComponent implements OnInit {
       this.totalStudios = res["studios"];
       this.totalBookings = res["bookings"];      
     });
-
-  }
-  sendNotification()
-  {
-    // this.messagingService.sendNotification(this.token).subscribe(res=>{
-    //   console.log(res);
-    // }); 
   }
 
 }

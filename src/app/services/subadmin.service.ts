@@ -34,4 +34,11 @@ export class SubadminService {
     })});
   }
 
+  createNewSubAdmin(data)
+  {
+    return this.http.post(this.serverUrl+'/sub-admins/create',data,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
 }

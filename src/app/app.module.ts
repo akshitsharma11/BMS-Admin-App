@@ -79,11 +79,13 @@ import { ListCompletedBookingsComponent } from './bookings/list-completed-bookin
 import { ListCancelledBookingsComponent } from './bookings/list-cancelled-bookings/list-cancelled-bookings.component';
 import { ListTransactionsComponent } from './transactions/list-transactions/list-transactions.component';
 import { ListSubadminsComponent } from './sub-admins/list-subadmins/list-subadmins.component';
+import { CreateSubadminComponent } from './sub-admins/create-subadmin/create-subadmin.component';
 
 const appRoutes:Routes = [
 
   {path:'admin/dashboard',component:DashboardComponent},
   {path:'admin/sub-admins',component:ListSubadminsComponent},
+  {path:'admin/sub-admins/create',component:CreateSubadminComponent},
   {path:'admin/all-users',component:ShowAllUsersComponent},
   {path:'admin/studios',component:ListStudiosComponent},
   {path:'admin/studios/create',component:CreateStudioComponent},
@@ -138,6 +140,7 @@ const appRoutes:Routes = [
     ListCancelledBookingsComponent,
     ListTransactionsComponent,
     ListSubadminsComponent,
+    CreateSubadminComponent,
    ],
   imports: [
     BrowserModule,

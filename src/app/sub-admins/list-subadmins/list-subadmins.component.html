@@ -13,7 +13,7 @@
             </div>
 
             <div class="cell2" style="box-shadow:none;border-radius:12px">
-                <button routerLink="/admin/studios/create" class="btn myBtn mb-1"><i class="fas fa-plus"></i> Add Sub-Admin</button>
+                <button routerLink="/admin/sub-admins/create" class="btn myBtn mb-1"><i class="fas fa-plus"></i> Add Sub-Admin</button>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
                 S.No
             </div>
             <div class="cell">
-                Name
+               Full Name
             </div>
             <div class="cell">
                 Email
@@ -43,8 +43,8 @@
             <div class="cell" data-title="S.No.">
                 {{i+1}}
             </div>
-            <div class="cell" data-title="Name">
-                {{ subAdmin.fullName | titlecase }}
+            <div class="cell" data-title="Full Name">
+                {{ subAdmin.firstName | titlecase }}  {{ subAdmin.lastName | titlecase }}
             </div>
             <div class="cell" data-title="Email">
                 {{ subAdmin.email }}
