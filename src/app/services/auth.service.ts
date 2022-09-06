@@ -39,7 +39,7 @@ export class AuthService {
 
   loginSubAdmin(data)
   {    
-    return this.http.post(this.serverUrl+'/login-sub-admin',data);
+    return this.http.post(this.serverUrl+'/sub-admins/login',data);
   } 
 
   //method to implement auto-login functionality

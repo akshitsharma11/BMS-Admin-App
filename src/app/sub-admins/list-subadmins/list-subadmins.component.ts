@@ -36,6 +36,21 @@ export class ListSubadminsComponent implements OnInit {
     //Fetching all bookings
     this.subAdminService.getAllSubAdmins().subscribe(res=>{
       this.allSubAdmins = res["subAdmins"];
+      this.allSubAdmins  = this.allSubAdmins.filter(i=>{
+        if(JSON.parse(localStorage.getItem('authUserDataBMS')).email!=undefined)
+        {
+          if(JSON.parse(localStorage.getItem('authUserDataBMS')).email == i.email)
+          {
+            return false;
+          }
+          else{
+            return true;
+          }
+        }
+        else{
+          return true;
+        }
+      })
       this.allSubAdmins.sort((a, b) => a.creationTimeStamp >= b.creationTimeStamp ? -1 : 1);
       // console.log(this.allSubAdmins);
       this.spinner.hide();

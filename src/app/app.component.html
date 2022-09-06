@@ -12,11 +12,11 @@
         <i class="fas fa-th-large"></i>&nbsp;
         Dashboard
       </a>
-      <a routerLink="/admin/sub-admins" routerLinkActive='selected' style="font-size: 17px;width: 100%;" class="pl-lg-4 py-lg-3"><i class="fas fa-user-shield"></i> &nbsp;Sub-Admins</a>
-      <a routerLink="/admin/all-users" routerLinkActive='selected' style="font-size: 17px;width: 100%;" class="pl-lg-4 py-lg-3"><i class="fas fa-book-open"></i> &nbsp;Users List</a>
-      <a routerLink="/admin/studios" routerLinkActive='selected' style="font-size: 17px;width: 100%;" class="pl-lg-4 py-lg-3"><i class="fab fa-typo3"></i> &nbsp; Studios</a>
-      <a routerLink="/admin/discounts" routerLinkActive='selected' style="font-size: 17px;width: 100%;" class="pl-lg-4 py-lg-3"><i class="fab fa-first-order"></i> &nbsp; Discounts</a>
-      <a style="font-size: 17px;width: 100%;text-decoration: none;margin-bottom: -24px;" class="pl-lg-4 py-lg-3">
+      <a *ngIf="(permObj.SubAdmins!=undefined && permObj.SubAdmins==true)"  routerLink="/admin/sub-admins" routerLinkActive='selected' style="font-size: 17px;width: 100%;" class="pl-lg-4 py-lg-3"><i class="fas fa-user-shield"></i> &nbsp;Sub-Admins</a>
+      <a *ngIf="(permObj.Users!=undefined && permObj.Users==true)" routerLink="/admin/all-users" routerLinkActive='selected' style="font-size: 17px;width: 100%;" class="pl-lg-4 py-lg-3"><i class="fas fa-book-open"></i> &nbsp;Users List</a>
+      <a *ngIf="(permObj.Studios!=undefined && permObj.Studios==true)" routerLink="/admin/studios" routerLinkActive='selected' style="font-size: 17px;width: 100%;" class="pl-lg-4 py-lg-3"><i class="fab fa-typo3"></i> &nbsp; Studios</a>
+      <a *ngIf="(permObj.Discounts!=undefined && permObj.Discounts==true)" routerLink="/admin/discounts" routerLinkActive='selected' style="font-size: 17px;width: 100%;" class="pl-lg-4 py-lg-3"><i class="fab fa-first-order"></i> &nbsp; Discounts</a>
+      <a *ngIf="(permObj.Bookings!=undefined && permObj.Bookings==true)" style="font-size: 17px;width: 100%;text-decoration: none;margin-bottom: -24px;" class="pl-lg-4 py-lg-3">
         <p>
           <i class="fas fa-user-clock"></i> &nbsp;Bookings
         </p>
@@ -32,8 +32,8 @@
           </li>
         </ul>
       </a>
-      <a routerLink="/admin/transactions" routerLinkActive='selected' style="font-size: 17px;width: 100%;" class="pl-lg-4 py-lg-3"><i class="fas fa-credit-card"></i> &nbsp;Transactions</a>    
-      <a routerLink="/admin/send-notifications" routerLinkActive='selected' style="font-size: 17px;width: 100%;" class="pl-lg-4 py-lg-3"><i class="fas fa-bell"></i> &nbsp;Notifications</a>
+      <a *ngIf="(permObj.Transactions!=undefined && permObj.Transactions==true)" routerLink="/admin/transactions" routerLinkActive='selected' style="font-size: 17px;width: 100%;" class="pl-lg-4 py-lg-3"><i class="fas fa-credit-card"></i> &nbsp;Transactions</a>    
+      <a *ngIf="(permObj.Notifications!=undefined && permObj.Notifications==true)" routerLink="/admin/send-notifications" routerLinkActive='selected' style="font-size: 17px;width: 100%;" class="pl-lg-4 py-lg-3"><i class="fas fa-bell"></i> &nbsp;Notifications</a>
       
     </div>
   </div>
@@ -57,6 +57,9 @@
           <li class="nav-item dropdown">
             <a *ngIf="adminId!=undefined" style="font-weight:600;color:black;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{firstName | titlecase}} {{lastName | titlecase }} <img src={{adminImage}} onerror="this.src='../assets/welcomeProfile.jpg'" style="border-radius:10px" height="30px" width="36px">
+            </a>
+            <a *ngIf="subAdminEmail!=undefined" style="font-weight:600;color:black;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{firstName | titlecase}} {{lastName | titlecase }} <img src={{subAdminImage}} onerror="this.src='../assets/welcomeProfile.jpg'" style="border-radius:10px" height="30px" width="36px">
             </a>
           
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

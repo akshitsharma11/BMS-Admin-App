@@ -21,6 +21,8 @@ export class LoginUserComponent implements OnInit {
   emailToken = '';
   emailReset = '';
   userToken = '';
+
+  isSuperAdmin = true;
   
   forgotPwd = false;
 
@@ -28,41 +30,82 @@ export class LoginUserComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  toggle()
+  {
+    this.isSuperAdmin = !this.isSuperAdmin;
+  }
    
   onSubmit(form:NgForm)
   {
-    this.spinner.show();
+    this.spinner.show();    
     form.value.email = form.value.email.trim();
     form.value.password = form.value.password.trim();
 
-    this.authService.loginUser(form.value).subscribe(res=>{
-      if(res["status"])
-      {
-        console.log(form.value);
-        this.toast.success("Welcome Back!!",res["message"],{
-          timeOut:2500,
-          progressBar:true,
-          progressAnimation:'increasing',
-          positionClass:'toast-top-right'
-        })
-        localStorage.setItem('authUserDataBMS',JSON.stringify(res["admin"]));
+    if(this.isSuperAdmin)
+    {
+      this.authService.loginUser(form.value).subscribe(res=>{
+        if(res["status"])
+        {
+          console.log(form.value);
+          this.toast.success("Welcome Back!!",res["message"],{
+            timeOut:2500,
+            progressBar:true,
+            progressAnimation:'increasing',
+            positionClass:'toast-top-right'
+          })
+          localStorage.setItem('authUserDataBMS',JSON.stringify(res["admin"]));
 
-        localStorage.setItem('adminAuthTokenBMS',res["token"]);
-        this.authService.loggedIn.next(true);
-        localStorage.setItem('userType',"admin");
-        this.router.navigate(['/admin/dashboard']);
-      }
-      else
-      {
-        this.toast.error(res["message"],"Error",{
-          timeOut:2500,
-          progressBar:true,
-          progressAnimation:'increasing',
-          positionClass:'toast-top-right'
-        })
-      }
-      this.spinner.hide();
-    })    
+          localStorage.setItem('adminAuthTokenBMS',res["token"]);
+          this.authService.loggedIn.next(true);
+          localStorage.setItem('userType',"admin");
+          this.router.navigate(['/admin/dashboard']);
+        }
+        else
+        {
+          this.toast.error(res["message"],"Error",{
+            timeOut:2500,
+            progressBar:true,
+            progressAnimation:'increasing',
+            positionClass:'toast-top-right'
+          })
+        }
+        this.spinner.hide();
+      });
+    }
+    else{
+      this.authService.loginSubAdmin(form.value).subscribe(res=>{
+        if(res["status"])
+        {
+          console.log(form.value);
+          this.toast.success("Welcome Back!!",res["message"],{
+            timeOut:2500,
+            progressBar:true,
+            progressAnimation:'increasing',
+            positionClass:'toast-top-right'
+          })
+          localStorage.setItem('authUserDataBMS',JSON.stringify(res["subAdmin"]));
+
+          localStorage.setItem('permissions',res["subAdmin"].permissions);
+          localStorage.setItem('adminAuthTokenBMS',res["token"]);
+          this.authService.loggedIn.next(true);
+          
+          this.authService.permissions.next(res["subAdmin"].permissions);
+          localStorage.setItem('userType',"sub-admin");
+          this.router.navigate(['/admin/dashboard']);
+        }
+        else
+        {
+          this.toast.error(res["message"],"Error",{
+            timeOut:2500,
+            progressBar:true,
+            progressAnimation:'increasing',
+            positionClass:'toast-top-right'
+          })
+        }
+        this.spinner.hide();
+      });
+    }
      
   }
 

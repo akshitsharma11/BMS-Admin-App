@@ -11,7 +11,7 @@ import { SubadminService } from 'src/app/services/subadmin.service';
 })
 export class CreateSubadminComponent implements OnInit {
 
-  permissions = ['Users','Studios','Sub-Admins','Discounts','Bookings','Transactions','Notifications'];
+  permissions = ['Users','Studios','SubAdmins','Discounts','Bookings','Transactions','Notifications'];
 
   adminPerm = [];
 

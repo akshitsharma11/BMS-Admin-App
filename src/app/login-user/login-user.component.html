@@ -54,6 +54,13 @@
                                                     </span>
                                                  </div>
                                             </div>
+                                
+                                            <div class="row mt-3 text-center">
+                                                <div class="col md-12">
+                                                    <button (click)="toggle()" type="button" class="btn p-2" style="color: white;font-weight: 500;background-color:#FFC701;border-radius: 15px;">Switch to {{isSuperAdmin?'Sub-Admin':'Admin'}}</button>
+                                                </div>
+                                            </div>
+
                                             <div *ngIf="passwordRef.errors?.required  && passwordRef.touched" class="errorDiv">
                                               *Password is required!
                                           </div>

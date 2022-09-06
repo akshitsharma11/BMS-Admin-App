@@ -80,24 +80,25 @@ import { ListCancelledBookingsComponent } from './bookings/list-cancelled-bookin
 import { ListTransactionsComponent } from './transactions/list-transactions/list-transactions.component';
 import { ListSubadminsComponent } from './sub-admins/list-subadmins/list-subadmins.component';
 import { CreateSubadminComponent } from './sub-admins/create-subadmin/create-subadmin.component';
+import { RouteProtectGuard } from './route-protect.guard';
 
 const appRoutes:Routes = [
 
   {path:'admin/dashboard',component:DashboardComponent},
-  {path:'admin/sub-admins',component:ListSubadminsComponent},
-  {path:'admin/sub-admins/create',component:CreateSubadminComponent},
-  {path:'admin/all-users',component:ShowAllUsersComponent},
-  {path:'admin/studios',component:ListStudiosComponent},
-  {path:'admin/studios/create',component:CreateStudioComponent},
-  {path:'admin/studios/:studioId',component:ViewStudioDetailsComponent},
-  {path:'admin/studios/edit/:studioId',component:EditStudioComponent},
-  {path:'admin/discounts',component:ListDiscountComponent},
-  {path:'admin/discounts/edit/:discountId',component:EditDiscountComponent},
-  {path:'admin/bookings/active',component:ListActiveBookingsComponent},
-  {path:'admin/bookings/completed',component:ListCompletedBookingsComponent},
-  {path:'admin/bookings/cancelled',component:ListCancelledBookingsComponent},
-  {path:'admin/transactions',component:ListTransactionsComponent},
-  {path:'admin/send-notifications',component:SendNotificationsComponent},
+  {path:'admin/sub-admins',component:ListSubadminsComponent,canActivate:[RouteProtectGuard],data: {roles: ['SubAdmins']}},
+  {path:'admin/sub-admins/create',component:CreateSubadminComponent,canActivate:[RouteProtectGuard],data: {roles: ['SubAdmins']}},
+  {path:'admin/all-users',component:ShowAllUsersComponent,canActivate:[RouteProtectGuard],data: {roles: ['Users']}},
+  {path:'admin/studios',component:ListStudiosComponent,canActivate:[RouteProtectGuard],data: {roles: ['Studios']}},
+  {path:'admin/studios/create',component:CreateStudioComponent,canActivate:[RouteProtectGuard],data: {roles: ['Studios']}},
+  {path:'admin/studios/:studioId',component:ViewStudioDetailsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Studios']}},
+  {path:'admin/studios/edit/:studioId',component:EditStudioComponent,canActivate:[RouteProtectGuard],data: {roles: ['Studios']}},
+  {path:'admin/discounts',component:ListDiscountComponent,canActivate:[RouteProtectGuard],data: {roles: ['Discounts']}},
+  {path:'admin/discounts/edit/:discountId',component:EditDiscountComponent,canActivate:[RouteProtectGuard],data: {roles: ['Discounts']}},
+  {path:'admin/bookings/active',component:ListActiveBookingsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Bookings']}},
+  {path:'admin/bookings/completed',component:ListCompletedBookingsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Bookings']}},
+  {path:'admin/bookings/cancelled',component:ListCancelledBookingsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Bookings']}},
+  {path:'admin/transactions',component:ListTransactionsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Transactions']}},
+  {path:'admin/send-notifications',component:SendNotificationsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Notifications']}},
   
   {path:'admin/login',component:LoginUserComponent,canActivate:[OnlyLoginGuardService]},
   {path:'admin/profile',component:ProfileComponent},
