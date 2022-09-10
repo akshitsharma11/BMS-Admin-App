@@ -62,8 +62,8 @@
         <div class="cell" data-title="Location">
             {{ studio.city | titlecase }}, {{ studio.state | titlecase }},
         </div>
-        <div class="cell" data-title="Max. Guests">
-            {{ studio.maxGuests }}
+        <div class="cell" data-title="Rooms">
+            {{ studio.roomsDetails.length }}
         </div>
         <div class="cell" data-title="Created On">
             {{ studio.creationTimeStamp | date:'mediumDate' }}
