@@ -7,8 +7,10 @@ label
 
 .myBtn
 {
+    color: white;
     border-radius: 15px;
-    /* background-color: #BF3AA2; */
-    background-image: linear-gradient(to right, #BF3AA2 , #FFC701);
-    box-shadow: inset 4px 4px 10px rgba(252, 252, 252, 0.15), inset -4px -4px 10px rgba(0, 0, 0, 0.5);
+    background-color: #FFC701;
+    font-weight: 500;
+    /* background-image: linear-gradient(to right, #BF3AA2 , #FFC701);
+    box-shadow: inset 4px 4px 10px rgba(252, 252, 252, 0.15), inset -4px -4px 10px rgba(0, 0, 0, 0.5); */
 }
