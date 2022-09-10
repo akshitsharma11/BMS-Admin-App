@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
 import { StudioService } from '../services/studio.service';
@@ -16,7 +16,7 @@ import { AddTeamMemberComponent } from '../create-studio/add-team-member/add-tea
   templateUrl: './edit-studio.component.html',
   styleUrls: ['./edit-studio.component.css']
 })
-export class EditStudioComponent implements OnInit {
+export class EditStudioComponent implements OnInit, OnDestroy {
 
   studioId;
   studioDetails;
@@ -519,6 +519,11 @@ export class EditStudioComponent implements OnInit {
       });
     }
 
+  }
+
+  ngOnDestroy(): void {
+    sessionStorage.removeItem('allRooms');
+    sessionStorage.removeItem('allMembers');    
   }
 
 }
