@@ -523,7 +523,7 @@ export class EditStudioComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     sessionStorage.removeItem('allRooms');
-    sessionStorage.removeItem('allMembers');    
+    sessionStorage.removeItem('allMembers');
   }
 
 }
