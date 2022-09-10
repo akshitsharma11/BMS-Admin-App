@@ -89,6 +89,11 @@ export class EditDiscountComponent implements OnInit {
     })
   }
 
+  //to disable past dates
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+  }
+
   onItemSelect(item: any) {
     console.log(item);
     console.log(this.selectedItems);
