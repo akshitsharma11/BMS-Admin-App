@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 })
 export class AuthService {
 
-  serverUrl  = 'https://bookmystudioapp.herokuapp.com/api';
+  serverUrl  = 'http://ec2-3-109-47-228.ap-south-1.compute.amazonaws.com/api';
   
   //Behaviour subject for storing authentication state
   loggedIn = new BehaviorSubject<boolean>(false);

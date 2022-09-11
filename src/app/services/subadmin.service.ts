@@ -6,7 +6,7 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SubadminService {
-  serverUrl  = 'https://bookmystudioapp.herokuapp.com/api';
+  serverUrl  = 'http://ec2-3-109-47-228.ap-south-1.compute.amazonaws.com/api';
 
   tokenString;
 

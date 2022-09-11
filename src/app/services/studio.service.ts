@@ -7,7 +7,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class StudioService {
 
-  serverUrl  = 'https://bookmystudioapp.herokuapp.com/api';
+  serverUrl  = 'http://ec2-3-109-47-228.ap-south-1.compute.amazonaws.com/api';
 
   tokenString;
 
