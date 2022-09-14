@@ -380,6 +380,7 @@ export class EditStudioComponent implements OnInit, OnDestroy {
         res["images"].forEach(singleImg=>{
           this.allStudioPhotos.push(singleImg);
         });
+        this.studioDetails.studioPhotos = this.studioDetails.studioPhotos.concat(...this.allStudioPhotos);
         this.spinner.hide();
         console.log("All Images : ",this.allStudioPhotos);
         this.toast.info("Media Files uploaded successfully","",{
@@ -411,12 +412,18 @@ export class EditStudioComponent implements OnInit, OnDestroy {
 
   removeStudioPhoto(imgUrl)
   {
-    const index = this.allStudioPhotos.findIndex(i=>i==imgUrl);
+    // const index = this.allStudioPhotos.findIndex(i=>i==imgUrl);
+    // if(index!=-1)
+    // {
+    //   this.allStudioPhotos.splice(index,1);
+    // }
+    // console.log(this.allStudioPhotos);
+    const index = this.studioDetails.studioPhotos.findIndex(i=>i==imgUrl);
     if(index!=-1)
     {
-      this.allStudioPhotos.splice(index,1);
+      this.studioDetails.studioPhotos.splice(index,1);
     }
-    console.log(this.allStudioPhotos);
+    console.log(this.studioDetails.studioPhotos);
   }
 
   onSubmit(form:NgForm)
@@ -438,7 +445,7 @@ export class EditStudioComponent implements OnInit, OnDestroy {
       totalRooms:form.value.totalRooms,
       roomsDetails : (sessionStorage.getItem('allRooms')!=null)?(JSON.parse(sessionStorage.getItem('allRooms'))):[],
       maxGuests:form.value.maxGuests,
-      studioPhotos:this.allStudioPhotos,
+      studioPhotos:this.studioDetails.studioPhotos,
       aboutUs:{
         aboutUs:form.value.aboutStudio,
         services:form.value.studioServices,
