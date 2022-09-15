@@ -379,8 +379,9 @@ export class EditStudioComponent implements OnInit, OnDestroy {
         // this.allStudioPhotos = res["images"];
         res["images"].forEach(singleImg=>{
           this.allStudioPhotos.push(singleImg);
+          this.studioDetails.studioPhotos.push(singleImg);
         });
-        this.studioDetails.studioPhotos = this.studioDetails.studioPhotos.concat(...this.allStudioPhotos);
+        // this.studioDetails.studioPhotos = this.studioDetails.studioPhotos.concat(...this.allStudioPhotos);
         this.spinner.hide();
         console.log("All Images : ",this.allStudioPhotos);
         this.toast.info("Media Files uploaded successfully","",{
