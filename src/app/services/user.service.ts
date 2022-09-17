@@ -1,13 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+const API_USERS_URL = `${environment.apiUrl}`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  serverUrl  = 'http://ec2-3-109-47-228.ap-south-1.compute.amazonaws.com/api';
+  serverUrl  = API_USERS_URL;
 
   tokenString;
 

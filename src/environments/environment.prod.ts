@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  apiUrl:'http://ec2-3-109-47-228.ap-south-1.compute.amazonaws.com/api',
   firebase: {
     apiKey: "AIzaSyBWmvo08HB4yaghDLDVE1IdO2T6AfJwBoc",
     authDomain: "demonotification-ef0eb.firebaseapp.com",

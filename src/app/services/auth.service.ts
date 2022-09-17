@@ -2,13 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+const API_USERS_URL = `${environment.apiUrl}`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  serverUrl  = 'http://ec2-3-109-47-228.ap-south-1.compute.amazonaws.com/api';
+  serverUrl  = API_USERS_URL;
   
   //Behaviour subject for storing authentication state
   loggedIn = new BehaviorSubject<boolean>(false);
