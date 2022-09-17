@@ -5,6 +5,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { DiscountService } from 'src/app/services/discount.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -26,6 +27,7 @@ export class EditDiscountComponent implements OnInit {
   constructor(
     private discountService:DiscountService,
     private userService:UserService,
+    private notificationService:NotificationService,
     private routerBtn:Router,
     private route:ActivatedRoute,
     private toast:ToastrService,
@@ -136,6 +138,31 @@ export class EditDiscountComponent implements OnInit {
           positionClass:'toast-top-right'
         });
         this.routerBtn.navigate(['/admin/discounts']);
+        if(this.discountDetails.discountType==2)
+        {
+          let title = "Get ready!!";
+          let message = this.discountDetails.discountName+" will be available from "+this.discountDetails.discountDate.split('T')[0];
+          this.notificationService.sendNotificationsToAllUsers({title:title, message:message}).subscribe(res=>{
+            if(res["status"])
+            {
+              this.toast.info(res["message"],"Success",{
+                timeOut:2500,
+                progressBar:true,
+                progressAnimation:'increasing',
+                positionClass:'toast-top-right'
+              });
+              form.reset();
+            }
+            else{
+              this.toast.error(res["message"],"Error Occured",{
+                timeOut:2500,
+                progressBar:true,
+                progressAnimation:'increasing',
+                positionClass:'toast-top-right'
+              })
+            }
+          });
+        }
 
       }else{
         this.toast.error(res["message"],"Error Occured",{
