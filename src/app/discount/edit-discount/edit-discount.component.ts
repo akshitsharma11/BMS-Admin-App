@@ -163,6 +163,31 @@ export class EditDiscountComponent implements OnInit {
             }
           });
         }
+        if(this.discountDetails.discountType==3)
+        {
+          let title = "Get ready!!";
+          let message = this.discountDetails.discountName+" is available for you ";
+          this.notificationService.sendNotificationsToMultipleUsers({title:title, message:message,usersList:this.discountDetails.usersList}).subscribe(res=>{
+            if(res["status"])
+            {
+              this.toast.info(res["message"],"Success",{
+                timeOut:2500,
+                progressBar:true,
+                progressAnimation:'increasing',
+                positionClass:'toast-top-right'
+              });
+              form.reset();
+            }
+            else{
+              this.toast.error(res["message"],"Error Occured",{
+                timeOut:2500,
+                progressBar:true,
+                progressAnimation:'increasing',
+                positionClass:'toast-top-right'
+              })
+            }
+          });
+        }
 
       }else{
         this.toast.error(res["message"],"Error Occured",{

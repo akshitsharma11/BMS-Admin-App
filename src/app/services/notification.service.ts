@@ -26,5 +26,12 @@ export class NotificationService {
       'Authorization':this.tokenString
     })});
   }
+
+  sendNotificationsToMultipleUsers(data)
+  {
+    return this.http.post(this.serverUrl+'/notifications/multiple-users/',data,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
   
 }
