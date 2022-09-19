@@ -40,6 +40,13 @@
             </div>
           </div>
           <div class="col-sm-5 mt-3">
+              <label for="" style="font-weight: 600;">Coupon Code : </label>
+              <input type="text" class="form-control" placeholder="Enter Coupon Code" name="couponCode" required [(ngModel)]="discountDetails.couponCode" #couponCodeRef="ngModel">
+              <div *ngIf="couponCodeRef.errors?.required  && couponCodeRef.touched" class="errorDiv">
+                *Coupon Code is required!
+              </div>
+          </div>
+          <div class="col-sm-5 mt-3">
             <label for="" style="font-weight: 600;">Description : </label>
             <textarea class="form-control" placeholder="Enter Description" name="description" required [(ngModel)]="discountDetails.description" #descRef="ngModel"></textarea>
             <div *ngIf="descRef.errors?.required  && descRef.touched" class="errorDiv">
