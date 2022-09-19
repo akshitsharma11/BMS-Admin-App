@@ -81,6 +81,7 @@ import { ListTransactionsComponent } from './transactions/list-transactions/list
 import { ListSubadminsComponent } from './sub-admins/list-subadmins/list-subadmins.component';
 import { CreateSubadminComponent } from './sub-admins/create-subadmin/create-subadmin.component';
 import { RouteProtectGuard } from './route-protect.guard';
+import { ListOwnersComponent } from './owner/list-owners/list-owners.component';
 
 const appRoutes:Routes = [
 
@@ -99,6 +100,7 @@ const appRoutes:Routes = [
   {path:'admin/bookings/cancelled',component:ListCancelledBookingsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Bookings']}},
   {path:'admin/transactions',component:ListTransactionsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Transactions']}},
   {path:'admin/send-notifications',component:SendNotificationsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Notifications']}},
+  {path:'admin/all-owners',component:ListOwnersComponent},
   
   {path:'admin/login',component:LoginUserComponent,canActivate:[OnlyLoginGuardService]},
   {path:'admin/profile',component:ProfileComponent},
@@ -142,6 +144,7 @@ const appRoutes:Routes = [
     ListTransactionsComponent,
     ListSubadminsComponent,
     CreateSubadminComponent,
+    ListOwnersComponent,
    ],
   imports: [
     BrowserModule,
