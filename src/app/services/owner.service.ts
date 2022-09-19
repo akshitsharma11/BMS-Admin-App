@@ -38,4 +38,11 @@ export class OwnerService {
     })});
   }
 
+  createNewOwner(data)
+  {
+    return this.http.post(this.serverUrl+'/owners/create',data,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
 }
