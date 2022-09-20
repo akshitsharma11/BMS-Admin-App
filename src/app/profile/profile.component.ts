@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import {EditAdminComponent} from '../edit-admin/edit-admin.component'; 
 import { AuthService } from '../services/auth.service';
+import { StudioService } from '../services/studio.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,14 @@ export class ProfileComponent implements OnInit {
 
   uploadText;
 
-  constructor(public matDialog:MatDialog,private authService:AuthService,private spinner:NgxSpinnerService,private toast:ToastrService) { 
+  constructor(
+    public matDialog:MatDialog,
+    private authService:AuthService,
+    private studioService:StudioService,
+    private spinner:NgxSpinnerService,
+    private toast:ToastrService
+  )
+  {
     this.authService.listen().subscribe((m:any)=>{
       console.log(m);
       this.ngOnInit();
@@ -55,30 +63,30 @@ export class ProfileComponent implements OnInit {
 
     const formData = new FormData();
     formData.append("newImage",this.userImage);
-    // this.topicService.uploadSingleImage(formData).subscribe(res=>{
-    //   if(res["status"])
-    //   {
-    //     this.userImage = res["imageUrl"];
-    //     console.log(this.userImage);
-    //     this.authService.editAdminImage({adminId:+this.adminId,adminImage:this.userImage}).subscribe(resAdmin=>{
-    //       if(resAdmin["status"])
-    //       {
-    //         this.spinner.hide();
-    //         this.toast.success(resAdmin["message"]);
-    //         localStorage.setItem('authUserDataBMS',JSON.stringify(resAdmin["admin"]))
-    //         this.authService.loggedIn.next(true);
-    //       }
-    //       else{
-    //         this.spinner.hide();
-    //         this.toast.error(resAdmin["message"]);
-    //       }
-    //     });
-    //   }
-    //   else{
-    //     this.spinner.hide();
-    //     this.toast.error(res["message"]);
-    //   }
-    // })    
+    this.studioService.uploadSingleImage(formData).subscribe(res=>{
+      if(res["status"])
+      {
+        this.userImage = res["imageUrl"];
+        console.log(this.userImage);
+        this.authService.editAdminImage(this.adminId,{adminImage:this.userImage}).subscribe(resAdmin=>{
+          if(resAdmin["status"])
+          {
+            this.spinner.hide();
+            this.toast.success(resAdmin["message"]);
+            localStorage.setItem('authUserDataBMS',JSON.stringify(resAdmin["admin"]))
+            this.authService.loggedIn.next(true);
+          }
+          else{
+            this.spinner.hide();
+            this.toast.error(resAdmin["message"]);
+          }
+        });
+      }
+      else{
+        this.spinner.hide();
+        this.toast.error(res["message"]);
+      }
+    })
   }
 
   openDialog()

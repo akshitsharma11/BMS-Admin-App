@@ -101,14 +101,14 @@ export class AuthService {
     return this.http.get(this.serverUrl+'/all-sub-admins/'+id);
   }
   
-  editAdminDetails(data)
+  editAdminDetails(adminId,data)
   {
-    return this.http.post(this.serverUrl+'/edit-admin-details',data); 
+    return this.http.patch(this.serverUrl+'/admins/'+adminId,data); 
   }
 
-  editAdminImage(data)
+  editAdminImage(adminId,data)
   {
-    return this.http.post(this.serverUrl+'/edit-admin-image',data); 
+    return this.http.patch(this.serverUrl+'/admins/'+adminId+'/image',data); 
   }
  
 }

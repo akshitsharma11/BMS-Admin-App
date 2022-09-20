@@ -30,10 +30,10 @@ label.col-md-3.col-form-label {
     font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif!important;
 }
 button.form-control.cus_input_btn {
-    background: #9250E5;
+    background: #FFC701;
     color: #FFFFFF;
     border-radius: 0;
-    border-color: #9250E5;
+    border-color: #FFC701;
     font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif!important;
     cursor: pointer;
 }
@@ -41,7 +41,7 @@ button:disabled.form-control.cus_input_btn {
     background: #a981da;
     color: #FFFFFF;
     border-radius: 0;
-    border-color: #9250E5;
+    border-color: #FFC701;
     font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif!important;
     cursor: pointer;
 }

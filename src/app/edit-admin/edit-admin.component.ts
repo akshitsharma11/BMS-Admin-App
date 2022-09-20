@@ -33,8 +33,7 @@ export class EditAdminComponent implements OnInit {
   onSubmit(form:NgForm)
   {
     console.log(form.value);
-    var newForm = {...form.value,adminId:this.admin.adminId}
-    this.authService.editAdminDetails(newForm).subscribe(res=>{
+    this.authService.editAdminDetails(this.admin.adminId,form.value).subscribe(res=>{
       console.log("Result : ",res)
       if(res["status"])
       {
