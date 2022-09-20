@@ -38,4 +38,11 @@ export class TransactionService {
     })});
   }
 
+  getAllTransactionsByDateRange(data)
+  {
+    return this.http.post(this.serverUrl+'/transactions/date-filter/',data,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
 }

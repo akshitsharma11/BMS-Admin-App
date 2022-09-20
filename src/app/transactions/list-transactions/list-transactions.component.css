@@ -294,3 +294,16 @@ body {
   border-radius: 8px;
   margin-top: -8px;
 }
+
+
+/* Placeholder for input date */
+input[type="date"]:before {
+  content: attr(placeholder) !important;
+  color: darkgreen;
+  font-weight: 500;
+  margin-right: 0.5em;
+}
+input[type="date"]:focus:before,
+input[type="date"]:valid:before {
+  content: "";
+}

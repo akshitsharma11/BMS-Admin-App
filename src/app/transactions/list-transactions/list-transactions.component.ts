@@ -13,9 +13,14 @@ import { TransactionService } from 'src/app/services/transaction.service';
 export class ListTransactionsComponent implements OnInit {
 
   allTransactions = [];
+  dummyTransactions = [];
 
   filteredStatus = '';  
   p:number =1;
+  
+  startDate = '';
+  endDate = '';
+  showSearchIcon = true;
 
   constructor(
     public matDialog:MatDialog,
@@ -33,13 +38,41 @@ export class ListTransactionsComponent implements OnInit {
 
   ngOnInit(): void {    
     this.spinner.show();
-    //Fetching all bookings
+    //Fetching all transactions
     this.transactionService.getAllTransactions().subscribe(res=>{
       this.allTransactions = res["transactions"];
       this.allTransactions.sort((a, b) => a.creationTimeStamp >= b.creationTimeStamp ? -1 : 1);
+      this.dummyTransactions = this.allTransactions;
       // console.log(this.allTransactions);
       this.spinner.hide();
     });
+  }
+
+  searchByDate()
+  {
+    console.log(this.startDate,this.endDate);
+    if(this.startDate=="" || this.endDate=="")
+    {
+      this.toast.error("Select Valid Date");
+    }
+    else{
+      this.spinner.show();
+      this.showSearchIcon = false;
+      this.transactionService.getAllTransactionsByDateRange({startDate:this.startDate,endDate:this.endDate}).subscribe(res=>{
+        this.allTransactions = res["transactions"];
+        // console.log(this.allTransactions);
+        this.spinner.hide();
+      })
+    }
+  }
+
+  removeDateSearchedList()
+  {
+    this.allTransactions = this.dummyTransactions;
+    this.startDate = "";
+    this.endDate = "";
+    this.showSearchIcon = true;
+    console.log(this.allTransactions.length);
   }
 
 }
