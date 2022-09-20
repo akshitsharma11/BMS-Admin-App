@@ -13,9 +13,14 @@ import { BookingService } from 'src/app/services/booking.service';
 export class ListActiveBookingsComponent implements OnInit {
 
   allActiveBookings = [];
+  dummyBookings = [];
 
   filteredStatus = '';  
   p:number =1;
+  
+  startDate = '';
+  endDate = '';
+  showSearchIcon = true;
 
   constructor(
     public matDialog:MatDialog,
@@ -39,9 +44,47 @@ export class ListActiveBookingsComponent implements OnInit {
       this.allActiveBookings.forEach(singleBooking=>{
         singleBooking.mappedBookingTime = singleBooking.bookingTime.startTime + "-" + singleBooking.bookingTime.endTime;
       });
+      this.dummyBookings = this.allActiveBookings;
       // console.log(this.allActiveBookings);
       this.spinner.hide();
     });
+  }
+
+  searchByDate()
+  {
+    console.log(this.startDate,this.endDate);
+    if(this.startDate=="" || this.endDate=="")
+    {
+      this.toast.error("Select Valid Date");
+    }
+    else{
+      this.spinner.show();
+      this.showSearchIcon = false;
+      this.bookingService.getAllBookingsByDateRange({startDate:this.startDate,endDate:this.endDate}).subscribe(res=>{
+        // res["transactions"] = res["transactions"].filter(i=>{
+        //   console.log(new Date(i.creationTimeStamp).getDate(),this.endDate.split('-')[2]);
+        //   if(new Date(i.creationTimeStamp).getDate()>+this.endDate.split('-')[2])
+        //   {
+        //     return false;
+        //   }
+        //   else{
+        //     return true;
+        //   }
+        // });
+        this.allActiveBookings = res["activeBookings"];
+        // console.log(this.allActiveBookings);
+        this.spinner.hide();
+      })
+    }
+  }
+
+  removeDateSearchedList()
+  {
+    this.allActiveBookings = this.dummyBookings;
+    this.startDate = "";
+    this.endDate = "";
+    this.showSearchIcon = true;
+    console.log(this.allActiveBookings.length);
   }
 
 }

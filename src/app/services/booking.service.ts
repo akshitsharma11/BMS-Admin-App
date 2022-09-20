@@ -38,4 +38,11 @@ export class BookingService {
     })});
   }
 
+  getAllBookingsByDateRange(data)
+  {
+    return this.http.post(this.serverUrl+'/bookings/date-filter/',data,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
 }

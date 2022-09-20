@@ -13,9 +13,14 @@ import { BookingService } from 'src/app/services/booking.service';
 export class ListCancelledBookingsComponent implements OnInit {
 
   allCancelledBookings = [];
+  dummyBookings = [];
 
   filteredStatus = '';  
   p:number =1;
+  
+  startDate = '';
+  endDate = '';
+  showSearchIcon = true;
 
   constructor(
     public matDialog:MatDialog,
@@ -39,9 +44,47 @@ export class ListCancelledBookingsComponent implements OnInit {
       this.allCancelledBookings.forEach(singleBooking=>{
         singleBooking.mappedBookingTime = singleBooking.bookingTime.startTime + "-" + singleBooking.bookingTime.endTime;
       });
+      this.dummyBookings = this.allCancelledBookings;
       // console.log(this.allCancelledBookings);
       this.spinner.hide();
     });
+  }
+
+  searchByDate()
+  {
+    console.log(this.startDate,this.endDate);
+    if(this.startDate=="" || this.endDate=="")
+    {
+      this.toast.error("Select Valid Date");
+    }
+    else{
+      this.spinner.show();
+      this.showSearchIcon = false;
+      this.bookingService.getAllBookingsByDateRange({startDate:this.startDate,endDate:this.endDate}).subscribe(res=>{
+        // res["transactions"] = res["transactions"].filter(i=>{
+        //   console.log(new Date(i.creationTimeStamp).getDate(),this.endDate.split('-')[2]);
+        //   if(new Date(i.creationTimeStamp).getDate()>+this.endDate.split('-')[2])
+        //   {
+        //     return false;
+        //   }
+        //   else{
+        //     return true;
+        //   }
+        // });
+        this.allCancelledBookings = res["cancelledBookings"];
+        // console.log(this.allCancelledBookings);
+        this.spinner.hide();
+      })
+    }
+  }
+
+  removeDateSearchedList()
+  {
+    this.allCancelledBookings = this.dummyBookings;
+    this.startDate = "";
+    this.endDate = "";
+    this.showSearchIcon = true;
+    console.log(this.allCancelledBookings.length);
   }
 
 }

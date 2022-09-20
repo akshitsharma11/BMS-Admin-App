@@ -12,6 +12,19 @@
                 </div>
             </div>
         </div>
+
+        <div class="row2">
+            <div class="cell2" style="box-shadow: none;">
+                <input type="date" class="form-control" [(ngModel)]="startDate" placeholder="Start Date &nbsp;&nbsp;&nbsp;" >
+            </div>
+            <div class="cell2" style="box-shadow: none;">
+                <input type="date" class="form-control" [(ngModel)]="endDate" placeholder="End Date">
+            </div>            
+            <div class="cell2 pl-lg-2 mt-2" >
+              <button  *ngIf="showSearchIcon" type="button" (click)="searchByDate()" class="btn btn-primary btn-block">Search By Date</button>
+              <button  *ngIf="!showSearchIcon" type="button" (click)="removeDateSearchedList()" class="btn btn-danger btn-block">Reset X</button>
+            </div>
+        </div>
     </div>
 
     <div class="table shadow p-3 mb-5">
