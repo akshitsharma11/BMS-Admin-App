@@ -1,7 +1,6 @@
 <div class="wrapper mt-2">
     <div class="table2 " >                                           
       <div class="row2">
-      
         <div class="cell2" style="box-shadow: none;">
             <h4><u>All Studios </u> </h4>
         </div>
@@ -10,14 +9,23 @@
                 <span class="fa fa-search form-control-icon"></span>
                 <input type="text" class="form-control" [(ngModel)]="filteredStatus" placeholder="Search Studio">   
             </div>
-        </div>
-  
+        </div>  
         <div class="cell2" style="box-shadow:none;border-radius:12px">
           <button routerLink="/admin/studios/create" class="btn myBtn mb-1"><i class="fas fa-plus"></i> Add Studio</button>
         </div>
-
       </div>
-    </div> 
+
+      <div class="row2">
+        <div class="cell2"></div>
+        <div class="cell2" style="box-shadow: none;">
+            <input type="date" class="form-control" [(ngModel)]="startDate" placeholder="Search Studio by Creation Date" >
+        </div>
+        <div class="cell2 pl-lg-2 mt-2" >
+          <button  *ngIf="showSearchIcon" type="button" (click)="searchByDate()" class="btn btn-primary btn-block">Search By Date</button>
+          <button  *ngIf="!showSearchIcon" type="button" (click)="removeDateSearchedList()" class="btn btn-danger btn-block">Reset X</button>
+        </div>
+    </div>
+    </div>
 
     <div class="table shadow p-3 mb-5">
       

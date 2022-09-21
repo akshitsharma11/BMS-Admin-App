@@ -14,9 +14,14 @@ import { ShowStudioDetailsComponent } from './show-studio-details/show-studio-de
 export class ListStudiosComponent implements OnInit {
 
   allStudios = [];
+  dummyStudios = [];
 
   filteredStatus = '';  
   p:number =1;
+  
+  startDate = '';
+  endDate = '';
+  showSearchIcon = true;
 
   constructor(
     public matDialog:MatDialog,
@@ -37,7 +42,9 @@ export class ListStudiosComponent implements OnInit {
     //Fetching all Studios
     this.studioService.getAllStudios().subscribe(res=>{
       this.allStudios = res["studios"];
-      console.log(this.allStudios);
+      this.allStudios.sort((a, b) => a.creationTimeStamp >= b.creationTimeStamp ? -1 : 1);
+      this.dummyStudios = this.allStudios;
+      // console.log(this.allStudios);
       this.spinner.hide();
     });
   }
@@ -89,6 +96,33 @@ export class ListStudiosComponent implements OnInit {
     //     positionClass:'toast-top-right'
     //   })
     // });
+  }
+
+  searchByDate()
+  {
+    console.log(this.startDate,this.endDate);
+    if(this.startDate=="")
+    {
+      this.toast.error("Select Valid Date");
+    }
+    else{
+      this.spinner.show();
+      this.showSearchIcon = false;
+      this.studioService.getAllStudiosByDate({creationDate:this.startDate}).subscribe(res=>{
+        this.allStudios = res["studios"];
+        // console.log(this.allStudios);
+        this.spinner.hide();
+      })
+    }
+  }
+
+  removeDateSearchedList()
+  {
+    this.allStudios = this.dummyStudios;
+    this.startDate = "";
+    this.endDate = "";
+    this.showSearchIcon = true;
+    console.log(this.allStudios.length);
   }
 
 }

@@ -69,4 +69,11 @@ export class StudioService {
     return this.http.post(this.serverUrl+'/upload-multiple-images',data);
   }
 
+  getAllStudiosByDate(data)
+  {
+    return this.http.post(this.serverUrl+'/studios/date-filter/',data,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
 }
