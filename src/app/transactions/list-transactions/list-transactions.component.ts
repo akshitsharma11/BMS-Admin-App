@@ -60,6 +60,7 @@ export class ListTransactionsComponent implements OnInit {
       this.showSearchIcon = false;
       this.transactionService.getAllTransactionsByDateRange({startDate:this.startDate,endDate:this.endDate}).subscribe(res=>{
         this.allTransactions = res["transactions"];
+        this.allTransactions.sort((a, b) => a.creationTimeStamp >= b.creationTimeStamp ? -1 : 1);
         // console.log(this.allTransactions);
         this.spinner.hide();
       })
