@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="table shadow p-3 mb-5">
+    <div class="table shadow p-3 mb-5" style="overflow-x: auto">
         <div class="row header">
             <div class="cell">
                 S.No
@@ -52,6 +52,9 @@
             </div>
             <div class="cell">
                 Booking Time
+            </div>
+            <div class="cell">
+                Created On
             </div>
         </div>
 
@@ -80,6 +83,9 @@
             </div>
             <div class="cell" data-title="Booking Time">
                 {{ booking.mappedBookingTime }}
+            </div>
+            <div class="cell" data-title="Created On">
+                {{ booking.creationTimeStamp | date:'mediumDate' }}
             </div>
         </div>
     </div>
