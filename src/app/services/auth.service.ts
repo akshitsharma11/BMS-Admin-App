@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -12,7 +12,8 @@ const API_USERS_URL = `${environment.apiUrl}`;
 export class AuthService {
 
   serverUrl  = API_USERS_URL;
-  
+  tokenString;
+
   //Behaviour subject for storing authentication state
   loggedIn = new BehaviorSubject<boolean>(false);
   permissions = new BehaviorSubject<[]>([]);
@@ -20,9 +21,13 @@ export class AuthService {
   //Behaviour subject for storing the user
   authUser = new BehaviorSubject<Object>(null);
   
-  constructor(private http:HttpClient,
-    private routerBtn:Router) { }
-
+  constructor(private http:HttpClient,private routerBtn:Router)
+  {
+    if(localStorage.getItem("adminAuthTokenBMS")!=null)
+    {
+      this.tokenString = 'Bearer '+localStorage.getItem("adminAuthTokenBMS").replace(/^["'](.+(?=["']$))["']$/, '$1');
+    }
+  }
 
   private listeners = new Subject<any>();
   listen():Observable<any>{
@@ -110,5 +115,5 @@ export class AuthService {
   {
     return this.http.patch(this.serverUrl+'/admins/'+adminId+'/image',data); 
   }
- 
+
 }

@@ -84,6 +84,7 @@ import { RouteProtectGuard } from './route-protect.guard';
 import { ListOwnersComponent } from './owner/list-owners/list-owners.component';
 import { CreateOwnerComponent } from './owner/create-owner/create-owner.component';
 import { DeleteOwnerComponent } from './owner/delete-owner/delete-owner.component';
+import { DeleteSubadminComponent } from './sub-admins/delete-subadmin/delete-subadmin.component';
 
 const appRoutes:Routes = [
 
@@ -150,6 +151,7 @@ const appRoutes:Routes = [
     ListOwnersComponent,
     CreateOwnerComponent,
     DeleteOwnerComponent,
+    DeleteSubadminComponent,
    ],
   imports: [
     BrowserModule,

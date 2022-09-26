@@ -45,4 +45,11 @@ export class SubadminService {
     })});
   }
 
+  deleteSingleSubAdmin(subAdminId)
+  {
+    return this.http.delete(this.serverUrl+'/sub-admins/'+subAdminId,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
 }

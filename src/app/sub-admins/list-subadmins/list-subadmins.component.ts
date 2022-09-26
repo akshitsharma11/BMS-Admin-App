@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { SubadminService } from 'src/app/services/subadmin.service';
+import { DeleteSubadminComponent } from '../delete-subadmin/delete-subadmin.component';
 
 @Component({
   selector: 'app-list-subadmins',
@@ -55,6 +56,24 @@ export class ListSubadminsComponent implements OnInit {
       // console.log(this.allSubAdmins);
       this.spinner.hide();
     });
+  }
+
+  deleteSubAdminDialog(subAdminId)
+  {
+    const dialogConfig = new MatDialogConfig();
+    //if the user clicks outside the modal, it doesn’t close
+    dialogConfig.disableClose = false;
+    dialogConfig.id = 'delete-subadmin-component';
+    dialogConfig.height = "220px";
+    dialogConfig.width = "510px";
+
+    //For styling the mat-dialog (like borderRadius)
+    dialogConfig.panelClass = 'custom-container'; //Now, we have style this class in global styles.css
+
+    //passing data
+    dialogConfig.data = {subAdminId:subAdminId};
+    
+    const modalDialog = this.matDialog.open(DeleteSubadminComponent,dialogConfig);
   }
 
 }
