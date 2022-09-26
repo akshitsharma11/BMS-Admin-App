@@ -83,6 +83,7 @@ import { CreateSubadminComponent } from './sub-admins/create-subadmin/create-sub
 import { RouteProtectGuard } from './route-protect.guard';
 import { ListOwnersComponent } from './owner/list-owners/list-owners.component';
 import { CreateOwnerComponent } from './owner/create-owner/create-owner.component';
+import { DeleteOwnerComponent } from './owner/delete-owner/delete-owner.component';
 
 const appRoutes:Routes = [
 
@@ -148,6 +149,7 @@ const appRoutes:Routes = [
     CreateSubadminComponent,
     ListOwnersComponent,
     CreateOwnerComponent,
+    DeleteOwnerComponent,
    ],
   imports: [
     BrowserModule,

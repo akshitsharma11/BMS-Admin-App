@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { OwnerService } from 'src/app/services/owner.service';
+import { DeleteOwnerComponent } from '../delete-owner/delete-owner.component';
 
 @Component({
   selector: 'app-list-owners',
@@ -55,6 +56,24 @@ export class ListOwnersComponent implements OnInit {
       // console.log(this.allOwners);
       this.spinner.hide();
     });
+  }
+
+  deleteOwnerDialog(ownerId)
+  {
+    const dialogConfig = new MatDialogConfig();
+    //if the user clicks outside the modal, it doesn’t close
+    dialogConfig.disableClose = false;
+    dialogConfig.id = 'delete-owner-component';
+    dialogConfig.height = "220px";
+    dialogConfig.width = "510px";
+
+    //For styling the mat-dialog (like borderRadius)
+    dialogConfig.panelClass = 'custom-container'; //Now, we have style this class in global styles.css
+
+    //passing data
+    dialogConfig.data = {ownerId:ownerId};
+    
+    const modalDialog = this.matDialog.open(DeleteOwnerComponent,dialogConfig);
   }
 
 }

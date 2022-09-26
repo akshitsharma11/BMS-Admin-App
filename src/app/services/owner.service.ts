@@ -45,4 +45,11 @@ export class OwnerService {
     })});
   }
 
+  deleteSingleOwner(ownerId)
+  {
+    return this.http.delete(this.serverUrl+'/owners/'+ownerId,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
 }
