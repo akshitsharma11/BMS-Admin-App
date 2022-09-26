@@ -58,8 +58,8 @@
             <div class="cell" data-title="Transaction Date">
                 {{ singleOwner.creationTimeStamp | date:'medium' }}
             </div>
-            <div class="cell" >
-                <i  class="fas fa-pen" aria-hidden="true" style="cursor:pointer;color:darkgreen;font-size: 18px;"></i>
+            <div class="cell" routerLink="/admin/owners/edit/{{singleOwner._id}}">
+                <i class="fas fa-pen" aria-hidden="true" style="cursor:pointer;color:darkgreen;font-size: 18px;"></i>
             </div>
             <div class="cell">
                 <i (click)="deleteOwnerDialog(singleOwner._id)" class="fas fa-trash" aria-hidden="true" style="cursor:pointer;color:rgb(221, 17, 17);font-size: 18px;"></i>

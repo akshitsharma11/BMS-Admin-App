@@ -85,6 +85,7 @@ import { ListOwnersComponent } from './owner/list-owners/list-owners.component';
 import { CreateOwnerComponent } from './owner/create-owner/create-owner.component';
 import { DeleteOwnerComponent } from './owner/delete-owner/delete-owner.component';
 import { DeleteSubadminComponent } from './sub-admins/delete-subadmin/delete-subadmin.component';
+import { EditOwnerComponent } from './owner/edit-owner/edit-owner.component';
 
 const appRoutes:Routes = [
 
@@ -105,6 +106,7 @@ const appRoutes:Routes = [
   {path:'admin/send-notifications',component:SendNotificationsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Notifications']}},
   {path:'admin/all-owners',component:ListOwnersComponent},
   {path:'admin/owners/create',component:CreateOwnerComponent},
+  {path:'admin/owners/edit/:ownerId',component:EditOwnerComponent},
   
   {path:'admin/login',component:LoginUserComponent,canActivate:[OnlyLoginGuardService]},
   {path:'admin/profile',component:ProfileComponent},
@@ -152,6 +154,7 @@ const appRoutes:Routes = [
     CreateOwnerComponent,
     DeleteOwnerComponent,
     DeleteSubadminComponent,
+    EditOwnerComponent,
    ],
   imports: [
     BrowserModule,

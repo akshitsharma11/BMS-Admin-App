@@ -38,9 +38,23 @@ export class OwnerService {
     })});
   }
 
+  getSingleOwner(ownerId)
+  {
+    return this.http.get(this.serverUrl+'/owners/'+ownerId,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
   createNewOwner(data)
   {
     return this.http.post(this.serverUrl+'/owners/create',data,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
+  editSingleOwner(ownerId,data)
+  {
+    return this.http.patch(this.serverUrl+'/owners/'+ownerId,data,{headers:new HttpHeaders({
       'Authorization':this.tokenString
     })});
   }

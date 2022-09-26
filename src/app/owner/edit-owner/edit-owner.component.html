@@ -1,0 +1,49 @@
+<div class="container ml-lg-3">
+    <div class="row text-left mt-4">
+        <h3>Edit Owner</h3>
+    </div>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+        <div class="row mt-4">
+            <div class="col-md-5">
+                <div class="row">
+                    <label for="">Enter First Name </label>
+                    <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" name="firstName"
+                        placeholder="Enter your first name" [(ngModel)]="ownerDetails.firstName" required>
+                </div>
+                <div class="row">
+                    <label for="">Enter Email ID </label>
+                    <input type="email" email class="form-control shadow-lg p-3 mb-3 bg-white rounded" name="email"
+                        placeholder="Enter your email" [(ngModel)]="ownerDetails.email" required>
+                </div>
+                <div class="row">
+                    <label for="">Studio </label>
+                </div>
+                <div class="row">
+                <select name="studioId" [(ngModel)]="ownerDetails.studioId" class="form-control shadow-lg mb-3 bg-white rounded"
+                #myState (change)='onStudioSelect(myState.value)' >
+                    <option value="-1" disabled>Select Studio</option>
+                    <option value={{singleStudio._id}} *ngFor="let singleStudio of allStudios;">{{singleStudio.fullName}}</option>
+                </select>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+
+                <div class="row">
+                    <label for="">Enter Last Name </label>
+                    <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded"
+                        placeholder="Enter your last name" name="lastName" [(ngModel)]="ownerDetails.lastName" required>
+                </div>
+                <div class="row">
+                    <label for="">Password </label>
+                    <input type="password" class="form-control shadow-lg p-3 mb-3 bg-white rounded"
+                        placeholder="Enter your Password" name="password" [(ngModel)]="ownerDetails.password" required>
+                </div>
+            </div>
+        </div>
+        <div class="row my-5">
+            <button class="btn btn-success mr-3 mt-1 col-md-1" type="submit" [disabled]="!form.valid"
+                style="color: white;border-radius: 10px;"> Save</button>
+        </div>
+    </form>
+</div>
