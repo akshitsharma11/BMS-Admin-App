@@ -37,10 +37,24 @@ export class SubadminService {
       'Authorization':this.tokenString
     })});
   }
+  
+  getSingleSubAdmin(subAdminId)
+  {
+    return this.http.get(this.serverUrl+'/sub-admins/'+subAdminId,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
 
   createNewSubAdmin(data)
   {
     return this.http.post(this.serverUrl+'/sub-admins/create',data,{headers:new HttpHeaders({
+      'Authorization':this.tokenString
+    })});
+  }
+
+  editSingleSubAdmin(subAdminId,data)
+  {
+    return this.http.patch(this.serverUrl+'/sub-admins/'+subAdminId,data,{headers:new HttpHeaders({
       'Authorization':this.tokenString
     })});
   }

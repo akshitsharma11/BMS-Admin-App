@@ -86,12 +86,14 @@ import { CreateOwnerComponent } from './owner/create-owner/create-owner.componen
 import { DeleteOwnerComponent } from './owner/delete-owner/delete-owner.component';
 import { DeleteSubadminComponent } from './sub-admins/delete-subadmin/delete-subadmin.component';
 import { EditOwnerComponent } from './owner/edit-owner/edit-owner.component';
+import { EditSubadminComponent } from './sub-admins/edit-subadmin/edit-subadmin.component';
 
 const appRoutes:Routes = [
 
   {path:'admin/dashboard',component:DashboardComponent},
   {path:'admin/sub-admins',component:ListSubadminsComponent,canActivate:[RouteProtectGuard],data: {roles: ['SubAdmins']}},
   {path:'admin/sub-admins/create',component:CreateSubadminComponent,canActivate:[RouteProtectGuard],data: {roles: ['SubAdmins']}},
+  {path:'admin/sub-admins/edit/:subAdminId',component:EditSubadminComponent,canActivate:[RouteProtectGuard],data: {roles: ['SubAdmins']}},
   {path:'admin/all-users',component:ShowAllUsersComponent,canActivate:[RouteProtectGuard],data: {roles: ['Users']}},
   {path:'admin/studios',component:ListStudiosComponent,canActivate:[RouteProtectGuard],data: {roles: ['Studios']}},
   {path:'admin/studios/create',component:CreateStudioComponent,canActivate:[RouteProtectGuard],data: {roles: ['Studios']}},
@@ -155,6 +157,7 @@ const appRoutes:Routes = [
     DeleteOwnerComponent,
     DeleteSubadminComponent,
     EditOwnerComponent,
+    EditSubadminComponent,
    ],
   imports: [
     BrowserModule,

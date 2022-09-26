@@ -52,8 +52,8 @@
             <div class="cell" data-title="Transaction Date">
                 {{ subAdmin.creationTimeStamp | date:'medium' }}
             </div>
-            <div class="cell" >
-                <i  class="fas fa-pen" aria-hidden="true" style="cursor:pointer;color:darkgreen;font-size: 18px;"></i>
+            <div class="cell" routerLink="/admin/sub-admins/edit/{{subAdmin._id}}">
+                <i class="fas fa-pen" aria-hidden="true" style="cursor:pointer;color:darkgreen;font-size: 18px;"></i>
             </div>
             <div class="cell">
                 <i (click)="deleteSubAdminDialog(subAdmin._id)" class="fas fa-trash" aria-hidden="true" style="cursor:pointer;color:rgb(221, 17, 17);font-size: 18px;"></i>

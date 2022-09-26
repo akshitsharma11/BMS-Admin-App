@@ -1,6 +1,6 @@
 <div class="container ml-lg-3">
     <div class="row text-left mt-4">
-        <h3>Add New Sub-Admin</h3>
+        <h3>Edit Sub-Admin</h3>
     </div>
     <form (ngSubmit)="onSubmit(form)" #form="ngForm">
         <div class="row mt-4">
@@ -8,12 +8,12 @@
                 <div class="row">
                     <label for="">Enter First Name </label>
                     <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" name="firstName"
-                        placeholder="Enter your first name" ngModel required>
+                        placeholder="Enter your first name" [(ngModel)]="subAdminDetails.firstName" required>
                 </div>
                 <div class="row">
                     <label for="">Enter Email ID </label>
                     <input type="email" email class="form-control shadow-lg p-3 mb-3 bg-white rounded" name="email"
-                        placeholder="Enter your email" ngModel required>
+                        placeholder="Enter your email" [(ngModel)]="subAdminDetails.email" required>
                 </div>
                 <div class="row">
                     <label for="">Permissions </label>
@@ -21,7 +21,7 @@
                 <div class="row" *ngFor="let perm of permissions">
                     <!-- <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter your course name">                     -->
                     <input class="form-check-input ml-2 checkmark" type="checkbox" id="gridCheck1" name="prem"
-                        [value]="perm" (change)="data($event,perm)" #checkBox ngModel>
+                        [value]="perm" (change)="data($event,perm)" #checkBox [checked]="permCheck(perm)">
                     <label class="form-check-label ml-5" for="gridCheck1">
                         {{perm}}
                     </label>
@@ -33,12 +33,12 @@
                 <div class="row">
                     <label for="">Enter Last Name </label>
                     <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded"
-                        placeholder="Enter your last name" name="lastName" ngModel required>
+                        placeholder="Enter your last name" name="lastName" [(ngModel)]="subAdminDetails.lastName" required>
                 </div>
                 <div class="row">
                     <label for="">Password </label>
                     <input type="password" class="form-control shadow-lg p-3 mb-3 bg-white rounded"
-                        placeholder="Enter your Password" name="password" ngModel required>
+                        placeholder="Enter your Password" name="password" [(ngModel)]="subAdminDetails.password" required>
                 </div>
             </div>
 
@@ -50,3 +50,9 @@
         </div>
     </form>
 </div>
+
+
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Please wait...</p>
+</ngx-spinner>
+  
