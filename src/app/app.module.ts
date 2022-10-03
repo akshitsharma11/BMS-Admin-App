@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';  
-import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -11,23 +11,22 @@ import { MatDialogModule } from '@angular/material/dialog';
 //for pie chart -- 
 //npm install --save ng2-charts
 //npm install --save chart.js
-import {ChartsModule} from 'ng2-charts';
 
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { AppComponent } from './app.component';
 // import { LoginComponent } from './login/login.component'; 
 import { RouterModule, Routes } from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { from } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-import {Ng2SearchPipeModule} from 'ng2-search-filter';
-import {Ng2OrderModule} from 'ng2-order-pipe';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -50,7 +49,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ShortenPipe } from './shorten.pipe';
 import { OnlyLoginGuardService } from './services/only-login-guard.service';
 import { EditAdminComponent } from './edit-admin/edit-admin.component';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { ExcelService } from './services/excel.service';
@@ -87,34 +86,35 @@ import { DeleteOwnerComponent } from './owner/delete-owner/delete-owner.componen
 import { DeleteSubadminComponent } from './sub-admins/delete-subadmin/delete-subadmin.component';
 import { EditOwnerComponent } from './owner/edit-owner/edit-owner.component';
 import { EditSubadminComponent } from './sub-admins/edit-subadmin/edit-subadmin.component';
+import { ChartsModule } from 'ng2-charts';
 
-const appRoutes:Routes = [
+const appRoutes: Routes = [
 
-  {path:'admin/dashboard',component:DashboardComponent},
-  {path:'admin/sub-admins',component:ListSubadminsComponent,canActivate:[RouteProtectGuard],data: {roles: ['SubAdmins']}},
-  {path:'admin/sub-admins/create',component:CreateSubadminComponent,canActivate:[RouteProtectGuard],data: {roles: ['SubAdmins']}},
-  {path:'admin/sub-admins/edit/:subAdminId',component:EditSubadminComponent,canActivate:[RouteProtectGuard],data: {roles: ['SubAdmins']}},
-  {path:'admin/all-users',component:ShowAllUsersComponent,canActivate:[RouteProtectGuard],data: {roles: ['Users']}},
-  {path:'admin/studios',component:ListStudiosComponent,canActivate:[RouteProtectGuard],data: {roles: ['Studios']}},
-  {path:'admin/studios/create',component:CreateStudioComponent,canActivate:[RouteProtectGuard],data: {roles: ['Studios']}},
-  {path:'admin/studios/:studioId',component:ViewStudioDetailsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Studios']}},
-  {path:'admin/studios/edit/:studioId',component:EditStudioComponent,canActivate:[RouteProtectGuard],data: {roles: ['Studios']}},
-  {path:'admin/discounts',component:ListDiscountComponent,canActivate:[RouteProtectGuard],data: {roles: ['Discounts']}},
-  {path:'admin/discounts/edit/:discountId',component:EditDiscountComponent,canActivate:[RouteProtectGuard],data: {roles: ['Discounts']}},
-  {path:'admin/bookings/active',component:ListActiveBookingsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Bookings']}},
-  {path:'admin/bookings/completed',component:ListCompletedBookingsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Bookings']}},
-  {path:'admin/bookings/cancelled',component:ListCancelledBookingsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Bookings']}},
-  {path:'admin/transactions',component:ListTransactionsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Transactions']}},
-  {path:'admin/send-notifications',component:SendNotificationsComponent,canActivate:[RouteProtectGuard],data: {roles: ['Notifications']}},
-  {path:'admin/all-owners',component:ListOwnersComponent},
-  {path:'admin/owners/create',component:CreateOwnerComponent},
-  {path:'admin/owners/edit/:ownerId',component:EditOwnerComponent},
-  
-  {path:'admin/login',component:LoginUserComponent,canActivate:[OnlyLoginGuardService]},
-  {path:'admin/profile',component:ProfileComponent},
- 
-  {path:'',redirectTo:'/admin/login',pathMatch:'full'}      
-  
+  { path: 'admin/dashboard', component: DashboardComponent },
+  { path: 'admin/sub-admins', component: ListSubadminsComponent, canActivate: [RouteProtectGuard], data: { roles: ['SubAdmins'] } },
+  { path: 'admin/sub-admins/create', component: CreateSubadminComponent, canActivate: [RouteProtectGuard], data: { roles: ['SubAdmins'] } },
+  { path: 'admin/sub-admins/edit/:subAdminId', component: EditSubadminComponent, canActivate: [RouteProtectGuard], data: { roles: ['SubAdmins'] } },
+  { path: 'admin/all-users', component: ShowAllUsersComponent, canActivate: [RouteProtectGuard], data: { roles: ['Users'] } },
+  { path: 'admin/studios', component: ListStudiosComponent, canActivate: [RouteProtectGuard], data: { roles: ['Studios'] } },
+  { path: 'admin/studios/create', component: CreateStudioComponent, canActivate: [RouteProtectGuard], data: { roles: ['Studios'] } },
+  { path: 'admin/studios/:studioId', component: ViewStudioDetailsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Studios'] } },
+  { path: 'admin/studios/edit/:studioId', component: EditStudioComponent, canActivate: [RouteProtectGuard], data: { roles: ['Studios'] } },
+  { path: 'admin/discounts', component: ListDiscountComponent, canActivate: [RouteProtectGuard], data: { roles: ['Discounts'] } },
+  { path: 'admin/discounts/edit/:discountId', component: EditDiscountComponent, canActivate: [RouteProtectGuard], data: { roles: ['Discounts'] } },
+  { path: 'admin/bookings/active', component: ListActiveBookingsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Bookings'] } },
+  { path: 'admin/bookings/completed', component: ListCompletedBookingsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Bookings'] } },
+  { path: 'admin/bookings/cancelled', component: ListCancelledBookingsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Bookings'] } },
+  { path: 'admin/transactions', component: ListTransactionsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Transactions'] } },
+  { path: 'admin/send-notifications', component: SendNotificationsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Notifications'] } },
+  { path: 'admin/all-owners', component: ListOwnersComponent },
+  { path: 'admin/owners/create', component: CreateOwnerComponent },
+  { path: 'admin/owners/edit/:ownerId', component: EditOwnerComponent },
+
+  { path: 'admin/login', component: LoginUserComponent, canActivate: [OnlyLoginGuardService] },
+  { path: 'admin/profile', component: ProfileComponent },
+
+  { path: '', redirectTo: '/admin/login', pathMatch: 'full' }
+
 ];
 
 @NgModule({
@@ -158,7 +158,8 @@ const appRoutes:Routes = [
     DeleteSubadminComponent,
     EditOwnerComponent,
     EditSubadminComponent,
-   ],
+    DashboardComponent
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -189,7 +190,7 @@ const appRoutes:Routes = [
     NgMultiSelectDropDownModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [MessagingService,AsyncPipe,OnlyLoginGuardService,ExcelService],
+  providers: [MessagingService, AsyncPipe, OnlyLoginGuardService, ExcelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

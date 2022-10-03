@@ -1,31 +1,55 @@
-
 <div class="row mt-4">
   <div class="col-md-4 mb-3">
-    <div class="card text-center mx-3 o-hidden h-100" style="border-radius: 8px;background-color: #FFC701;margin-bottom: -10px;">
+    <div class="card text-center mx-3 o-hidden h-100"
+      style="border-radius: 8px;background-color: #FFC701;margin-bottom: -10px;">
       <div class="card-body">
         <p class="countStyle">{{totalUsers}}</p>
         <p class="tagStyle"><i class="fas fa-user-circle"></i> Users</p>
       </div>
-      
+
     </div>
   </div>
   <div class="col-md-4 mb-3">
-    <div class="card text-center mx-3 o-hidden h-100" style="border-radius: 8px;background-color: #FFC701;margin-bottom: -10px;">
+    <div class="card text-center mx-3 o-hidden h-100"
+      style="border-radius: 8px;background-color: #FFC701;margin-bottom: -10px;">
       <div class="card-body">
         <p class="countStyle">{{totalStudios}}</p>
         <p class="tagStyle"><i class="fas fa-list-alt"></i> Studios Count</p>
       </div>
-      
+
     </div>
   </div>
   <div class="col-md-4 mb-3">
-    <div class="card text-center mx-3 o-hidden h-100" style="border-radius: 8px;background-color: #FFC701;margin-bottom: -10px;">
+    <div class="card text-center mx-3 o-hidden h-100"
+      style="border-radius: 8px;background-color: #FFC701;margin-bottom: -10px;">
       <div class="card-body">
         <p class="countStyle">{{totalBookings}}</p>
         <p class="tagStyle"><i class="fas fa-mail-bulk"></i> Bookings Count</p>
       </div>
-      
+
     </div>
   </div>
- 
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-6">
+    <canvas baseChart [datasets]="usersChartData" [labels]="usersChartLabels" [options]="barChartOptions"
+      [plugins]="barChartPlugins" [legend]="barChartLegend" [colors]="barChartColors" [chartType]="barChartType">
+    </canvas>
+  </div>
+  <div class="col-md-6">
+    <canvas baseChart [datasets]="studiosChartData" [labels]="studiosChartLabels" [options]="barChartOptions"
+      [plugins]="barChartPlugins" [legend]="barChartLegend" [colors]="barChartColors" [chartType]="barChartType">
+    </canvas>
+  </div>
+  <div class="col-md-6 mt-5">
+    <canvas baseChart [datasets]="bookingsChartData" [labels]="bookingsChartLabels" [options]="barChartOptions"
+      [plugins]="barChartPlugins" [legend]="barChartLegend" [colors]="barChartColors" [chartType]="barChartType">
+    </canvas>
+  </div>
+  <div class="col-md-6 mt-5">
+    <canvas baseChart [datasets]="transactionsChartData" [labels]="transactionsChartLabels" [options]="barChartOptions"
+      [plugins]="barChartPlugins" [legend]="barChartLegend" [colors]="barChartColors" [chartType]="barChartType">
+    </canvas>
+  </div>
 </div>
