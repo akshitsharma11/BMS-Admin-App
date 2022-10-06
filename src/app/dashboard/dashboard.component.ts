@@ -18,6 +18,12 @@ export class DashboardComponent implements OnInit {
   //bar chart (for users)
   barChartOptions: ChartOptions = {
     responsive: true,
+    legend: {
+      onClick: (e) => e.stopPropagation(),
+      labels: {
+        boxWidth: 0
+      }
+    },
     scales: {
       yAxes: [{
         gridLines: {
@@ -31,6 +37,29 @@ export class DashboardComponent implements OnInit {
       }]
     }
   };
+
+  barChartOptions1: ChartOptions = {
+    responsive: true,
+    legend: {
+      onClick: (e) => e.stopPropagation(),
+      labels: {
+        boxWidth: 0
+      }
+    },
+    scales: {
+      yAxes: [{
+        gridLines: {
+          display: true
+        },
+        display: true,
+        ticks: {
+          stepSize: 20,
+          min: 0
+        }
+      }]
+    }
+  };
+
   usersChartLabels = [];
   studiosChartLabels = [];
   bookingsChartLabels = [];
