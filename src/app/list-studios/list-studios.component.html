@@ -46,6 +46,9 @@
           Rooms
         </div>
         <div class="cell">
+          Active
+        </div>
+        <div class="cell">
           Created On
         </div>      
         <div class="cell">
@@ -72,6 +75,12 @@
         </div>
         <div class="cell" data-title="Rooms">
             {{ studio.roomsDetails.length }}
+        </div>
+        <div class="cell">
+          <label class="switch">
+            <input type="checkbox" [checked]="studio.isActive" (change)="onStatusChange(studio)">
+            <span class="slider round"></span>
+          </label>
         </div>
         <div class="cell" data-title="Created On">
             {{ studio.creationTimeStamp | date:'mediumDate' }}

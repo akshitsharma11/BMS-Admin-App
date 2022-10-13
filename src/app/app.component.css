@@ -92,3 +92,16 @@ a{
   color: darkblue;
   font-weight: 600;
 }
+
+/* Notification Dropdown */
+.notification-dropdown {
+  min-width: 24rem !important;
+}
+
+.notification-dropdown .dropdown-item.active,.notification-dropdown .dropdown-item:active {
+  color: #000;
+}
+
+.notification-dropdown .dropdown-item:hover {
+  background-color: #e8e8e8;
+}

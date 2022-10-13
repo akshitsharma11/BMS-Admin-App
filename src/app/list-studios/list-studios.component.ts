@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog,MatDialogConfig} from '@angular/material/dialog'; 
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -16,31 +16,30 @@ export class ListStudiosComponent implements OnInit {
   allStudios = [];
   dummyStudios = [];
 
-  filteredStatus = '';  
-  p:number =1;
-  
+  filteredStatus = '';
+  p: number = 1;
+
   startDate = '';
   endDate = '';
   showSearchIcon = true;
 
   constructor(
-    public matDialog:MatDialog,
-    private studioService:StudioService,
-    private spinner:NgxSpinnerService,
-    private toast:ToastrService,
-    private routerBtn:Router
-  )
-  {
-    this.studioService.listen().subscribe((m:any)=>{
+    public matDialog: MatDialog,
+    private studioService: StudioService,
+    private spinner: NgxSpinnerService,
+    private toast: ToastrService,
+    private routerBtn: Router
+  ) {
+    this.studioService.listen().subscribe((m: any) => {
       console.log(m);
       this.ngOnInit();
     });
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.spinner.show();
     //Fetching all Studios
-    this.studioService.getAllStudios().subscribe(res=>{
+    this.studioService.getAllStudios().subscribe(res => {
       this.allStudios = res["studios"];
       this.allStudios.sort((a, b) => a.creationTimeStamp >= b.creationTimeStamp ? -1 : 1);
       this.dummyStudios = this.allStudios;
@@ -49,27 +48,25 @@ export class ListStudiosComponent implements OnInit {
     });
   }
 
-  showDetailsDialog(studioData)
-  {
-    this.routerBtn.navigate([]).then(result => {  window.open('/admin/studios/'+studioData._id, '_blank'); });
+  showDetailsDialog(studioData) {
+    this.routerBtn.navigate([]).then(result => { window.open('/admin/studios/' + studioData._id, '_blank'); });
     // const dialogConfig = new MatDialogConfig();
     // dialogConfig.disableClose = false;
     // dialogConfig.id = 'show-studio-details-component';
     // // dialogConfig.height = "420px";
     // dialogConfig.width = "550px";
     // dialogConfig.maxHeight = '95vh';
-    
+
     // //For styling the mat-dialog (like borderRadius)
     // dialogConfig.panelClass = 'custom-container1'; //Now, we have style this class in global styles.css
 
     // //passing data
     // dialogConfig.data = {studioData:studioData};
-    
+
     // const modalDialog = this.matDialog.open(ShowStudioDetailsComponent,dialogConfig);
   }
 
-  deleteStudioDialog(studioId)
-  {
+  deleteStudioDialog(studioId) {
     // this.studioService.deleteSingleCategory(+studioId).subscribe(res=>{
     //   if(res["status"])
     //   {
@@ -98,17 +95,15 @@ export class ListStudiosComponent implements OnInit {
     // });
   }
 
-  searchByDate()
-  {
-    console.log(this.startDate,this.endDate);
-    if(this.startDate=="")
-    {
+  searchByDate() {
+    console.log(this.startDate, this.endDate);
+    if (this.startDate == "") {
       this.toast.error("Select Valid Date");
     }
-    else{
+    else {
       this.spinner.show();
       this.showSearchIcon = false;
-      this.studioService.getAllStudiosByDate({creationDate:this.startDate}).subscribe(res=>{
+      this.studioService.getAllStudiosByDate({ creationDate: this.startDate }).subscribe(res => {
         this.allStudios = res["studios"];
         // console.log(this.allStudios);
         this.spinner.hide();
@@ -116,13 +111,19 @@ export class ListStudiosComponent implements OnInit {
     }
   }
 
-  removeDateSearchedList()
-  {
+  removeDateSearchedList() {
     this.allStudios = this.dummyStudios;
     this.startDate = "";
     this.endDate = "";
     this.showSearchIcon = true;
-    console.log(this.allStudios.length);
+  }
+
+  onStatusChange(e) {
+    this.studioService.changeStudioStatus(e._id).subscribe((res: any) => {
+      this.toast.success(res.message)
+    }, (error: any) => {
+      this.toast.error('Error occurred');
+    });
   }
 
 }
