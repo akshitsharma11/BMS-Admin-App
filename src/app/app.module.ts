@@ -87,6 +87,9 @@ import { DeleteSubadminComponent } from './sub-admins/delete-subadmin/delete-sub
 import { EditOwnerComponent } from './owner/edit-owner/edit-owner.component';
 import { EditSubadminComponent } from './sub-admins/edit-subadmin/edit-subadmin.component';
 import { ChartsModule } from 'ng2-charts';
+import { SlotBookingComponent } from './slot-booking/slot-booking.component';
+import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
+import { CreateSlotBookingComponent } from './create-slot-booking/create-slot-booking.component';
 
 const appRoutes: Routes = [
 
@@ -106,6 +109,7 @@ const appRoutes: Routes = [
   { path: 'admin/bookings/cancelled', component: ListCancelledBookingsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Bookings'] } },
   { path: 'admin/transactions', component: ListTransactionsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Transactions'] } },
   // { path: 'admin/send-notifications', component: SendNotificationsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Notifications'] } },
+  { path: 'admin/slot', component: SlotBookingComponent, canActivate: [RouteProtectGuard], data: { roles: ['Transactions'] } },
   { path: 'admin/all-owners', component: ListOwnersComponent },
   { path: 'admin/owners/create', component: CreateOwnerComponent },
   { path: 'admin/owners/edit/:ownerId', component: EditOwnerComponent },
@@ -158,7 +162,9 @@ const appRoutes: Routes = [
     DeleteSubadminComponent,
     EditOwnerComponent,
     EditSubadminComponent,
-    DashboardComponent
+    DashboardComponent,
+    SlotBookingComponent,
+    CreateSlotBookingComponent
   ],
   imports: [
     BrowserModule,
@@ -183,6 +189,7 @@ const appRoutes: Routes = [
     NgxSpinnerModule,
     CommonModule,
     PdfViewerModule,
+    CalendarModule,
     ToastrModule.forRoot(),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

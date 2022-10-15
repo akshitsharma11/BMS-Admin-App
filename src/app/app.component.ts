@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import * as $ from 'jquery';
 import { AuthService } from './services/auth.service';
@@ -9,7 +9,7 @@ import { NotificationService } from './services/notification.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   public toggleNavbar = true;
   public isLoggedIn = false;
@@ -32,7 +32,7 @@ export class AppComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
   ) {
     // this.authService.listen().subscribe((m:any)=>{
     //   console.log(m);
@@ -100,8 +100,8 @@ export class AppComponent {
 
   deleteNotification(notificationId) {
     this.notificationService.deleteNotification(notificationId).subscribe((res:any) => {
-      if(res.success) {
-        this.allNotifications = this.allNotifications.filter(n => n._id !== notificationId);
+      if(res.status) {
+        this.allNotifications = [...this.allNotifications.filter(n => n._id !== notificationId)];
       }
     },
     (error: any) => {});

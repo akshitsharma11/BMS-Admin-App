@@ -1,0 +1,32 @@
+<div class="container">
+    <hr />
+    <div class="row justify-content-between">
+        <div class="col">
+            <label>Date: </label>
+            <h5>{{slotData?.selectedDate | date:'mediumDate'}}</h5>
+        </div>
+        <div class="col-3">
+            <label>Booking hours: </label>
+            <div>
+                <input type="number" min="1" class="form-control" placeholder="Enter container number" (change)="onHoursChange($event)"
+                    [(ngModel)]="bookingHours" />
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <ng-container *ngFor="let slot of availableSlots; let i = index;">
+            <input type="radio" class="btn-check" name="slots" [id]="'danger-outlined' + i" autocomplete="off" [(ngModel)]="selectedSlot" [value]="slot">
+            <label class="btn btn-outline-secondary mr-2" [for]="'danger-outlined' + i">{{slot.startTime}} - {{slot.endTime}}</label>
+        </ng-container>
+    </div>
+    <div class="row justify-content-end mt-2 pr-2">
+        <button type="submit" class="btn text-white btn-secondary mr-2" (click)="closeModel()">
+            Cancel
+        </button>
+        
+        <button type="submit" class="btn text-white btn-primary" (click)="saveBooking()" [disabled]="!selectedSlot">
+            Submit
+        </button>
+    </div>
+    <hr />
+</div>

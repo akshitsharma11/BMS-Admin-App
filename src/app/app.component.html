@@ -50,6 +50,8 @@
         <!-- <a *ngIf="(permObj.Notifications!=undefined && permObj.Notifications==true)" routerLink="/admin/send-notifications" routerLinkActive='selected' style="font-size: 17px;width: 100%;" class="pl-lg-4 py-lg-3"><i class="fas fa-bell"></i> &nbsp;Notifications</a> -->
         <a routerLink="/admin/all-owners" routerLinkActive='selected' style="font-size: 17px;width: 100%;"
           class="pl-lg-4 py-lg-3"><i class="fas fa-briefcase"></i> &nbsp;Owners</a>
+          <a routerLink="/admin/slot" routerLinkActive='selected' style="font-size: 17px;width: 100%;"
+          class="pl-lg-4 py-lg-3"><i class="fa fa-calendar"></i> &nbsp;Slots</a>
 
       </div>
     </div>
@@ -82,11 +84,11 @@
                     (click)="$event.stopPropagation();">
                     <div class="row">
                       <div class="col-11">
-                        <p class="mb-1" style="font-size: 16px; font-weight: 600;">{{n.title}}</p>
-                        <p class="mb-1" style="font-size: 12px;">{{n.message}}</p>
+                        <p class="mb-0" style="font-size: 15px; font-weight: 600;color: #ffc701;">{{n.title}}</p>
+                        <p class="mb-0" style="font-size: 13px;font-weight: 500;">{{n.message}}</p>
                       </div>
-                      <div>
-                        <a href="javascript:void(0)" role="button" (click)="deleteNotification(n._id)">
+                      <div class="position-relative">
+                        <a href="javascript:void(0)" role="button" class="position-absolute" (click)="deleteNotification(n._id)">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-x" viewBox="0 0 16 16">
                             <path
@@ -95,10 +97,16 @@
                         </a>
                       </div>
                     </div>
+                    
+                    <div class="row">
+                      <div class="col align-self-end time-label">
+                        <span>{{n.notificationDate}}</span>
+                      </div>
+                    </div>
                   </div>
                   <div class="dropdown-divider" *ngIf="allNotifications.length -1 !== i"></div>
                 </ng-container>
-                <div *ngIf="!allNotifications.length" class="dropdown-item" style="font-weight:600;cursor: pointer;" aria-hidden="true" (click)="$event.stopPropagation();">
+                <div *ngIf="!allNotifications.length" class="dropdown-nodata-item" style="font-weight:600;cursor: pointer;" aria-hidden="true" (click)="$event.stopPropagation();">
                   <h6 style="color: #9b9b9b;">No data to show</h6>
                 </div>
               </div>

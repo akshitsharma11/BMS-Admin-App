@@ -1,0 +1,286 @@
+.wrapper {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1100px;
+}
+
+.table2 {
+    margin: 0 0 40px 0;
+    width: 100%;
+    display: table;
+}
+
+@media screen and (max-width: 580px) {
+    .table2 {
+        display: block;
+    }
+}
+
+.row2 {
+    display: table-row;
+    background: white;
+    vertical-align: center;
+}
+
+.row2:nth-of-type(odd) {
+    background: white;
+}
+
+.row2.header2 {
+    font-weight: 600;
+    color: darkgreen;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    height: 40px;
+}
+
+@media screen and (max-width: 580px) {
+
+    .row2 {
+        padding: 14px 0 7px;
+        display: block;
+    }
+
+    .row2.header2 {
+        padding: 0;
+        height: 6px;
+    }
+
+    .row2.header2 .cell1 {
+        display: none;
+    }
+
+    .row2 .cell2 {
+        margin-bottom: 10px;
+    }
+
+    .row2 .cell2:before {
+        margin-bottom: 3px;
+        content: attr(data-title);
+        min-width: 98px;
+        font-size: 20px;
+        line-height: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: block;
+        margin: 10px;
+    }
+}
+
+.cell2 {
+    padding: 6px 12px;
+    display: table-cell;
+}
+
+@media screen and (max-width: 580px) {
+    .cell2 {
+        padding: 2px 16px;
+        display: block;
+    }
+}
+
+label {
+    color: gray;
+    font-weight: 600;
+}
+
+/* Calendar */
+
+.e-calendar {
+    margin: auto;
+    max-width: 70%;
+}
+
+
+::ng-deep.e-calendar .e-content td.e-selected.e-focused-date span.e-day {
+    background-color: #ffc800;
+    color: #fff;
+}
+
+::ng-deep .e-calendar .e-content td.e-today span.e-day {
+    background: none;
+    border: 1px solid #FFC701;
+    border-radius: unset;
+    box-shadow: none;
+    color: #FFC701;
+}
+
+::ng-deep .e-btn.e-flat.e-primary:active,
+::ng-deep .e-css.e-btn.e-flat.e-primary:active {
+    background-color: rgba(255, 199, 1, 0.24) !important;
+    border-color: transparent;
+    color: #FFC701;
+}
+
+::ng-deep .e-btn.e-flat.e-primary:hover,
+::ng-deep .e-css.e-btn.e-flat.e-primary:hover {
+    background-color: rgba(255, 199, 1, 0.04);
+    border-color: transparent;
+    color: #FFC701;
+}
+
+::ng-deep .e-btn.e-flat.e-primary:focus,
+::ng-deep .e-css.e-btn.e-flat.e-primary:focus {
+    background-color: rgba(255, 199, 1, 0.12);
+    border-color: transparent;
+    color: #FFC701;
+}
+
+::ng-deep .e-btn.e-flat.e-primary,
+::ng-deep .e-css.e-btn.e-flat.e-primary {
+    background-color: transparent;
+    border-color: transparent;
+    color: #FFC701;
+}
+
+::ng-deep .e-calendar .e-content td.e-today:hover span.e-day {
+    background-color: #eee;
+    border: 1px solid #FFC701;
+    color: #FFC701;
+}
+
+::ng-deep .e-calendar .e-content td.e-today.e-selected:hover span.e-day,
+::ng-deep .e-calendar .e-content td.e-selected.e-focused-date span.e-day,
+::ng-deep .e-calendar .e-content td.e-selected:hover span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-today.e-selected:hover span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-selected:hover span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-selected.e-focused-date span.e-day {
+    background-color: #FFC701;
+    color: #fff !important;
+}
+
+::ng-deep .e-calendar .e-content td.e-today:hover span.e-day,
+::ng-deep .e-calendar .e-content td.e-focused-date.e-today:hover span.e-day,
+::ng-deep .e-calendar .e-content td.e-focused-date.e-today:focus span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-today:hover span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today:hover span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today:focus span.e-day {
+    border: 1px solid #FFC701;
+}
+
+::ng-deep .e-calendar .e-content td.e-today.e-selected span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-today.e-selected span.e-day {
+    background-color: #FFC701;
+    border: 1px solid #FFC701;
+    box-shadow: inset 0 0 0 2px #fff;
+    color: #fff !important;
+}
+
+::ng-deep .e-calendar .e-content td.e-selected span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-selected span.e-day {
+    background-color: #FFC701;
+    border: none;
+    border-radius: unset;
+    color: #fff !important;
+}
+
+::ng-deep .e-calendar .e-content td.e-focused-date:hover span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-focused-date:hover span.e-day {
+    border: none;
+    border-radius: unset;
+}
+
+::ng-deep .e-calendar .e-content td:hover span.e-day,
+::ng-deep .e-calendar .e-content td:focus span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td:hover span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td:focus span.e-day {
+    background-color: #eee;
+    border: none;
+    border-radius: unset;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+::ng-deep .e-calendar .e-content td.e-today span.e-day,
+::ng-deep .e-calendar .e-content td.e-focused-date.e-today span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-today span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today span.e-day {
+    border-radius: unset;
+    height: 45px;
+    width: 45px;
+    padding: 8px;
+}
+
+::ng-deep .e-calendar .e-content td.e-focused-date.e-today span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today span.e-day {
+    background: #eee;
+    border: 1px solid #FFC701;
+    box-shadow: none;
+    color: #FFC701;
+}
+
+::ng-deep .e-calendar .e-content td.e-today:hover span.e-day,
+::ng-deep .e-calendar .e-content td.e-focused-date.e-today:hover span.e-day,
+::ng-deep .e-calendar .e-content td.e-focused-date.e-today:focus span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-today:hover span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today:hover span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today:focus span.e-day {
+    color: #FFC701;
+}
+
+::ng-deep .e-calendar .e-header.e-month,
+::ng-deep .e-bigger.e-small .e-calendar .e-header.e-month {
+    background-color: #ffc800;
+    padding: 10px;
+}
+
+::ng-deep .e-calendar .e-header .e-title,
+::ng-deep .e-bigger.e-small .e-calendar .e-header .e-title {
+    font-size: 24px;
+    color: #fff;
+}
+
+::ng-deep .e-calendar .e-date-icon-prev,
+::ng-deep .e-calendar .e-date-icon-next,
+::ng-deep .e-bigger.e-small .e-calendar .e-date-icon-prev,
+::ng-deep .e-bigger.e-small .e-calendar .e-date-icon-next,
+::ng-deep .e-calendar .e-header .e-next.e-disabled span,
+::ng-deep .e-calendar .e-header .e-prev.e-disabled span,
+::ng-deep .e-bigger.e-small .e-calendar .e-header .e-next.e-disabled span,
+::ng-deep .e-bigger.e-small .e-calendar .e-header .e-prev.e-disabled span,
+::ng-deep .e-calendar .e-header .e-prev:hover>span,
+::ng-deep .e-calendar .e-header .e-next:hover>span,
+::ng-deep .e-bigger.e-small .e-calendar .e-header .e-prev:hover>span,
+::ng-deep .e-bigger.e-small .e-calendar .e-header .e-next:hover>span {
+    color: #fff;
+}
+
+::ng-deep .e-calendar th,
+::ng-deep .e-bigger.e-small .e-calendar th {
+    height: 64px;
+    font-size: 18px;
+}
+
+::ng-deep .e-calendar .e-content span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content span.e-day {
+    font-size: 18px;
+    height: 45px;
+    width: 45px;
+    padding: 8px;
+}
+
+::ng-deep .e-calendar .e-content.e-month td,
+::ng-deep .e-bigger.e-small .e-calendar .e-content.e-month td {
+    height: 64px;
+}
+
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+::ng-deep .e-btn,
+.e-css.e-btn {
+    font-size: 18px;
+    padding: 6px 20px 4px;
+}
+
+::ng-deep .e-calendar .e-content td.e-focused-date span.e-day,
+::ng-deep .e-calendar .e-content td.e-focused-date:hover span.e-day,
+::ng-deep .e-calendar .e-content td.e-focused-date:focus span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-focused-date span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-focused-date:hover span.e-day,
+::ng-deep .e-bigger.e-small .e-calendar .e-content td.e-focused-date:focus span.e-day {
+    border-radius: unset;
+}
