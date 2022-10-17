@@ -8,7 +8,7 @@
         <div class="col-3">
             <label>Booking hours: </label>
             <div>
-                <input type="number" min="1" class="form-control" placeholder="Enter container number" (change)="onHoursChange($event)"
+                <input type="number" min="1" class="form-control" placeholder="Enter container number" (keyup)="onHoursChange($event)" (change)="onHoursChange($event)"
                     [(ngModel)]="bookingHours" />
             </div>
         </div>

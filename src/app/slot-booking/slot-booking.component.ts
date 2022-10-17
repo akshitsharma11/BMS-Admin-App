@@ -18,7 +18,7 @@ export class SlotBookingComponent implements OnInit, AfterViewInit {
 
   public month: number = new Date().getMonth();
   public fullYear: number = new Date().getFullYear();
-  public dateValue: Date = new Date(this.fullYear, this.month, 11);
+  public dateValue: Date = new Date();
   public minDate: Date = new Date();
   public maxDate: Date = new Date(this.fullYear, this.month, 15);
 
@@ -49,25 +49,28 @@ export class SlotBookingComponent implements OnInit, AfterViewInit {
   }
 
   onChange(e) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
-    dialogConfig.id = 'save-container';
-    dialogConfig.height = 'auto';
-    dialogConfig.width = '60%';
-    //passing data
-    dialogConfig.data = {
-      studioId: this.selectedStudio,
-      room: this.selectedRoomData,
-      selectedDate: e.value
-    };
-
-    this.matDialog.open(CreateSlotBookingComponent, dialogConfig);
-    this.matDialog
-      ._getAfterAllClosed()
-      .subscribe((res: any) => {
-        this.selectedStudio = "-1";
-        this.selectedRoom = "-1";
-      });
+    if(e.value == this.dateValue) {
+      return;
+    } else {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = false;
+      dialogConfig.id = 'save-container';
+      dialogConfig.height = 'auto';
+      dialogConfig.width = '60%';
+      //passing data
+      dialogConfig.data = {
+        studioId: this.selectedStudio,
+        room: this.selectedRoomData,
+        selectedDate: e.value
+      };
+  
+      this.matDialog.open(CreateSlotBookingComponent, dialogConfig);
+      this.matDialog
+        ._getAfterAllClosed()
+        .subscribe((res: any) => {
+          this.dateValue = new Date();
+        });
+    }
   }
 
 }

@@ -9,40 +9,41 @@ const API_USERS_URL = `${environment.apiUrl}`;
   providedIn: 'root'
 })
 export class TransactionService {
-  
-  serverUrl  = API_USERS_URL;
+
+  serverUrl = API_USERS_URL;
 
   tokenString;
 
-  constructor(private http:HttpClient) {
-    if(localStorage.getItem("adminAuthTokenBMS")!=null)
-    {
-      this.tokenString = 'Bearer '+localStorage.getItem("adminAuthTokenBMS").replace(/^["'](.+(?=["']$))["']$/, '$1');
+  constructor(private http: HttpClient) {
+    if (localStorage.getItem("adminAuthTokenBMS") != null) {
+      this.tokenString = 'Bearer ' + localStorage.getItem("adminAuthTokenBMS").replace(/^["'](.+(?=["']$))["']$/, '$1');
     }
   }
 
   private listeners = new Subject<any>();
-  listen():Observable<any>{
+  listen(): Observable<any> {
     return this.listeners.asObservable();
   }
 
-  filter(filterBy)
-  {
+  filter(filterBy) {
     this.listeners.next(filterBy);
   }
 
-  getAllTransactions()
-  {
-    return this.http.get(this.serverUrl+'/transactions/',{headers:new HttpHeaders({
-      'Authorization':this.tokenString
-    })});
+  getAllTransactions(params) {
+    return this.http.get(this.serverUrl + '/transactions/', {
+      headers: new HttpHeaders({
+        'Authorization': this.tokenString
+      }),
+      params
+    });
   }
 
-  getAllTransactionsByDateRange(data)
-  {
-    return this.http.post(this.serverUrl+'/transactions/date-filter/',data,{headers:new HttpHeaders({
-      'Authorization':this.tokenString
-    })});
+  getAllTransactionsByDateRange(data) {
+    return this.http.post(this.serverUrl + '/transactions/date-filter/', data, {
+      headers: new HttpHeaders({
+        'Authorization': this.tokenString
+      }),
+    });
   }
 
 }

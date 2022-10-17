@@ -30,11 +30,11 @@ export class CreateSlotBookingComponent implements OnInit {
   }
 
   getAvailability() {
-    const payload = { 
-      studioId: this.slotData.studioId, 
-      roomId: this.slotData.room.roomId, 
-      bookingDate: this.slotData.selectedDate, 
-      bookingHours: this.bookingHours 
+    const payload = {
+      studioId: this.slotData.studioId,
+      roomId: this.slotData.room.roomId,
+      bookingDate: this.slotData.selectedDate,
+      bookingHours: this.bookingHours
     };
 
     this.bookingService.getAvailability(payload).subscribe((res: any) => {
@@ -43,11 +43,12 @@ export class CreateSlotBookingComponent implements OnInit {
   }
 
   onHoursChange(e) {
-    this.getAvailability();
+    if (this.bookingHours != null && this.bookingHours > 0) {
+      this.getAvailability();
+    }
   }
 
   saveBooking() {
-    console.log(this.slotData.room);
     const totalPrice = this.slotData.room.pricePerHour * this.bookingHours;
     const payload = {
       userId: JSON.parse(localStorage.getItem('authUserDataBMS'))._id,
@@ -61,12 +62,12 @@ export class CreateSlotBookingComponent implements OnInit {
     this.bookingService.saveBooking(payload).subscribe((res: any) => {
       this.toast.success(res.message);
       this.closeModel();
-    }, (error:any) => {
+    }, (error: any) => {
       this.toast.error(error.error.message);
       this.closeModel();
     });
   }
-  
+
 
   closeModel() {
     this.dialogRef.close();

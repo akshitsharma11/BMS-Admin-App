@@ -44,6 +44,6 @@
     </div>
 
     <div class="p-3 mb-5">
-        <ejs-calendar [min]='minDate' (change)="onChange($event)" [class.disabled]="selectedStudio == '-1' || selectedRoom == '-1'"></ejs-calendar>
+        <ejs-calendar [min]='minDate' [value]="dateValue" (change)="onChange($event)" [class.disabled]="selectedStudio == '-1' || selectedRoom == '-1'"></ejs-calendar>
     </div>
 </div>

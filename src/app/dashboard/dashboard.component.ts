@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
         },
         display: true,
         ticks: {
-          stepSize: 20,
+          stepSize: 9000,
           min: 0
         }
       }]

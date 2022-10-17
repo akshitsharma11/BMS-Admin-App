@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import * as $ from 'jquery';
+import { TimeAgoPipe } from 'ngx-pipes';
 import { AuthService } from './services/auth.service';
 import { NotificationService } from './services/notification.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [TimeAgoPipe]
 })
 export class AppComponent implements OnInit {
 
@@ -28,6 +30,7 @@ export class AppComponent implements OnInit {
   permissions = [];
   permObj = { "Users": false, "Studios": false, "SubAdmins": false, "Discounts": false, "Bookings": false, "Transactions": false, "Notifications": false };
   allNotifications = [];
+  today: any;
 
   constructor(
     private authService: AuthService,
@@ -49,6 +52,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.today = new Date();
+    this.today.setDate(this.today.getDate() - 3);
     this.authService.autoLogin();
     this.getAllNotifications();
     $("#menu-toggle").on('click', function (e) {

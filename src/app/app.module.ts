@@ -90,6 +90,7 @@ import { ChartsModule } from 'ng2-charts';
 import { SlotBookingComponent } from './slot-booking/slot-booking.component';
 import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
 import { CreateSlotBookingComponent } from './create-slot-booking/create-slot-booking.component';
+import { NgPipesModule } from 'ngx-pipes';
 
 const appRoutes: Routes = [
 
@@ -194,6 +195,7 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireMessagingModule,
+    NgPipesModule,
     NgMultiSelectDropDownModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase)
   ],

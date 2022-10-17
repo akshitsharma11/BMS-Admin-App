@@ -39,7 +39,7 @@ export class ListTransactionsComponent implements OnInit {
   ngOnInit(): void {    
     this.spinner.show();
     //Fetching all transactions
-    this.transactionService.getAllTransactions().subscribe(res=>{
+    this.transactionService.getAllTransactions({skip: 0, limit: 0}).subscribe(res=>{
       this.allTransactions = res["transactions"];
       this.allTransactions.sort((a, b) => a.creationTimeStamp >= b.creationTimeStamp ? -1 : 1);
       this.dummyTransactions = this.allTransactions;
