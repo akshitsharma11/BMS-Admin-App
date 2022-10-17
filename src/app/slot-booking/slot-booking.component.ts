@@ -52,24 +52,32 @@ export class SlotBookingComponent implements OnInit, AfterViewInit {
   }
 
   onChange(e) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
-    dialogConfig.id = 'save-container';
-    dialogConfig.height = 'auto';
-    dialogConfig.width = '60%';
-    //passing data
-    dialogConfig.data = {
-      studioId: this.selectedStudio,
-      room: this.selectedRoomData,
-      selectedDate: e.value
-    };
-
-    this.matDialog.open(CreateSlotBookingComponent, dialogConfig);
-    this.matDialog
-      ._getAfterAllClosed()
-      .subscribe((res: any) => {
-        this.ejCalendar.value = null;
-      });
+    if(e && e.name != 'change') {
+      if ((e && e.value) || this.ejCalendar.value) {
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = false;
+        dialogConfig.id = 'save-booking';
+        dialogConfig.height = 'auto';
+        dialogConfig.width = '60%';
+        //passing data
+        dialogConfig.data = {
+          studioId: this.selectedStudio,
+          room: this.selectedRoomData,
+          selectedDate: e && e.value ? e.value : this.ejCalendar.value
+        };
+  
+        this.matDialog.open(CreateSlotBookingComponent, dialogConfig);
+        this.matDialog
+          ._getAfterAllClosed()
+          .subscribe((res: any) => {
+            this.ejCalendar.value = null;
+          });
+      } else {
+        return;
+      }
+    } else {
+      return;
+    }
   }
 
 }

@@ -13,11 +13,14 @@
             </div>
         </div>
     </div>
-    <div class="row mt-4">
+    <div class="row mt-4" *ngIf="availableSlots.length">
         <ng-container *ngFor="let slot of availableSlots; let i = index;">
             <input type="radio" class="btn-check" name="slots" [id]="'danger-outlined' + i" autocomplete="off" [(ngModel)]="selectedSlot" [value]="slot">
             <label class="btn btn-outline-secondary mr-2" [for]="'danger-outlined' + i">{{slot.startTime}} - {{slot.endTime}}</label>
         </ng-container>
+    </div>
+    <div class="row mt-4 justify-content-center" *ngIf="!availableSlots.length">
+        <h5 style="color: #a1a1a1;">No slots available</h5>
     </div>
     <div class="row justify-content-end mt-2 pr-2">
         <button type="submit" class="btn text-white btn-secondary mr-2" (click)="closeModel()">
