@@ -99,6 +99,7 @@ export class AppComponent implements OnInit {
   getAllNotifications() {
     this.notificationService.getAllNotifications().subscribe((res:any) => {
       this.allNotifications = res.notifications;
+      this.allNotifications.map(n => n.notificationDate = new Date(n.notificationDate));
     },
     (error: any) => {});
   }

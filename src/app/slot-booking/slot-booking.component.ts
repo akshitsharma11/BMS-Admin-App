@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CalendarComponent } from '@syncfusion/ej2-angular-calendars';
 import { CreateSlotBookingComponent } from '../create-slot-booking/create-slot-booking.component';
 import { StudioService } from '../services/studio.service';
 
@@ -9,6 +10,8 @@ import { StudioService } from '../services/studio.service';
   styleUrls: ['./slot-booking.component.css']
 })
 export class SlotBookingComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('ejCalendar') ejCalendar: CalendarComponent;
 
   selectedStudio = "-1";
   selectedRoom: any = "-1";
@@ -49,28 +52,24 @@ export class SlotBookingComponent implements OnInit, AfterViewInit {
   }
 
   onChange(e) {
-    if(e.value == this.dateValue) {
-      return;
-    } else {
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = false;
-      dialogConfig.id = 'save-container';
-      dialogConfig.height = 'auto';
-      dialogConfig.width = '60%';
-      //passing data
-      dialogConfig.data = {
-        studioId: this.selectedStudio,
-        room: this.selectedRoomData,
-        selectedDate: e.value
-      };
-  
-      this.matDialog.open(CreateSlotBookingComponent, dialogConfig);
-      this.matDialog
-        ._getAfterAllClosed()
-        .subscribe((res: any) => {
-          this.dateValue = new Date();
-        });
-    }
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.id = 'save-container';
+    dialogConfig.height = 'auto';
+    dialogConfig.width = '60%';
+    //passing data
+    dialogConfig.data = {
+      studioId: this.selectedStudio,
+      room: this.selectedRoomData,
+      selectedDate: e.value
+    };
+
+    this.matDialog.open(CreateSlotBookingComponent, dialogConfig);
+    this.matDialog
+      ._getAfterAllClosed()
+      .subscribe((res: any) => {
+        this.ejCalendar.value = null;
+      });
   }
 
 }
