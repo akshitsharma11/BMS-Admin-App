@@ -109,7 +109,7 @@ const appRoutes: Routes = [
   { path: 'admin/bookings/completed', component: ListCompletedBookingsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Bookings'] } },
   { path: 'admin/bookings/cancelled', component: ListCancelledBookingsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Bookings'] } },
   { path: 'admin/transactions', component: ListTransactionsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Transactions'] } },
-  // { path: 'admin/send-notifications', component: SendNotificationsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Notifications'] } },
+  { path: 'admin/send-notifications', component: SendNotificationsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Notifications'] } },
   { path: 'admin/slot', component: SlotBookingComponent, canActivate: [RouteProtectGuard], data: { roles: ['Transactions'] } },
   { path: 'admin/all-owners', component: ListOwnersComponent },
   { path: 'admin/owners/create', component: CreateOwnerComponent },
