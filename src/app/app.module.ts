@@ -110,10 +110,10 @@ const appRoutes: Routes = [
   { path: 'admin/bookings/cancelled', component: ListCancelledBookingsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Bookings'] } },
   { path: 'admin/transactions', component: ListTransactionsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Transactions'] } },
   { path: 'admin/send-notifications', component: SendNotificationsComponent, canActivate: [RouteProtectGuard], data: { roles: ['Notifications'] } },
-  { path: 'admin/slot', component: SlotBookingComponent, canActivate: [RouteProtectGuard], data: { roles: ['Transactions'] } },
-  { path: 'admin/all-owners', component: ListOwnersComponent },
-  { path: 'admin/owners/create', component: CreateOwnerComponent },
-  { path: 'admin/owners/edit/:ownerId', component: EditOwnerComponent },
+  { path: 'admin/slot', component: SlotBookingComponent, canActivate: [RouteProtectGuard], data: { roles: ['Slots'] } },
+  { path: 'admin/all-owners', component: ListOwnersComponent, canActivate: [RouteProtectGuard], data: { roles: ['Owners'] }  },
+  { path: 'admin/owners/create', component: CreateOwnerComponent, canActivate: [RouteProtectGuard], data: { roles: ['Owners'] }  },
+  { path: 'admin/owners/edit/:ownerId', component: EditOwnerComponent, canActivate: [RouteProtectGuard], data: { roles: ['Owners'] }  },
 
   { path: 'admin/login', component: LoginUserComponent, canActivate: [OnlyLoginGuardService] },
   { path: 'admin/profile', component: ProfileComponent },
@@ -203,3 +203,4 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+  

@@ -15,7 +15,7 @@ export class EditSubadminComponent implements OnInit {
   subAdminId;
   subAdminDetails;
 
-  permissions = ['Users','Studios','SubAdmins','Discounts','Bookings','Transactions','Notifications'];
+  permissions = ['Users','Studios','SubAdmins','Discounts','Bookings','Transactions','Notifications', 'Owners', 'Slots'];
 
   adminPerm = [];
 

@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   subAdminEmail;
   subAdminImage;
   permissions = [];
-  permObj = { "Users": false, "Studios": false, "SubAdmins": false, "Discounts": false, "Bookings": false, "Transactions": false, "Notifications": false };
+  permObj = { "Users": false, "Studios": false, "SubAdmins": false, "Discounts": false, "Bookings": false, "Transactions": false, "Notifications": false, "Owners": false, "Slots": false };
   allNotifications = [];
   today: any;
 
