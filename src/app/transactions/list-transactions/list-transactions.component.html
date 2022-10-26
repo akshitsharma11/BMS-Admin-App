@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        <div class="row" *ngFor="let transaction of allTransactions | nameFilter : filteredStatus | paginate :{itemsPerPage:10, currentPage:p, totalItems: totalRecords};let i = index;">
+        <div class="row" *ngFor="let transaction of allTransactions | nameFilter : filteredStatus | paginate :{itemsPerPage:20, currentPage:p, totalItems: totalRecords};let i = index;">
 
             <div class="cell" data-title="S.No.">
                 {{i+1}}

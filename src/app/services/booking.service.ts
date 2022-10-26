@@ -37,6 +37,33 @@ export class BookingService {
     });
   }
 
+  getActiveBookings(params) {
+    return this.http.get(this.serverUrl + '/bookings/', {
+      headers: new HttpHeaders({
+        'Authorization': this.tokenString
+      }),
+      params
+    });
+  }
+
+  getCancelledBookings(params) {
+    return this.http.get(this.serverUrl + '/bookings/', {
+      headers: new HttpHeaders({
+        'Authorization': this.tokenString
+      }),
+      params
+    });
+  }
+
+  getCompletedBookings(params) {
+    return this.http.get(this.serverUrl + '/bookings/', {
+      headers: new HttpHeaders({
+        'Authorization': this.tokenString
+      }),
+      params
+    });
+  }
+
   getAllBookingsByDateRange(data) {
     return this.http.post(this.serverUrl + '/bookings/date-filter/', data, {
       headers: new HttpHeaders({

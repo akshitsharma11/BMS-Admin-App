@@ -3,131 +3,168 @@
         <h4>Add New Studio</h4>
     </div>
     <form (ngSubmit)="onSubmit(form)" #form="ngForm">
-    <div class="row mt-4">
-        <div class="col-md-5">
-            <div class="row">
-                <label for="">Studio Name </label>
-                <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter studio name" ngModel name="fullName" required #studioNameRef="ngModel">                 
-                <div *ngIf="studioNameRef.errors?.required && studioNameRef.touched" class="errorDiv">
-                    Studio Name is required!
-                </div>  
-            </div>
-            <div class="row">
-                <label for="">Total Area </label>
-                <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter studio area(ex- 500 sq.ft.)" ngModel name="area" required #areaRef="ngModel">                 
-                <div *ngIf="areaRef.errors?.required && areaRef.touched" class="errorDiv">
-                    Area is required!
-                </div>  
-            </div>
-            <div class="row">
-                <label for="">Number Of Rooms </label>
-                <select name="totalRooms" [ngModel]="defaultRoomsCount" class="form-control shadow-lg mb-3 bg-white rounded"
-                        #myRooms (change)='onRoomsSelect(myRooms.value)' >
-                    <option value="-1" disabled>Select Rooms</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            </div>
-            <div class="row">
-                <label for="">Number Of Guests </label>
-                <select name="maxGuests" [ngModel]="defaultMaxGuestsCount" class="form-control shadow-lg mb-3 bg-white rounded">
-                    <option value="-1" disabled>Select Max. Guests</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            </div>
-            <div class="row">
-                <label for="">Studio State </label>
-                <!-- <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter State" ngModel name="state" required #stateRef="ngModel">                 
+        <div class="row mt-4">
+            <div class="col-md-5">
+                <div class="row">
+                    <label for="">Studio Name </label>
+                    <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded"
+                        placeholder="Enter studio name" ngModel name="fullName" required #studioNameRef="ngModel">
+                    <div *ngIf="studioNameRef.errors?.required && studioNameRef.touched" class="errorDiv">
+                        Studio Name is required!
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="">Total Area </label>
+                    <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded"
+                        placeholder="Enter studio area(ex- 500 sq.ft.)" ngModel name="area" required #areaRef="ngModel">
+                    <div *ngIf="areaRef.errors?.required && areaRef.touched" class="errorDiv">
+                        Area is required!
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="">Number Of Rooms </label>
+                    <select name="totalRooms" [ngModel]="defaultRoomsCount"
+                        class="form-control shadow-lg mb-3 bg-white rounded" #myRooms
+                        (change)='onRoomsSelect(myRooms.value)'>
+                        <option value="-1" disabled>Select Rooms</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <label for="">Number Of Guests </label>
+                    <select name="maxGuests" [ngModel]="defaultMaxGuestsCount"
+                        class="form-control shadow-lg mb-3 bg-white rounded">
+                        <option value="-1" disabled>Select Max. Guests</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <label for="">Studio State </label>
+                    <!-- <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter State" ngModel name="state" required #stateRef="ngModel">                 
                 <div *ngIf="stateRef.errors?.required && stateRef.touched" class="errorDiv">
                     State is required!
                 </div> -->
-                <select name="state" [ngModel]="defaultState" class="form-control shadow-lg mb-3 bg-white rounded"
-                    #myState (change)='onStateSelect(myState.value)' >
-                    <option value="-1" disabled>Select State</option>
-                    <option value={{singleState.name}} *ngFor="let singleState of allStates;">{{singleState.name}}</option>
-                </select>
-            </div>
-            <div class="row">
-                <label for="">Studio City </label>
-                <!-- <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter City" ngModel name="city" required #cityRef="ngModel">                 
+                    <!-- <select name="state" [ngModel]="defaultState" class="form-control shadow-lg mb-3 bg-white rounded"
+                        #myState (change)='onStateSelect(myState.value)'>
+                        <option value="-1" disabled>Select State</option>
+                        <option value={{singleState.name}} *ngFor="let singleState of allStates;">{{singleState.name}}
+                        </option>
+                    </select> -->
+
+                    <ng-autocomplete #ngAutoCompleteStatic [data]="allStates" [searchKeyword]="keyword"
+                        [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
+                        (selected)="onStateSelect($event)" placeholder="Select state" name="state">
+                    </ng-autocomplete>
+
+                    <ng-template #itemTemplate let-item>
+                        <a [innerHTML]="item.name"></a>
+                    </ng-template>
+
+                    <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                </div>
+                <div class="row">
+                    <label for="">Studio City </label>
+                    <!-- <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter City" ngModel name="city" required #cityRef="ngModel">                 
                 <div *ngIf="cityRef.errors?.required && cityRef.touched" class="errorDiv">
                     City is required!
                 </div> -->
-                <select name="city" [ngModel]="defaultCity" class="form-control shadow-lg mb-3 bg-white rounded">
-                    <option value="-1" disabled>Select City</option>
-                    <option value={{singleCity.name}} *ngFor="let singleCity of allCities;">{{singleCity.name}}</option>
-                </select>
-            </div>
-            <div class="row">
-                <label for="">Studio MapLink </label>
-                <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter studio maplink" ngModel name="mapLink" required #mapLinkRef="ngModel">                 
-                <div *ngIf="mapLinkRef.errors?.required && mapLinkRef.touched" class="errorDiv">
-                    Maplink is required!
-                </div>  
-            </div>
-            <div class="row mt-2 ">
-                <label for="">Studio Full Address</label>
-                <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded"
-                        placeholder="Enter full address" ngModel name="address" required #addressRef="ngModel"></textarea> 
-                <div *ngIf="addressRef.errors?.required && addressRef.touched" class="errorDiv">
-                   Address is required!
-                </div>                  
-            </div>
-            <div class="row">
-                <label for="">Studio Pincode </label>
-                <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter Pincode" ngModel name="pincode" required #pincodeRef="ngModel">                 
-                <div *ngIf="pincodeRef.errors?.required && pincodeRef.touched" class="errorDiv">
-                    Pincode is required!
-                </div>  
-            </div>
-            <div class="row mt-2">
-                <label for="">Rooms</label>
-            </div>
-            <div class="row">
-                <div class="col-md-4" *ngFor="let singleRoom of allRooms;let i=index">
-                    <button [ngClass]="(getRoomButtonColor(singleRoom))?'roomBtnSelected':'roomBtnOther'"
-                    class="text-center btn mb-1" type="button"  (click)="addRoomDetails(singleRoom)">Room {{singleRoom.roomId}}</button>
+                    <!-- <select name="city" [ngModel]="defaultCity" class="form-control shadow-lg mb-3 bg-white rounded">
+                        <option value="-1" disabled>Select City</option>
+                        <option value={{singleCity.name}} *ngFor="let singleCity of allCities;">{{singleCity.name}}
+                        </option>
+                    </select> -->
+
+                    <ng-autocomplete #ngAutoCompleteStatic [data]="allCities" [searchKeyword]="keyword"
+                        [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" (selected)="onStateSelect($event)"
+                        placeholder="Select city" name="city">
+                    </ng-autocomplete>
+
+                    <ng-template #itemTemplate let-item>
+                        <a [innerHTML]="item.name"></a>
+                    </ng-template>
+
+                    <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                    </ng-template>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-5">
-            <div class="row">
-                <label for="">Add Studio Photos</label>
-                <div class="col-md-12">
-                    <input type="file" multiple="" (change)="selectImages($event)" required>
+                <div class="row">
+                    <label for="">Studio MapLink </label>
+                    <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded"
+                        placeholder="Enter studio maplink" ngModel name="mapLink" required #mapLinkRef="ngModel">
+                    <div *ngIf="mapLinkRef.errors?.required && mapLinkRef.touched" class="errorDiv">
+                        Maplink is required!
+                    </div>
                 </div>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-6 my-1" *ngFor="let imgFile of allStudioPhotos">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <img src={{imgFile}}  onerror="this.src='../../assets/banner.jfif'" alt="StudioImage" height="120px" width="180px">
-                        </div>
-                        <div class="col-md-2 mt-4">
-                            <button class="btn btn-danger rounded-circle" type="button" (click)="removeStudioPhoto(imgFile)">X</button>
-                        </div>
+                <div class="row mt-2 ">
+                    <label for="">Studio Full Address</label>
+                    <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter full address"
+                        ngModel name="address" required #addressRef="ngModel"></textarea>
+                    <div *ngIf="addressRef.errors?.required && addressRef.touched" class="errorDiv">
+                        Address is required!
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="">Studio Pincode </label>
+                    <input type="text" class="form-control shadow-lg p-3 mb-3 bg-white rounded"
+                        placeholder="Enter Pincode" ngModel name="pincode" required #pincodeRef="ngModel">
+                    <div *ngIf="pincodeRef.errors?.required && pincodeRef.touched" class="errorDiv">
+                        Pincode is required!
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <label for="">Rooms</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" *ngFor="let singleRoom of allRooms;let i=index">
+                        <button [ngClass]="(getRoomButtonColor(singleRoom))?'roomBtnSelected':'roomBtnOther'"
+                            class="text-center btn mb-1" type="button" (click)="addRoomDetails(singleRoom)">Room
+                            {{singleRoom.roomId}}</button>
                     </div>
                 </div>
             </div>
-            <!-- <div class="row p-3 text-center" style="background-color: rgb(236, 233, 233); border-radius: 10px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <div class="row">
+                    <label for="">Add Studio Photos</label>
+                    <div class="col-md-12">
+                        <input type="file" multiple="" (change)="selectImages($event)" required>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-6 my-1" *ngFor="let imgFile of allStudioPhotos">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <img src={{imgFile}} onerror="this.src='../../assets/banner.jfif'" alt="StudioImage"
+                                    height="120px" width="180px">
+                            </div>
+                            <div class="col-md-2 mt-4">
+                                <button class="btn btn-danger rounded-circle" type="button"
+                                    (click)="removeStudioPhoto(imgFile)">X</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row p-3 text-center" style="background-color: rgb(236, 233, 233); border-radius: 10px;">
                 <div class="col-md-12">
                     <img src="../../assets/imageIcon.png" height="30px" width="30px" alt="" srcset="">
                 </div>
@@ -144,73 +181,73 @@
                     </div>
                 </div>
             </div> -->
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <label for="">Amenities </label>
-                </div>
-                <div class="col-sm-4 text-left" *ngFor="let amenity of allAmenities;let i = index;">
-                    <input class="form-check-input ml-1 checkmark"  type="checkbox" id="gridCheck1" name="amenity" [value]="amenity.id" (change)="data($event,amenity)" #checkBox ngModel>
-                    <label style="color: #212529;font-weight:400;font-size: 13.3px;margin-bottom: 10px;" class="form-check-label ml-4" for="gridCheck1">
-                      {{amenity.name}}
-                    </label>
-                </div>
-            </div>
-            <div class="row mt-3 pl-3">
-                <label for="">About Studio</label>
-                <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded"
-                        placeholder="Enter description" ngModel name="aboutStudio" required #aboutRef="ngModel"></textarea> 
-                <div *ngIf="aboutRef.errors?.required && aboutRef.touched" class="errorDiv">
-                   *About Studio description is required!
-                </div>
-            </div>
-            <div class="row mt-2 pl-3">
-                <label for="">Studio Services</label>
-                <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded"
-                        placeholder="Enter all services" ngModel name="studioServices" required #serviceRef="ngModel"></textarea> 
-                <div *ngIf="serviceRef.errors?.required && serviceRef.touched" class="errorDiv">
-                   *Studio services is required!
-                </div>
-            </div>
-            <div class="row mt-2 pl-3">
-                <label for="">Studio Infrastructure</label>
-                <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded"
-                        placeholder="Enter details" ngModel name="infrastructure" required #infrastructureRef="ngModel"></textarea> 
-                <div *ngIf="infrastructureRef.errors?.required && infrastructureRef.touched" class="errorDiv">
-                   *Infrastructure details is required!
-                </div>
-            </div>
-            <div class="row mt-2 pl-3">
-                <div class="col-md-12">
-                    <label for="">Add Team Members</label>
-                </div>
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-6" *ngFor="let member of allMembers">
-                            <button [ngClass]="(getMemberButtonColor(member))?'roomBtnSelected':'roomBtnOther'"
-                            class="text-center btn m-1" type="button" (click)="addMemberDetails(member)">Member {{member.id}}</button>
-                        </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label for="">Amenities </label>
+                    </div>
+                    <div class="col-sm-4 text-left" *ngFor="let amenity of allAmenities;let i = index;">
+                        <input class="form-check-input ml-1 checkmark" type="checkbox" id="gridCheck1" name="amenity"
+                            [value]="amenity.id" (change)="data($event,amenity)" #checkBox ngModel>
+                        <label style="color: #212529;font-weight:400;font-size: 13.3px;margin-bottom: 10px;"
+                            class="form-check-label ml-4" for="gridCheck1">
+                            {{amenity.name}}
+                        </label>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <button class="btn btn-outline-secondary mt-1" style="border-radius: 8px;font-weight: 480;" (click)="addTeamMember()" type="button">Add More</button>
+                <div class="row mt-3 pl-3">
+                    <label for="">About Studio</label>
+                    <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter description"
+                        ngModel name="aboutStudio" required #aboutRef="ngModel"></textarea>
+                    <div *ngIf="aboutRef.errors?.required && aboutRef.touched" class="errorDiv">
+                        *About Studio description is required!
+                    </div>
+                </div>
+                <div class="row mt-2 pl-3">
+                    <label for="">Studio Services</label>
+                    <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter all services"
+                        ngModel name="studioServices" required #serviceRef="ngModel"></textarea>
+                    <div *ngIf="serviceRef.errors?.required && serviceRef.touched" class="errorDiv">
+                        *Studio services is required!
+                    </div>
+                </div>
+                <div class="row mt-2 pl-3">
+                    <label for="">Studio Infrastructure</label>
+                    <textarea class="form-control shadow-lg p-3 mb-3 bg-white rounded" placeholder="Enter details"
+                        ngModel name="infrastructure" required #infrastructureRef="ngModel"></textarea>
+                    <div *ngIf="infrastructureRef.errors?.required && infrastructureRef.touched" class="errorDiv">
+                        *Infrastructure details is required!
+                    </div>
+                </div>
+                <div class="row mt-2 pl-3">
+                    <div class="col-md-12">
+                        <label for="">Add Team Members</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6" *ngFor="let member of allMembers">
+                                <button [ngClass]="(getMemberButtonColor(member))?'roomBtnSelected':'roomBtnOther'"
+                                    class="text-center btn m-1" type="button" (click)="addMemberDetails(member)">Member
+                                    {{member.id}}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-outline-secondary mt-1" style="border-radius: 8px;font-weight: 480;"
+                            (click)="addTeamMember()" type="button">Add More</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class="row my-5 text-center">
-        <div class="col-md-12">
-            <button class="mr-3 mt-1 col-md-1 myBtn" [disabled]="!form.valid" type="submit"> Save</button>
+
+        <div class="row my-5 text-center">
+            <div class="col-md-12">
+                <button class="mr-3 mt-1 col-md-1 myBtn" [disabled]="!form.valid" type="submit"> Save</button>
+            </div>
         </div>
-     </div>
-     
+
     </form>
 </div>
 
-<ngx-spinner
-  bdColor="rgba(51,51,51,0.8)"
-  size="medium"
-  color="#fff"
-  type="ball-scale-multiple">
-  <p style="font-size: 20px; color: white">Please Wait...</p>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Please Wait...</p>
 </ngx-spinner>

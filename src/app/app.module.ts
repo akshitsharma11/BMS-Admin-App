@@ -91,6 +91,7 @@ import { SlotBookingComponent } from './slot-booking/slot-booking.component';
 import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
 import { CreateSlotBookingComponent } from './create-slot-booking/create-slot-booking.component';
 import { NgPipesModule } from 'ngx-pipes';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 const appRoutes: Routes = [
 
@@ -196,6 +197,7 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     AngularFireMessagingModule,
     NgPipesModule,
+    AutocompleteLibModule,
     NgMultiSelectDropDownModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase)
   ],

@@ -29,6 +29,7 @@
     "ag-grid-angular": "^24.1.0",
     "ag-grid-community": "^24.1.0",
     "angular-material": "^1.2.1",
+    "angular-ng-autocomplete": "^2.0.5",
     "bootstrap": "^4.5.3",
     "chart.js": "^2.9.4",
     "country-state-city": "^3.0.1",

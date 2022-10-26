@@ -14,7 +14,9 @@ export class ListTransactionsComponent implements OnInit {
 
   allTransactions = [];
   dummyTransactions = [];
+  dummyTotalRecords = 0;
   totalRecords = 0;
+  isDateFilter = false;
 
   filteredStatus = '';
   p: number = 1;
@@ -42,24 +44,32 @@ export class ListTransactionsComponent implements OnInit {
   }
 
   loadTransactions(e) {
-    this.spinner.show();
     this.p = e;
-    let params = {
-      skip: e == 1 ? 0 : (e * 10) - 10,
-      limit: 10
-    };
-    this.transactionService.getAllTransactions(params).subscribe(res => {
-      this.totalRecords = res["totalTransactions"];
-      this.allTransactions = res["transactions"];
-      this.allTransactions.sort((a, b) => a.creationTimeStamp >= b.creationTimeStamp ? -1 : 1);
-      this.dummyTransactions = this.allTransactions;
-      // console.log(this.allTransactions);
-      this.spinner.hide();
-    });
+    if(this.isDateFilter) {
+      return;
+    } else {
+      this.spinner.show();
+      let params = {
+        skip: e == 1 ? 0 : (e - 1) * 20,
+        limit: 20
+      };
+      this.transactionService.getAllTransactions(params).subscribe(res => {
+        this.totalRecords = res["totalTransactions"];
+        this.allTransactions = res["transactions"];
+        this.allTransactions.sort((a, b) => a.creationTimeStamp >= b.creationTimeStamp ? -1 : 1);
+        this.dummyTransactions = this.allTransactions;
+        this.dummyTotalRecords = this.totalRecords;
+        // console.log(this.allTransactions);
+        this.spinner.hide();
+      });
+    }
+  }
+
+  onFilterTextChange() {
+    console.log(this.allTransactions);
   }
 
   searchByDate() {
-    console.log(this.startDate, this.endDate);
     if (this.startDate == "" || this.endDate == "") {
       this.toast.error("Select Valid Date");
     }
@@ -67,8 +77,10 @@ export class ListTransactionsComponent implements OnInit {
       this.spinner.show();
       this.showSearchIcon = false;
       this.transactionService.getAllTransactionsByDateRange({ startDate: this.startDate, endDate: this.endDate }).subscribe(res => {
+        this.isDateFilter = true;
         this.allTransactions = res["transactions"];
         this.allTransactions.sort((a, b) => a.creationTimeStamp >= b.creationTimeStamp ? -1 : 1);
+        this.totalRecords = this.allTransactions.length;
         // console.log(this.allTransactions);
         this.spinner.hide();
       })
@@ -76,11 +88,12 @@ export class ListTransactionsComponent implements OnInit {
   }
 
   removeDateSearchedList() {
+    this.isDateFilter = false;
     this.allTransactions = this.dummyTransactions;
+    this.totalRecords = this.dummyTotalRecords;
     this.startDate = "";
     this.endDate = "";
     this.showSearchIcon = true;
-    console.log(this.allTransactions.length);
   }
 
 }
