@@ -56,7 +56,7 @@ export class ListCompletedBookingsComponent implements OnInit {
       //Fetching all bookings
       this.bookingService.getCompletedBookings(params).subscribe(res => {
         this.allCompletedBookings = res["data"];
-        this.totalRecords = this.allCompletedBookings.length;
+        this.totalRecords = res["totalBookings"];
         this.allCompletedBookings.sort((a, b) => a.creationTimeStamp >= b.creationTimeStamp ? -1 : 1);
         this.allCompletedBookings.forEach(singleBooking => {
           singleBooking.mappedBookingTime = singleBooking.bookingTime.startTime + "-" + singleBooking.bookingTime.endTime;
@@ -91,6 +91,7 @@ export class ListCompletedBookingsComponent implements OnInit {
         this.allCompletedBookings.sort((a, b) => a.creationTimeStamp >= b.creationTimeStamp ? -1 : 1);
         this.allCompletedBookings.forEach(singleBooking => {
           singleBooking.mappedBookingTime = singleBooking.bookingTime.startTime + "-" + singleBooking.bookingTime.endTime;
+          this.totalRecords = this.allCompletedBookings.length;
         });
         // console.log(this.allCompletedBookings);
         this.spinner.hide();

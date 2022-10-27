@@ -56,7 +56,7 @@ export class ListCancelledBookingsComponent implements OnInit {
       //Fetching all bookings
       this.bookingService.getActiveBookings(params).subscribe(res => {
         this.allCancelledBookings = res["data"];
-        this.totalRecords = this.allCancelledBookings.length;
+        this.totalRecords = res["totalBookings"];
         this.allCancelledBookings.sort((a, b) => a.creationTimeStamp >= b.creationTimeStamp ? -1 : 1);
         this.allCancelledBookings.forEach(singleBooking => {
           singleBooking.mappedBookingTime = singleBooking.bookingTime.startTime + "-" + singleBooking.bookingTime.endTime;
@@ -91,6 +91,7 @@ export class ListCancelledBookingsComponent implements OnInit {
         this.allCancelledBookings.sort((a, b) => a.creationTimeStamp >= b.creationTimeStamp ? -1 : 1);
         this.allCancelledBookings.forEach(singleBooking => {
           singleBooking.mappedBookingTime = singleBooking.bookingTime.startTime + "-" + singleBooking.bookingTime.endTime;
+          this.totalRecords = this.allCancelledBookings.length;
         });
         // console.log(this.allCancelledBookings);
         this.spinner.hide();
