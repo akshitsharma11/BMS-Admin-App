@@ -70,8 +70,8 @@
                     </select> -->
 
                     <ng-autocomplete #ngAutoCompleteStatic [data]="allStates" [searchKeyword]="keyword"
-                        [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
-                        (selected)="onStateSelect($event)" placeholder="Select state" name="state">
+                        [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" (selected)="onStateSelect($event)"
+                        placeholder="Select state" name="state" ngModel>
                     </ng-autocomplete>
 
                     <ng-template #itemTemplate let-item>
@@ -96,7 +96,7 @@
 
                     <ng-autocomplete #ngAutoCompleteStatic [data]="allCities" [searchKeyword]="keyword"
                         [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" (selected)="onStateSelect($event)"
-                        placeholder="Select city" name="city">
+                        placeholder="Select city" name="city" ngModel>
                     </ng-autocomplete>
 
                     <ng-template #itemTemplate let-item>

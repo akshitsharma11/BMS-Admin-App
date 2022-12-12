@@ -194,6 +194,7 @@ export class CreateStudioComponent implements OnInit {
     this.allCities = [];
     // console.log(value);
     const index = this.allStates.findIndex(i => i.name == state);
+    
     if (index != -1) {
       let stateCode = this.allStates[index].isoCode;
       // console.log(stateCode);
@@ -363,14 +364,15 @@ export class CreateStudioComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    console.log(form.value);
     this.spinner.show();
     let studioData = {
       fullName: form.value.fullName,
       address: form.value.address,
       latitude: "",
       longitude: "",
-      city: form.value.city,
-      state: form.value.state,
+      city: form.value.city.name ? form.value.city.name : form.value.city,
+      state: form.value.state.name ? form.value.state.name : form.value.state,
       mapLink: form.value.mapLink,
       area: form.value.area,
       pincode: form.value.pincode,
